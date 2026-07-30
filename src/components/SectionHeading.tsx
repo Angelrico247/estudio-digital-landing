@@ -1,0 +1,33 @@
+type SectionHeadingProps = {
+  eyebrow: string;
+  title: string;
+  align?: "center" | "left";
+  size?: "large" | "medium";
+};
+
+export default function SectionHeading({
+  eyebrow,
+  title,
+  align = "center",
+  size = "large",
+}: SectionHeadingProps) {
+  const isCenter = align === "center";
+
+  return (
+    <div className={isCenter ? "text-center" : "text-left"}>
+      <span className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+        {eyebrow}
+      </span>
+      <h2
+        className={`mt-4 font-heading font-semibold uppercase text-foreground ${
+          size === "large" ? "text-3xl sm:text-5xl" : "text-3xl sm:text-[40px]"
+        }`}
+      >
+        {title}
+      </h2>
+      <div
+        className={`mt-6 h-[3px] w-[60px] bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] ${isCenter ? "mx-auto" : ""}`}
+      />
+    </div>
+  );
+}

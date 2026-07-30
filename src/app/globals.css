@@ -1,26 +1,282 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Identidad de marca — única fuente de verdad para todos los colores del sitio */
+  --color-primary: #8b3dff; /* violeta eléctrico — acento principal */
+  --color-primary-dark: #7c3aed; /* glow violeta — hover states */
+  --color-primary-light: #a855f7; /* violeta neón — variante clara para gradientes */
+  --color-secondary-blue: #2563ff; /* azul eléctrico — círculo/acento derecho */
+  --color-secondary-blue-light: #00a8ff; /* azul neón — variante clara */
+  --color-bg-dark: #020207; /* fondo principal oscuro */
+  --color-bg-section: #020207; /* fondo alterno para secciones */
+  --color-bg-card: #08080a; /* fondo de cards */
+  --color-text-primary: #f5f5f7; /* texto principal */
+  --color-text-secondary: #a1a1aa; /* texto secundario/subtítulos */
+  --color-border: #2a2a2a; /* bordes sutiles */
 }
 
+/* Tailwind v4 es CSS-first: en vez de tailwind.config.js, este bloque @theme
+   mapea las variables de arriba a utilidades (bg-dark, text-secondary, border-line, etc.).
+   Ningún componente define un color fuera de estas utilidades. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-light: var(--color-primary-light);
+  --color-accent-blue: var(--color-secondary-blue);
+  --color-accent-blue-light: var(--color-secondary-blue-light);
+  --color-dark: var(--color-bg-dark);
+  --color-section: var(--color-bg-section);
+  --color-card: var(--color-bg-card);
+  --color-foreground: var(--color-text-primary);
+  --color-secondary: var(--color-text-secondary);
+  --color-line: var(--color-border);
+  --font-sans: var(--font-dm-sans);
+  --font-heading: var(--font-barlow-condensed);
+  --font-impact: var(--font-anton);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg-dark);
+  color: var(--color-text-secondary);
+  overflow-x: hidden;
+}
+
+@keyframes scroll-line {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+.animate-scroll-line {
+  animation: scroll-line 2s ease-in-out infinite;
+}
+
+/* Hero slider — grid tipo "tech", línea de escaneo y texto con contorno */
+.tech-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 0.1px var(--color-text-primary);
+  opacity: 0.8;
+}
+
+@keyframes scan-vertical {
+  0% {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+}
+
+.animate-scan-vertical {
+  animation: scan-vertical 6s linear infinite;
+}
+
+@keyframes slide-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Orbes de luz neón con movimiento — glow violeta/azul flotando detrás de contenido */
+@keyframes drift-orb-a {
+  0% {
+    transform: translate(-8%, -6%) scale(1);
+  }
+  25% {
+    transform: translate(6%, -10%) scale(1.1);
+  }
+  50% {
+    transform: translate(10%, 6%) scale(0.95);
+  }
+  75% {
+    transform: translate(-6%, 8%) scale(1.05);
+  }
+  100% {
+    transform: translate(-8%, -6%) scale(1);
+  }
+}
+
+@keyframes drift-orb-b {
+  0% {
+    transform: translate(8%, 6%) scale(1);
+  }
+  25% {
+    transform: translate(-10%, 8%) scale(0.92);
+  }
+  50% {
+    transform: translate(-6%, -10%) scale(1.08);
+  }
+  75% {
+    transform: translate(8%, -4%) scale(1);
+  }
+  100% {
+    transform: translate(8%, 6%) scale(1);
+  }
+}
+
+.animate-drift-orb-a {
+  animation: drift-orb-a 16s ease-in-out infinite;
+}
+
+.animate-drift-orb-b {
+  animation: drift-orb-b 20s ease-in-out infinite;
+}
+
+.animate-slide-progress {
+  animation: slide-progress 6s linear;
+}
+
+/* Botón con relleno de gradiente que se desliza al hacer hover — https://uiverse.io/Madflows/stale-baboon-45 */
+.btn-fill {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-fill-content {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  border-radius: inherit;
+  background: linear-gradient(82.3deg, var(--color-primary) 10.8%, var(--color-secondary-blue) 94.3%);
+  transition: transform 0.475s;
+}
+
+.btn-fill:hover::before {
+  transform: scaleX(1);
+}
+
+/* Borde con gradiente que sí respeta border-radius (border-image lo ignora) */
+.btn-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary-blue));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Borde de las tarjetas que se ilumina siguiendo al cursor (sin tocar el fondo) */
+.spotlight-border {
+  position: relative;
+}
+
+.spotlight-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  padding: 1px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  background: radial-gradient(
+    220px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    var(--color-secondary-blue-light),
+    var(--color-primary) 55%,
+    transparent 80%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.spotlight-border:hover::after {
+  opacity: 1;
+}
+
+/* Borde con el degradado de marca, respeta border-radius (para acentos siempre visibles) */
+.border-gradient-brand {
+  position: relative;
+}
+
+.border-gradient-brand::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--gb-width, 2px);
+  background: linear-gradient(82.3deg, var(--color-primary) 10.8%, var(--color-secondary-blue) 94.3%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Cursor circular personalizado (solo dispositivos con mouse) */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background-image: url(/glow-purple.png);
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  transition: width 0.25s ease, height 0.25s ease;
+}
+
+.cursor-ring.cursor-ring-active {
+  width: 80px;
+  height: 80px;
+}
+
+@media (pointer: coarse) {
+  .cursor-ring {
+    display: none;
+  }
 }
