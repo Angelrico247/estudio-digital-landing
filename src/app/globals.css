@@ -280,3 +280,54 @@ body {
     display: none;
   }
 }
+
+/* Etiqueta de sección en forma de bandera diagonal, inspirada en Seppo (page-title-holder) */
+.tab-flag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.85rem 2.25rem 0.85rem 1.5rem;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
+}
+
+/* Botón circular que se expande a píldora completa al hover, con el texto deslizándose adentro */
+.btn-dot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 40px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.btn-dot span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.btn-dot:hover span {
+  transform: translateX(6px);
+}
+
+.btn-dot::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--color-primary);
+  border-radius: 999px;
+  background: transparent;
+  transition: width 0.35s ease, border-radius 0.35s ease, background 0.35s ease;
+}
+
+.btn-dot:hover::before {
+  width: calc(100% + 4px);
+  border-radius: 999px;
+  background: linear-gradient(82.3deg, var(--color-primary) 10.8%, var(--color-secondary-blue) 94.3%);
+  border-color: transparent;
+}
