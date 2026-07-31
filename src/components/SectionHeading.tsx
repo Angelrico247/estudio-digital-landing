@@ -3,6 +3,7 @@ type SectionHeadingProps = {
   title: string;
   align?: "center" | "left";
   size?: "large" | "medium";
+  variant?: "text" | "flag";
 };
 
 export default function SectionHeading({
@@ -10,17 +11,28 @@ export default function SectionHeading({
   title,
   align = "center",
   size = "large",
+  variant = "text",
 }: SectionHeadingProps) {
   const isCenter = align === "center";
 
   return (
     <div className={isCenter ? "text-center" : "text-left"}>
-      <span className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-        {eyebrow}
-      </span>
+      {variant === "flag" ? (
+        <span
+          className={`tab-flag font-heading text-sm font-semibold uppercase tracking-[0.2em] ${
+            isCenter ? "mx-auto" : ""
+          }`}
+        >
+          {eyebrow}
+        </span>
+      ) : (
+        <span className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+          {eyebrow}
+        </span>
+      )}
       <h2
-        className={`mt-4 font-heading font-semibold uppercase text-foreground ${
-          size === "large" ? "text-3xl sm:text-5xl" : "text-3xl sm:text-[40px]"
+        className={`mt-6 font-impact uppercase leading-[0.95] text-foreground ${
+          size === "large" ? "text-4xl sm:text-6xl lg:text-7xl" : "text-3xl sm:text-5xl"
         }`}
       >
         {title}

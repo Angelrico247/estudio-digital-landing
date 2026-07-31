@@ -18,7 +18,7 @@ export default function CTASection() {
         <span className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
           ¿Listo para empezar?
         </span>
-        <h2 className="mt-4 font-heading text-3xl font-semibold uppercase text-white sm:text-5xl">
+        <h2 className="mt-6 font-impact text-4xl uppercase leading-[0.95] text-white sm:text-6xl">
           Hablemos de tu Proyecto
         </h2>
         <p className="mt-4 text-lg text-white/70">

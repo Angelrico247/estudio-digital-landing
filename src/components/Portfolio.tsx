@@ -8,7 +8,7 @@ export default function Portfolio() {
     <section id="portafolio" className="bg-section py-20 lg:py-[120px]">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <FadeIn>
-          <SectionHeading eyebrow="Portafolio" title="Nuestros Proyectos" />
+          <SectionHeading eyebrow="Portafolio" title="Nuestros Proyectos" variant="flag" />
         </FadeIn>
 
         <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2">

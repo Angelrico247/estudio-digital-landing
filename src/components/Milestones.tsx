@@ -18,7 +18,7 @@ export default function Milestones() {
       <div className="relative mx-auto grid max-w-[1100px] grid-cols-2 gap-12 px-6 lg:grid-cols-4 lg:px-8">
         {milestones.map((milestone, i) => (
           <FadeIn key={milestone.label} delay={i * 100} className="text-center">
-            <div className="font-heading text-5xl font-black text-primary sm:text-6xl">
+            <div className="font-impact text-5xl text-primary sm:text-6xl">
               <MilestoneCounter value={milestone.value} />
               <span className="font-normal">{milestone.suffix}</span>
             </div>

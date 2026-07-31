@@ -24,7 +24,9 @@ export default function PricingCard({ plan }: { plan: PricingPlan }) {
         </span>
       )}
 
-      <span className="font-heading text-5xl font-black text-outline opacity-20">{plan.number}</span>
+      <span className="text-outline font-heading text-[100px] font-black leading-[0.8]">
+        {plan.number.padStart(2, "0")}
+      </span>
 
       <h3 className="mt-4 font-heading text-xl font-bold uppercase text-foreground">{plan.name}</h3>
 

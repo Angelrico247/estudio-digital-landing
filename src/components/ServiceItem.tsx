@@ -34,29 +34,28 @@ export default function ServiceItem({ service }: { service: Service }) {
   return (
     <div
       onMouseMove={handleSpotlight}
-      className="spotlight-border relative h-full w-full overflow-hidden rounded-md border border-line bg-card p-8 py-12"
+      className="spotlight-border relative h-full w-full overflow-hidden rounded-md border border-line bg-card p-8 py-10"
     >
-      <Icon className="relative z-10 h-14 w-14 text-primary" />
+      <span
+        aria-hidden
+        className="text-outline relative z-10 block font-heading text-[110px] font-black leading-[0.8]"
+      >
+        {service.number.padStart(2, "0")}
+      </span>
 
-      <h3 className="relative z-10 mt-6 font-heading text-[22px] font-bold uppercase text-foreground">
-        {service.title}
-      </h3>
+      <div className="relative z-10 mt-4 flex items-center gap-3">
+        <Icon className="h-8 w-8 shrink-0 text-primary" />
+        <h3 className="font-heading text-[22px] font-bold uppercase text-foreground">{service.title}</h3>
+      </div>
       <p className="relative z-10 mt-3 text-[15px] leading-[1.6] text-secondary">{service.description}</p>
 
       <button
         type="button"
         onClick={() => open({ type: "servicio", selection: service.title })}
-        className="relative z-10 mt-5 font-heading text-xs font-semibold uppercase tracking-[0.1em] text-primary transition-colors hover:text-foreground"
+        className="btn-dot relative z-10 mt-6 font-heading text-xs font-semibold uppercase tracking-[0.1em]"
       >
-        Cotizar Servicio →
+        <span>Cotizar Servicio</span>
       </button>
-
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -bottom-[15px] right-[10px] font-heading text-[130px] font-black leading-none text-transparent [-webkit-text-stroke:1.5px_var(--color-border)]"
-      >
-        {service.number}
-      </span>
     </div>
   );
 }

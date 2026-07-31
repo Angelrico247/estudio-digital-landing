@@ -27,7 +27,7 @@ export default function Contact() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
           <FadeIn>
-            <SectionHeading eyebrow="Contacto" title="Escríbenos" align="left" />
+            <SectionHeading eyebrow="Contacto" title="Escríbenos" align="left" variant="flag" />
             <p className="mt-6 max-w-md text-lg leading-[1.7] text-secondary">
               Cuéntanos sobre tu proyecto y te contactamos en menos de 24 horas.
             </p>

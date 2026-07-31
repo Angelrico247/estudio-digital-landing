@@ -95,7 +95,7 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={360}>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
               <a
                 href="#servicios"
                 className="btn-fill font-impact  rounded-md border px-10 py-5 text-sm font-black uppercase text-foreground"
@@ -104,9 +104,9 @@ export default function Hero() {
               </a>
               <a
                 href="#portafolio"
-                className="btn-fill font-impact  rounded-md border px-10 py-5 text-sm font-black uppercase text-foreground"
+                className="btn-dot font-impact text-sm font-black uppercase tracking-wide text-foreground"
               >
-                <span className="btn-fill-content">Ver Portafolio</span>
+                <span>Ver Portafolio</span>
               </a>
             </div>
           </FadeIn>

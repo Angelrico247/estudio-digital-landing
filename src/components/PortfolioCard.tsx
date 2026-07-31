@@ -23,7 +23,7 @@ export default function PortfolioCard({ project }: { project: PortfolioProject }
         <p className="font-heading text-xs font-semibold uppercase tracking-[0.15em] text-primary transition-colors duration-[400ms] group-hover:text-foreground">
           {project.category}
         </p>
-        <h3 className="mt-2 font-heading text-2xl font-bold uppercase text-foreground">{project.name}</h3>
+        <h3 className="mt-2 font-impact text-3xl uppercase leading-none text-foreground">{project.name}</h3>
       </div>
     </Wrapper>
   );
