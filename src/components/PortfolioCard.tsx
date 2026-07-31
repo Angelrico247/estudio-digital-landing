@@ -7,7 +7,7 @@ export default function PortfolioCard({ project }: { project: PortfolioProject }
   return (
     <Wrapper
       {...(project.url ? { href: project.url, target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="group relative block aspect-[4/3] overflow-hidden rounded-md"
+      className="group relative block aspect-[4/3] w-full overflow-hidden rounded-md sm:aspect-auto sm:h-full"
     >
       <Image
         src={project.image ?? imageUrl(project.imageSeed, 900, 675)}

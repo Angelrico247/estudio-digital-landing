@@ -284,10 +284,10 @@ body {
   left: 0;
   width: 40px;
   height: 40px;
-  background-image: url(/glow-purple.png);
-  background-size: cover;
-  background-position: center;
-  mix-blend-mode: screen;
+  border-radius: 999px;
+  background: linear-gradient(82.3deg, var(--color-primary) 10.8%, var(--color-secondary-blue) 94.3%);
+  opacity: 0.55;
+  filter: blur(1px);
   pointer-events: none;
   z-index: 9999;
   will-change: transform;
@@ -350,7 +350,7 @@ body {
 }
 
 .btn-dot:hover::before {
-  width: calc(100% + 4px);
+  width: calc(100% + 24px);
   border-radius: 999px;
   background: linear-gradient(82.3deg, var(--color-primary) 10.8%, var(--color-secondary-blue) 94.3%);
   border-color: transparent;

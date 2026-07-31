@@ -31,7 +31,7 @@ export default function Hero() {
   const activeSlide = heroSlides[index];
 
   return (
-    <section id="inicio" className="relative h-[125vh] overflow-hidden bg-dark">
+    <section id="inicio" className="relative h-screen overflow-hidden bg-dark">
       {heroSlides.map((slide, i) => (
         <div
           key={slide.id}
@@ -47,8 +47,7 @@ export default function Hero() {
         />
       ))}
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/60 to-black/85" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-b from-transparent to-dark" />
+      <div className="absolute inset-0 bg-black/65" />
 
       <div className="relative flex h-screen items-center">
         <div className="tech-grid pointer-events-none absolute inset-0 opacity-40" />
