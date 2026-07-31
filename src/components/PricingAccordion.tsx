@@ -15,7 +15,7 @@ export default function PricingAccordion({ categories }: { categories: PricingAc
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <div className="mx-auto max-w-3xl divide-y divide-hairline border-y border-hairline">
+    <div className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
       {categories.map((category, i) => {
         const isOpen = openIndex === i;
         const panelId = `pricing-accordion-panel-${i}`;
@@ -32,7 +32,7 @@ export default function PricingAccordion({ categories }: { categories: PricingAc
                 onClick={() => setOpenIndex(isOpen ? -1 : i)}
                 className="flex w-full items-center justify-between gap-4 py-6 text-left transition-colors hover:text-primary"
               >
-                <span className="font-heading text-lg font-semibold uppercase tracking-[0.05em] text-ink">
+                <span className="font-heading text-lg font-semibold uppercase tracking-[0.05em] text-foreground">
                   {category.title}
                 </span>
                 <span className="flex shrink-0 items-center gap-3">
@@ -42,7 +42,7 @@ export default function PricingAccordion({ categories }: { categories: PricingAc
                     </span>
                   )}
                   <ChevronDownIcon
-                    className={`h-5 w-5 text-ink-secondary transition-transform duration-300 ${isOpen ? "rotate-180 text-primary" : ""}`}
+                    className={`h-5 w-5 text-secondary transition-transform duration-300 ${isOpen ? "rotate-180 text-primary" : ""}`}
                   />
                 </span>
               </button>
@@ -60,21 +60,21 @@ export default function PricingAccordion({ categories }: { categories: PricingAc
                 {category.items && (
                   <div className="grid gap-4 pb-6 sm:grid-cols-2">
                     {category.items.map((item) => (
-                      <div key={item.name} className="rounded-md border border-hairline bg-paper-card p-5">
-                        <h4 className="font-heading text-[15px] font-bold uppercase tracking-[0.02em] text-ink">
+                      <div key={item.name} className="rounded-md border border-line bg-card p-5">
+                        <h4 className="font-heading text-[15px] font-bold uppercase tracking-[0.02em] text-foreground">
                           {item.name}
                         </h4>
                         <strong className="mt-1 block bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] bg-clip-text font-heading text-sm font-semibold text-transparent">
                           {item.price}
                         </strong>
-                        <p className="mt-2 text-[13px] leading-[1.6] text-ink-secondary">{item.description}</p>
+                        <p className="mt-2 text-[13px] leading-[1.6] text-secondary">{item.description}</p>
                       </div>
                     ))}
                   </div>
                 )}
 
                 {category.note && (
-                  <p className="pb-6 text-[13px] italic leading-[1.6] text-ink-secondary/80">{category.note}</p>
+                  <p className="pb-6 text-[13px] italic leading-[1.6] text-secondary/80">{category.note}</p>
                 )}
               </div>
             </div>

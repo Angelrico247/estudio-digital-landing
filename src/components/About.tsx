@@ -20,6 +20,9 @@ export default function About() {
               className="object-cover"
               sizes="(min-width: 1024px) 33vw, 90vw"
             />
+            <span className="tab-flag absolute left-0 top-0 font-heading text-xs font-semibold uppercase tracking-[0.2em]">
+              Sobre Nosotros
+            </span>
             <div
               aria-hidden
               className="absolute inset-y-0 left-0 w-1"

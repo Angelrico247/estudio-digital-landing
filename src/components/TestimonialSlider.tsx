@@ -17,56 +17,62 @@ export default function TestimonialSlider({ testimonials }: { testimonials: Test
   }
 
   return (
-    <div className="relative mx-auto max-w-[700px]">
-      <div className="flex items-center justify-between">
-        <button
-          type="button"
-          aria-label="Testimonio anterior"
-          onClick={prev}
-          className="text-2xl text-secondary transition-colors hover:text-primary"
-        >
-          ←
-        </button>
+    <div className="relative mx-auto max-w-[700px] rounded-md bg-card p-10 sm:p-12">
+      <svg
+        aria-hidden
+        viewBox="0 0 64 40"
+        className="h-9 w-14"
+        fill="none"
+        stroke="var(--color-primary)"
+        strokeWidth="2.5"
+      >
+        <path d="M2 38V20a12 12 0 0 1 12-12h6v14H14v16H2Z" />
+        <path d="M34 38V20a12 12 0 0 1 12-12h6v14H46v16H34Z" />
+      </svg>
 
-        <div className="relative flex-1 px-6 text-center">
-          <span
-            aria-hidden
-            className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-4 font-heading text-8xl font-black text-primary opacity-30"
-          >
-            &ldquo;
-          </span>
+      <p className="relative mt-6 text-xl leading-[1.8] text-secondary">{testimonial.quote}</p>
 
-          <p className="relative pt-10 text-xl italic leading-[1.8] text-secondary">
-            {testimonial.quote}
-          </p>
-
+      <div className="mt-8 flex items-center justify-between">
+        <div className="flex items-center gap-4">
           <div
-            className="border-gradient-brand relative mx-auto mt-8 h-16 w-16 overflow-hidden rounded-full"
+            className="border-gradient-brand relative h-12 w-12 overflow-hidden rounded-full"
             style={{ ["--gb-width" as string]: "2px" }}
           >
             <Image
-              src={imageUrl(testimonial.imageSeed, 128, 128)}
+              src={imageUrl(testimonial.imageSeed, 96, 96)}
               alt={testimonial.name}
               fill
               className="object-cover"
-              sizes="64px"
+              sizes="48px"
             />
           </div>
-          <p className="mt-4 text-base font-semibold text-foreground">{testimonial.name}</p>
-          <p className="text-sm text-primary">{testimonial.role}</p>
+          <div>
+            <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
+            <p className="text-xs uppercase tracking-[0.1em] text-primary">{testimonial.role}</p>
+          </div>
         </div>
 
-        <button
-          type="button"
-          aria-label="Siguiente testimonio"
-          onClick={next}
-          className="text-2xl text-secondary transition-colors hover:text-primary"
-        >
-          →
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            aria-label="Testimonio anterior"
+            onClick={prev}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-secondary transition-colors hover:border-primary hover:text-primary"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            aria-label="Siguiente testimonio"
+            onClick={next}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-secondary transition-colors hover:border-primary hover:text-primary"
+          >
+            →
+          </button>
+        </div>
       </div>
 
-      <div className="mt-10 flex justify-center gap-3">
+      <div className="mt-8 flex justify-center gap-3">
         {testimonials.map((t, i) => (
           <button
             key={t.name}
