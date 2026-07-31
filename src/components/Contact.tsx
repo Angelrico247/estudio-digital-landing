@@ -23,25 +23,25 @@ const socials = [
 
 export default function Contact() {
   return (
-    <section id="contacto" className="bg-section py-20 lg:py-[120px]">
+    <section id="contacto" className="bg-paper py-20 lg:py-[120px]">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
           <FadeIn>
-            <SectionHeading eyebrow="Contacto" title="Escríbenos" align="left" variant="flag" />
-            <p className="mt-6 max-w-md text-lg leading-[1.7] text-secondary">
+            <SectionHeading eyebrow="Contacto" title="Escríbenos" align="left" variant="flag" tone="light" />
+            <p className="mt-6 max-w-md text-lg leading-[1.7] text-ink-secondary">
               Cuéntanos sobre tu proyecto y te contactamos en menos de 24 horas.
             </p>
 
-            <div className="mt-8 space-y-3 text-secondary">
+            <div className="mt-8 space-y-3 text-ink-secondary">
               <p>
                 <span className="mr-3">✉</span>
-                <a href={`mailto:${site.email}`} className="hover:text-foreground">
+                <a href={`mailto:${site.email}`} className="hover:text-primary">
                   {site.email}
                 </a>
               </p>
               <p>
                 <span className="mr-3">☏</span>
-                <a href={`tel:${site.phone.replace(/\s+/g, "")}`} className="hover:text-foreground">
+                <a href={`tel:${site.phone.replace(/\s+/g, "")}`} className="hover:text-primary">
                   {site.phone}
                 </a>
               </p>
@@ -59,7 +59,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="text-secondary transition-colors hover:text-primary"
+                  className="text-ink-secondary transition-colors hover:text-primary"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d={social.path} />

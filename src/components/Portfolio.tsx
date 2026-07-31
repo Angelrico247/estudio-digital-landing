@@ -5,10 +5,10 @@ import FadeIn from "./FadeIn";
 
 export default function Portfolio() {
   return (
-    <section id="portafolio" className="bg-section py-20 lg:py-[120px]">
+    <section id="portafolio" className="bg-paper py-20 lg:py-[120px]">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <FadeIn>
-          <SectionHeading eyebrow="Portafolio" title="Nuestros Proyectos" variant="flag" />
+          <SectionHeading eyebrow="Portafolio" title="Nuestros Proyectos" variant="flag" tone="light" />
         </FadeIn>
 
         <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2">

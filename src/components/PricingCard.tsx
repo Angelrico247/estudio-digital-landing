@@ -16,32 +16,32 @@ export default function PricingCard({ plan }: { plan: PricingPlan }) {
   return (
     <div
       onMouseMove={handleSpotlight}
-      className={`spotlight-border relative flex h-full flex-col overflow-hidden rounded-md border border-line bg-card p-9 lg:p-12 ${plan.featured ? "lg:scale-[1.02]" : ""}`}
+      className={`spotlight-border relative flex h-full flex-col overflow-hidden rounded-md border border-hairline bg-paper-card p-9 lg:p-12 ${plan.featured ? "lg:scale-[1.02]" : ""}`}
     >
       {plan.featured && (
-        <span className="font-heading absolute right-0 top-0 rounded-bl-md rounded-tr-md bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-foreground">
+        <span className="font-heading absolute right-0 top-0 rounded-bl-md rounded-tr-md bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-white">
           Popular
         </span>
       )}
 
-      <span className="text-outline font-heading text-[100px] font-black leading-[0.8]">
+      <span className="text-outline-dark font-heading text-[100px] font-black leading-[0.8]">
         {plan.number.padStart(2, "0")}
       </span>
 
-      <h3 className="mt-4 font-heading text-xl font-bold uppercase text-foreground">{plan.name}</h3>
+      <h3 className="mt-4 font-heading text-xl font-bold uppercase text-ink">{plan.name}</h3>
 
       <div className="mt-4 flex items-baseline gap-2">
-        <span className="font-heading text-4xl font-extrabold text-foreground">
+        <span className="font-heading text-4xl font-extrabold text-ink">
           {plan.priceRange}
         </span>
       </div>
-      <span className="text-sm text-secondary">MXN / mes</span>
+      <span className="text-sm text-ink-secondary">MXN / mes</span>
 
-      <div className="my-6 h-px w-full bg-line" />
+      <div className="my-6 h-px w-full bg-hairline" />
 
       <ul className="flex-1 space-y-0">
         {plan.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-2 text-[15px] leading-[2.2] text-secondary">
+          <li key={feature} className="flex items-start gap-2 text-[15px] leading-[2.2] text-ink-secondary">
             <span className="text-primary">✓</span>
             <span>{feature}</span>
           </li>
@@ -51,7 +51,7 @@ export default function PricingCard({ plan }: { plan: PricingPlan }) {
       <button
         type="button"
         onClick={() => open({ type: "paquete", selection: plan.name })}
-        className="btn-fill font-heading mt-8 w-full rounded-md border py-3.5 text-center text-[13px] font-semibold uppercase tracking-[0.1em] text-foreground"
+        className="btn-fill font-heading mt-8 w-full rounded-md border py-3.5 text-center text-[13px] font-semibold uppercase tracking-[0.1em] text-ink hover:text-white"
       >
         <span className="btn-fill-content">Cotizar Paquete</span>
       </button>

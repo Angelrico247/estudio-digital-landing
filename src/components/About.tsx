@@ -4,7 +4,7 @@ import FadeIn from "./FadeIn";
 
 export default function About() {
   return (
-    <section className="relative bg-section py-20 lg:py-[120px]">
+    <section className="relative bg-paper py-20 lg:py-[120px]">
       <div
         aria-hidden
         className="pointer-events-none absolute left-0 top-full h-[1700px] w-[1700px] -translate-x-1/2 -translate-y-1/2 bg-cover bg-center opacity-70 mix-blend-screen blur-[8px]"
@@ -34,27 +34,28 @@ export default function About() {
             title="Mantenemos tu Marca Viva"
             align="left"
             size="medium"
+            tone="light"
           />
-          <p className="mt-6 text-lg leading-[1.7] text-secondary">
+          <p className="mt-6 text-lg leading-[1.7] text-ink-secondary">
             TWID es un estudio chico que trabaja con marcas y negocios que tienen algo bueno y
             necesitan que se note.
           </p>
-          <p className="mt-4 text-lg leading-[1.7] text-secondary">
+          <p className="mt-4 text-lg leading-[1.7] text-ink-secondary">
             Si tienes un negocio o trabajas por tu cuenta, sabes que lo que más vale es tu tiempo.
             Y mantener una marca viva —publicar, actualizar, cuidar cómo se ve— se come mucho de
             ese tiempo. Ese peso es el que TWID te quita.
           </p>
-          <p className="mt-4 text-lg leading-[1.7] text-secondary">
+          <p className="mt-4 text-lg leading-[1.7] text-ink-secondary">
             El estudio se encarga del recorrido completo: la estrategia, el diseño, el desarrollo
             y el sitio publicado y funcionando 24/7. Después llegan las métricas de lo que sí
             está funcionando y lo que no, y se ajusta sobre eso. Aquí no se adivina.
           </p>
-          <p className="mt-4 text-lg leading-[1.7] text-secondary">
+          <p className="mt-4 text-lg leading-[1.7] text-ink-secondary">
             Da igual si tu marca es nueva o si ya llevas camino andado: TWID arranca desde cero o
             desde donde estés, con todo lo que necesitas para empezar y todo lo que necesitas
             para crecer.
           </p>
-          <p className="mt-4 text-lg leading-[1.7] text-secondary">
+          <p className="mt-4 text-lg leading-[1.7] text-ink-secondary">
             Tú te enfocas en lo más importante: tus clientes. Nosotros, en mantener tu marca
             viva.
           </p>

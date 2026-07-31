@@ -4,6 +4,7 @@ type SectionHeadingProps = {
   align?: "center" | "left";
   size?: "large" | "medium";
   variant?: "text" | "flag";
+  tone?: "dark" | "light";
 };
 
 export default function SectionHeading({
@@ -12,8 +13,10 @@ export default function SectionHeading({
   align = "center",
   size = "large",
   variant = "text",
+  tone = "dark",
 }: SectionHeadingProps) {
   const isCenter = align === "center";
+  const isLight = tone === "light";
 
   return (
     <div className={isCenter ? "text-center" : "text-left"}>
@@ -31,7 +34,7 @@ export default function SectionHeading({
         </span>
       )}
       <h2
-        className={`mt-6 font-impact uppercase leading-[0.95] text-foreground ${
+        className={`mt-6 font-impact uppercase leading-[0.95] ${isLight ? "text-ink" : "text-foreground"} ${
           size === "large" ? "text-4xl sm:text-6xl lg:text-7xl" : "text-3xl sm:text-5xl"
         }`}
       >

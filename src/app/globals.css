@@ -13,6 +13,13 @@
   --color-text-primary: #f5f5f7; /* texto principal */
   --color-text-secondary: #a1a1aa; /* texto secundario/subtítulos */
   --color-border: #2a2a2a; /* bordes sutiles */
+
+  /* Paleta "papel" — para las secciones de fondo blanco estilo Seppo (About, Portafolio, Precios, Contacto) */
+  --color-paper: #ffffff;
+  --color-paper-card: #f6f6f8;
+  --color-hairline: #e4e4e7;
+  --color-ink: #0a0a0f;
+  --color-ink-secondary: #52525b;
 }
 
 /* Tailwind v4 es CSS-first: en vez de tailwind.config.js, este bloque @theme
@@ -30,13 +37,23 @@
   --color-foreground: var(--color-text-primary);
   --color-secondary: var(--color-text-secondary);
   --color-line: var(--color-border);
+  --color-paper: var(--color-paper);
+  --color-paper-card: var(--color-paper-card);
+  --color-hairline: var(--color-hairline);
+  --color-ink: var(--color-ink);
+  --color-ink-secondary: var(--color-ink-secondary);
   --font-sans: var(--font-dm-sans);
   --font-heading: var(--font-barlow-condensed);
   --font-impact: var(--font-anton);
 }
 
-* {
-  border-color: var(--color-border);
+/* En @layer base para que las utilidades border-* (capa utilities) puedan sobreescribir
+   este color por defecto — fuera de una capa, esta regla siempre gana sin importar
+   la utilidad usada, sin importar su especificidad. */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
 }
 
 html {
@@ -78,6 +95,13 @@ body {
   color: transparent;
   -webkit-text-stroke: 0.1px var(--color-text-primary);
   opacity: 0.8;
+}
+
+/* Misma silueta que .text-outline, para usar sobre las secciones de fondo blanco */
+.text-outline-dark {
+  color: transparent;
+  -webkit-text-stroke: 0.6px var(--color-ink);
+  opacity: 0.85;
 }
 
 @keyframes scan-vertical {
