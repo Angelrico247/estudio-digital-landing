@@ -26,14 +26,14 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-8">
-        <a href="#inicio" aria-label={site.name} className="flex items-center gap-3">
+        <a href="#inicio" aria-label={site.name} className="flex items-center gap-1.5">
           <Image
-            src="/logo-white.png"
+            src="/twid-circles.webp"
             alt={site.name}
-            width={160}
-            height={107}
+            width={929}
+            height={587}
             priority
-            className="h-10 w-auto sm:h-12"
+            className="h-8 w-auto sm:h-9"
           />
           <Image
             src="/twid-wordmark.webp"
