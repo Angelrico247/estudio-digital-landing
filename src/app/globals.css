@@ -320,8 +320,7 @@ body {
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding-left: 40px;
-  padding-right: 8px;
+  padding: 14px 16px 14px 48px;
   color: var(--color-text-primary);
   cursor: pointer;
 }
@@ -339,10 +338,9 @@ body {
   content: "";
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
+  top: 0;
+  height: 100%;
+  width: 44px;
   border: 2px solid var(--color-primary);
   border-radius: 999px;
   background: transparent;
@@ -350,7 +348,7 @@ body {
 }
 
 .btn-dot:hover::before {
-  width: calc(100% + 32px);
+  width: calc(100% + 16px);
   border-radius: 999px;
   background: linear-gradient(82.3deg, var(--color-primary) 10.8%, var(--color-secondary-blue) 94.3%);
   border-color: transparent;

@@ -70,10 +70,25 @@ export default function QuoteModal({
       if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", onKeyDown);
-    document.body.style.overflow = "hidden";
+
+    // overflow:hidden en el body no bloquea el scroll táctil en iOS Safari —
+    // hay que fijar el body en su lugar para que solo el modal haga scroll.
+    const scrollY = window.scrollY;
+    const { body } = document;
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.overflow = "hidden";
+
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
+      body.style.position = "";
+      body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
+      body.style.overflow = "";
+      window.scrollTo(0, scrollY);
     };
   }, [isOpen, onClose]);
 
@@ -113,7 +128,7 @@ export default function QuoteModal({
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
       <div aria-hidden onClick={onClose} className="absolute inset-0 bg-dark/90 backdrop-blur-sm" />
 
-      <div className="border-gradient-brand relative max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-md bg-card p-8 sm:p-10">
+      <div className="border-gradient-brand relative max-h-[85dvh] w-full max-w-xl overflow-y-auto rounded-md bg-card p-8 sm:p-10">
         <button
           type="button"
           aria-label="Cerrar"

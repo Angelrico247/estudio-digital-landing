@@ -26,7 +26,7 @@ const anton = Anton({
 });
 
 export const metadata: Metadata = {
-  title: "[NOMBRE DEL ESTUDIO] — Estudio de Soluciones Digitales",
+  title: "Two Worlds In Design — Estudio de Soluciones Digitales",
   description:
     "Desarrollo web con funcionalidad real, gestión de redes sociales y publicidad digital para hacer crecer tu negocio.",
 };
