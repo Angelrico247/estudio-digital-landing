@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { navLinks, site } from "@/data/site";
 
@@ -26,15 +25,11 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-8">
-        <a href="#inicio" aria-label={site.name} className="flex items-center">
-          <Image
-            src="/logo-white.png"
-            alt={site.name}
-            width={160}
-            height={107}
-            priority
-            className="h-10 w-auto sm:h-12"
-          />
+        <a href="#inicio" aria-label={site.name} className="flex items-center gap-3">
+          <span className="h-px w-8 bg-foreground" aria-hidden />
+          <span className="font-heading text-2xl font-bold uppercase tracking-[0.15em] text-foreground">
+            T<span className="text-primary">W</span>ID
+          </span>
         </a>
 
         <nav className="hidden items-center gap-10 md:flex">
