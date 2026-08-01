@@ -26,14 +26,15 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-8">
-        <a href="#inicio" aria-label={site.name} className="flex items-center gap-1.5">
+        <a href="#inicio" aria-label={site.name} className="flex items-center">
+          {/* Los aros van encima para que su trazo cruce por la mitad del guion morado */}
           <Image
             src="/twid-circles.webp"
             alt={site.name}
             width={929}
             height={587}
             priority
-            className="h-8 w-auto sm:h-9"
+            className="relative z-10 h-8 w-auto sm:h-9"
           />
           <Image
             src="/twid-wordmark.webp"
@@ -42,7 +43,7 @@ export default function Header() {
             height={45}
             priority
             unoptimized
-            className="h-[18px] w-auto sm:h-5"
+            className="-ml-1.5 h-[18px] w-auto sm:-ml-[7px] sm:h-5"
           />
         </a>
 
