@@ -41,7 +41,7 @@ export default function About() {
           />
           <p className="mt-6 text-lg leading-[1.7] text-ink-secondary">
             Two Worlds In Design (TWID) es un estudio chico que trabaja con marcas y negocios que
-            tienen algo bueno y necesitan que se note.
+            quieren mostrarse, conectar con su gente y mantenerse activos en sus canales digitales.
           </p>
           <p className="mt-4 text-lg leading-[1.7] text-ink-secondary">
             Si tienes un negocio o trabajas por tu cuenta, sabes que lo que más vale es tu tiempo.

@@ -35,10 +35,14 @@ export default function Header() {
             priority
             className="h-10 w-auto sm:h-12"
           />
-          <span className="h-px w-8 bg-primary" aria-hidden />
-          <span className="font-heading text-2xl font-bold uppercase tracking-[0.15em] text-foreground">
-            TWID
-          </span>
+          <Image
+            src="/twid-wordmark.webp"
+            alt=""
+            width={204}
+            height={68}
+            priority
+            className="h-6 w-auto sm:h-7"
+          />
         </a>
 
         <nav className="hidden items-center gap-10 md:flex">
