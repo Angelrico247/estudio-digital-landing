@@ -38,9 +38,10 @@ export default function Header() {
           <Image
             src="/twid-wordmark.webp"
             alt=""
-            width={204}
-            height={68}
+            width={156}
+            height={45}
             priority
+            unoptimized
             className="h-6 w-auto sm:h-7"
           />
         </a>
