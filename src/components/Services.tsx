@@ -8,7 +8,7 @@ export default function Services() {
     <section id="servicios" className="relative bg-dark py-20 lg:py-[120px]">
       <div
         aria-hidden
-        className="pointer-events-none absolute left-0 top-full h-[1700px] w-[1700px] -translate-x-1/2 -translate-y-1/2 bg-cover bg-center opacity-70 mix-blend-screen blur-[8px]"
+        className="pointer-events-none absolute left-0 top-full h-[1700px] w-[1700px] -translate-x-1/2 -translate-y-1/2 bg-cover bg-center opacity-70 mix-blend-screen"
         style={{ backgroundImage: "url(/glow-purple.png)" }}
       />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
