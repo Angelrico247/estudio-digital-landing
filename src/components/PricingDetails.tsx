@@ -8,7 +8,7 @@ export default function PricingDetails() {
     <section id="servicios-precios" className="relative bg-section py-20 lg:py-[120px]">
       <div
         aria-hidden
-        className="pointer-events-none absolute right-0 top-full h-[1700px] w-[1700px] translate-x-1/2 -translate-y-1/2 bg-cover bg-center opacity-70 mix-blend-screen"
+        className="pointer-events-none absolute right-0 top-1/2 h-[1700px] w-[1700px] translate-x-1/2 -translate-y-1/2 bg-cover bg-center opacity-70 mix-blend-screen"
         style={{ backgroundImage: "url(/glow-blue.png)" }}
       />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
