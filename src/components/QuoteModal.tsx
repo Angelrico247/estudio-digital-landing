@@ -128,16 +128,19 @@ export default function QuoteModal({
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
       <div aria-hidden onClick={onClose} className="absolute inset-0 bg-dark/90 backdrop-blur-sm" />
 
-      <div className="border-gradient-brand relative max-h-[85dvh] w-full max-w-xl overflow-y-auto rounded-md bg-card p-8 sm:p-10">
+      {/* El borde vive en el contenedor externo y el scroll en el interno: si van juntos,
+          el borde se queda arriba y el contenido se desborda por debajo en móvil. */}
+      <div className="border-gradient-brand relative flex max-h-[85dvh] w-full max-w-xl flex-col overflow-hidden rounded-md bg-card">
         <button
           type="button"
           aria-label="Cerrar"
           onClick={onClose}
-          className="absolute right-5 top-5 text-2xl leading-none text-secondary transition-colors hover:text-primary"
+          className="absolute right-5 top-5 z-10 text-2xl leading-none text-secondary transition-colors hover:text-primary"
         >
           ×
         </button>
 
+        <div className="overflow-y-auto p-8 sm:p-10">
         {status === "sent" ? (
           <div className="py-8 text-center">
             <h3 className="font-heading text-2xl font-bold uppercase text-foreground">¡Listo!</h3>
@@ -342,6 +345,7 @@ export default function QuoteModal({
             )}
           </>
         )}
+        </div>
       </div>
     </div>
   );

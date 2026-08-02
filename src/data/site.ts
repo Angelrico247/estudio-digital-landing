@@ -323,6 +323,29 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
     ],
   },
   {
+    title: "Reportería y Automatización Interna",
+    items: [
+      {
+        name: "Reporte automatizado (1 fuente)",
+        price: "$25,000 – $35,000 MXN + $3,000 – $5,000 MXN/mes",
+        description:
+          "Conexión a tu base de datos o sistema, con las reglas de negocio de tu operación. El reporte se genera y se envía solo, validado contra los números que ya manejas.",
+      },
+      {
+        name: "Dashboard multi-fuente con roles",
+        price: "$40,000 – $70,000 MXN + $8,000 – $12,000 MXN/mes",
+        description:
+          "Varias fuentes de datos en un solo tablero, con permisos por área o por puesto. Actualización automática, sin concentrar información a mano.",
+      },
+      {
+        name: "Alertas y resúmenes automáticos",
+        price: "Desde $20,000 MXN",
+        description:
+          "Avisos cuando un indicador se sale de rango y resúmenes periódicos enviados por correo o WhatsApp.",
+      },
+    ],
+  },
+  {
     title: "Reels",
     comingSoon: true,
   },
