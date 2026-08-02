@@ -51,10 +51,6 @@ export default function Hero() {
 
       <div className="relative flex h-screen items-center">
         <div className="tech-grid pointer-events-none absolute inset-0 opacity-40" />
-        <div
-          className="pointer-events-none absolute inset-x-0 h-px bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] shadow-[0_0_12px_2px_var(--color-primary)] animate-scan-vertical"
-          aria-hidden
-        />
 
         <div
           className="pointer-events-none absolute left-6 top-24 hidden h-16 w-16 border-l-2 border-t-2 opacity-60 sm:block lg:left-[10%]"

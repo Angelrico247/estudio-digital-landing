@@ -14,6 +14,8 @@ export default function CTASection() {
         className="pointer-events-none absolute inset-0 bg-contain bg-center bg-no-repeat"
         style={{ backgroundImage: "url(/cta-banner.png)" }}
       />
+      {/* Misma capa que el hero, para que el texto no compita con el neón */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/65" />
       <FadeIn className="relative z-10 mx-auto max-w-3xl px-6 text-center lg:px-8">
         <span className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
           ¿Listo para empezar?
