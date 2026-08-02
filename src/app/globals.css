@@ -307,6 +307,8 @@ body {
 }
 
 .btn-dot span {
+  position: relative;
+  z-index: 1;
   display: inline-block;
   transition: transform 0.3s ease;
 }
@@ -315,9 +317,11 @@ body {
   transform: translateX(-6px);
 }
 
-/* En reposo es un círculo chico centrado; al hover crece a la altura completa
-   del botón y se estira hasta cubrirlo como píldora. */
-.btn-dot::before {
+/* Dos capas con la misma geometría y el mismo degradado de marca: ::before es el
+   contorno (la máscara deja ver sólo el borde) y ::after es el relleno, que aparece
+   al hover. En reposo es un círculo chico; al hover crece a píldora. */
+.btn-dot::before,
+.btn-dot::after {
   content: "";
   position: absolute;
   left: 0;
@@ -325,16 +329,30 @@ body {
   transform: translateY(-50%);
   height: 34px;
   width: 34px;
-  border: 2px solid var(--color-primary);
   border-radius: 999px;
-  background: transparent;
-  transition: width 0.35s ease, height 0.35s ease, background 0.35s ease,
-    border-color 0.35s ease;
+  background: linear-gradient(82.3deg, var(--color-primary) 10.8%, var(--color-secondary-blue) 94.3%);
+  pointer-events: none;
+  transition: width 0.35s ease, height 0.35s ease, opacity 0.35s ease;
 }
 
-.btn-dot:hover::before {
+.btn-dot::before {
+  padding: 2px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.btn-dot::after {
+  opacity: 0;
+}
+
+.btn-dot:hover::before,
+.btn-dot:hover::after {
   height: 100%;
   width: calc(100% + 16px);
-  background: linear-gradient(82.3deg, var(--color-primary) 10.8%, var(--color-secondary-blue) 94.3%);
-  border-color: transparent;
+}
+
+.btn-dot:hover::after {
+  opacity: 1;
 }

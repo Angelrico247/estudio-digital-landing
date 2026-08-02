@@ -23,11 +23,6 @@ export default function About() {
             <span className="tab-flag absolute left-0 top-0 font-heading text-xs font-semibold uppercase tracking-[0.2em]">
               Sobre Nosotros
             </span>
-            <div
-              aria-hidden
-              className="absolute inset-y-0 left-0 w-1"
-              style={{ background: "linear-gradient(82.3deg, var(--color-primary) 10.8%, var(--color-secondary-blue) 94.3%)" }}
-            />
           </div>
         </FadeIn>
 
