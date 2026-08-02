@@ -16,7 +16,7 @@ export default function PricingCard({ plan }: { plan: PricingPlan }) {
   return (
     <div
       onMouseMove={handleSpotlight}
-      className={`spotlight-border relative flex h-full flex-col overflow-hidden rounded-md border border-hairline bg-paper-card p-9 lg:p-12 ${plan.featured ? "lg:scale-[1.02]" : ""}`}
+      className={`spotlight-border relative flex h-full flex-col overflow-hidden rounded-md border border-hairline bg-paper p-9 lg:p-12 ${plan.featured ? "lg:scale-[1.02]" : ""}`}
     >
       {plan.featured && (
         <span className="font-heading absolute right-0 top-0 rounded-bl-md rounded-tr-md bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-white">

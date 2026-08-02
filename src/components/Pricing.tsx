@@ -5,7 +5,7 @@ import FadeIn from "./FadeIn";
 
 export default function Pricing() {
   return (
-    <section id="precios" className="bg-paper py-20 lg:py-[120px]">
+    <section id="precios" className="bg-paper-card py-20 lg:py-[120px]">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <FadeIn>
           <SectionHeading eyebrow="Precios" title="Nuestros Paquetes" variant="flag" tone="light" />

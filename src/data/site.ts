@@ -119,6 +119,8 @@ export type PortfolioProject = {
   imageSeed: string;
   url?: string;
   image?: string;
+  /** "concepto" = proyecto de muestra del nicho; "cliente" = trabajo entregado a un cliente real. */
+  kind: "concepto" | "cliente";
 };
 
 export const portfolio: PortfolioProject[] = [
@@ -128,10 +130,11 @@ export const portfolio: PortfolioProject[] = [
     imageSeed: "1498050108023-c5249f4df085",
     url: "https://angelrico247.github.io/tertulia_catering/",
     image: "/portfolio-tertulia.png",
+    kind: "concepto",
   },
-  { name: "Lalo", category: "Marca Personal", imageSeed: "1552664730-d307ca884978" },
-  { name: "Sonrisa GDL", category: "Dental", imageSeed: "1497215728101-856f4ea42174" },
-  { name: "MovIng", category: "Mudanzas", imageSeed: "1517694712202-14dd9538aa97" },
+  { name: "Lalo", category: "Marca Personal", imageSeed: "1552664730-d307ca884978", kind: "concepto" },
+  { name: "Sonrisa GDL", category: "Dental", imageSeed: "1497215728101-856f4ea42174", kind: "concepto" },
+  { name: "MovIng", category: "Mudanzas", imageSeed: "1517694712202-14dd9538aa97", kind: "concepto" },
 ];
 
 export type Milestone = {

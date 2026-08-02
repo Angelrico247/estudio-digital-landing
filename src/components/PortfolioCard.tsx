@@ -19,6 +19,10 @@ export default function PortfolioCard({ project }: { project: PortfolioProject }
       <div className="absolute inset-0 bg-black/40 transition-opacity duration-[400ms] group-hover:opacity-0" />
       <div className="absolute inset-0 bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] opacity-0 transition-opacity duration-[400ms] group-hover:opacity-70" />
 
+      <span className="tab-flag absolute left-0 top-0 font-heading text-[11px] font-semibold uppercase tracking-[0.15em]">
+        {project.kind === "cliente" ? "Cliente" : "Concepto"}
+      </span>
+
       <div className="absolute bottom-0 left-0 p-8 transition-transform duration-[400ms] group-hover:-translate-y-2.5">
         <p className="font-heading text-xs font-semibold uppercase tracking-[0.15em] text-primary transition-colors duration-[400ms] group-hover:text-foreground">
           {project.category}
