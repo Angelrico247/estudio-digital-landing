@@ -2,6 +2,7 @@ import { site } from "@/data/site";
 import SectionHeading from "./SectionHeading";
 import ContactForm from "./ContactForm";
 import FadeIn from "./FadeIn";
+import { MailIcon, PhoneIcon, LocationIcon } from "./ContactIcons";
 
 const socials = [
   {
@@ -32,21 +33,21 @@ export default function Contact() {
               Cuéntanos sobre tu proyecto y te contactamos en menos de 24 horas.
             </p>
 
-            <div className="mt-8 space-y-3 text-ink-secondary">
-              <p>
-                <span className="mr-3">✉</span>
+            <div className="mt-8 space-y-4 text-ink-secondary">
+              <p className="flex items-center gap-3">
+                <MailIcon className="h-5 w-5 shrink-0 text-primary" />
                 <a href={`mailto:${site.email}`} className="hover:text-primary">
                   {site.email}
                 </a>
               </p>
-              <p>
-                <span className="mr-3">☏</span>
+              <p className="flex items-center gap-3">
+                <PhoneIcon className="h-5 w-5 shrink-0 text-primary" />
                 <a href={`tel:${site.phone.replace(/\s+/g, "")}`} className="hover:text-primary">
                   {site.phone}
                 </a>
               </p>
-              <p>
-                <span className="mr-3">📍</span>
+              <p className="flex items-center gap-3">
+                <LocationIcon className="h-5 w-5 shrink-0 text-primary" />
                 {site.location}
               </p>
             </div>
