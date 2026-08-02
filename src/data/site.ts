@@ -9,7 +9,6 @@ export const site = {
   name: "Two Worlds In Design",
   tagline: "Estudio de Soluciones Digitales",
   email: "twoworldsindesign@gmail.com",
-  phone: "+52 33 1234 5678",
   whatsappNumber: "5213312345678",
   location: "Guadalajara, Jalisco, México",
 };

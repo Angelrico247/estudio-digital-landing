@@ -3,10 +3,12 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { navLinks, site } from "@/data/site";
+import { useScheduleCall } from "./ScheduleCallContext";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { open: openScheduleCall } = useScheduleCall();
 
   useEffect(() => {
     function onScroll() {
@@ -59,12 +61,13 @@ export default function Header() {
           ))}
         </nav>
 
-        <a
-          href="#contacto"
+        <button
+          type="button"
+          onClick={openScheduleCall}
           className="btn-fill font-heading hidden rounded-md border px-7 py-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-foreground md:inline-block"
         >
           <span className="btn-fill-content">Agenda una Llamada</span>
-        </a>
+        </button>
 
         <button
           type="button"
@@ -100,13 +103,16 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#contacto"
-              onClick={() => setOpen(false)}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                openScheduleCall();
+              }}
               className="btn-fill font-heading mt-4 rounded-md border px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.1em] text-foreground"
             >
               <span className="btn-fill-content">Agenda una Llamada</span>
-            </a>
+            </button>
           </nav>
         </div>
       )}

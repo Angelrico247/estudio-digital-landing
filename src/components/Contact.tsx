@@ -2,7 +2,7 @@ import { site } from "@/data/site";
 import SectionHeading from "./SectionHeading";
 import ContactForm from "./ContactForm";
 import FadeIn from "./FadeIn";
-import { MailIcon, PhoneIcon, LocationIcon } from "./ContactIcons";
+import { MailIcon, LocationIcon } from "./ContactIcons";
 
 const socials = [
   {
@@ -38,12 +38,6 @@ export default function Contact() {
                 <MailIcon className="h-7 w-7 shrink-0" />
                 <a href={`mailto:${site.email}`} className="hover:text-primary">
                   {site.email}
-                </a>
-              </p>
-              <p className="flex items-center gap-3">
-                <PhoneIcon className="h-7 w-7 shrink-0" />
-                <a href={`tel:${site.phone.replace(/\s+/g, "")}`} className="hover:text-primary">
-                  {site.phone}
                 </a>
               </p>
               <p className="flex items-center gap-3">

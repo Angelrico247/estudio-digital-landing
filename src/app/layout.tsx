@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Barlow_Condensed, Anton } from "next/font/google";
 import CustomCursor from "@/components/CustomCursor";
 import { QuoteModalProvider } from "@/components/QuoteModalContext";
+import { ScheduleCallProvider } from "@/components/ScheduleCallContext";
 import "./globals.css";
 
 // DM Sans: texto de párrafo en todas las secciones.
@@ -43,7 +44,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-dark font-sans text-secondary">
         <CustomCursor />
-        <QuoteModalProvider>{children}</QuoteModalProvider>
+        <QuoteModalProvider>
+          <ScheduleCallProvider>{children}</ScheduleCallProvider>
+        </QuoteModalProvider>
       </body>
     </html>
   );

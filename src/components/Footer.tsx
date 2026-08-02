@@ -51,7 +51,6 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-secondary">
               <li>{site.email}</li>
-              <li>{site.phone}</li>
               <li>{site.location}</li>
             </ul>
           </div>

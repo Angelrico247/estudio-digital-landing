@@ -2,10 +2,12 @@
 
 import { site } from "@/data/site";
 import { useQuoteModal } from "./QuoteModalContext";
+import { useScheduleCall } from "./ScheduleCallContext";
 import FadeIn from "./FadeIn";
 
 export default function CTASection() {
   const { open } = useQuoteModal();
+  const { open: openScheduleCall } = useScheduleCall();
 
   return (
     <section className="relative overflow-hidden bg-dark py-24">
@@ -35,12 +37,13 @@ export default function CTASection() {
           >
             <span className="btn-fill-content">Cotiza tu Proyecto</span>
           </button>
-          <a
-            href="#contacto"
+          <button
+            type="button"
+            onClick={openScheduleCall}
             className="btn-fill font-heading rounded-md border px-9 py-4 text-sm font-semibold uppercase tracking-[0.1em] text-white"
           >
             <span className="btn-fill-content">Agenda una Llamada</span>
-          </a>
+          </button>
           <a
             href={`https://wa.me/${site.whatsappNumber}`}
             target="_blank"
