@@ -133,7 +133,14 @@ export const portfolio: PortfolioProject[] = [
   },
   { name: "Lalo", category: "Marca Personal", imageSeed: "1552664730-d307ca884978", kind: "concepto" },
   { name: "Sonrisa GDL", category: "Dental", imageSeed: "1497215728101-856f4ea42174", kind: "concepto" },
-  { name: "MovIng", category: "Mudanzas", imageSeed: "1517694712202-14dd9538aa97", kind: "concepto" },
+  {
+    name: "MovIng",
+    category: "Mudanzas",
+    imageSeed: "1517694712202-14dd9538aa97",
+    url: "https://angelrico247.github.io/moving/",
+    image: "/portfolio-moving.jpeg",
+    kind: "concepto",
+  },
   {
     name: "Terra Inmobiliaria",
     category: "Inmobiliaria",
