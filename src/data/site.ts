@@ -135,6 +135,7 @@ export const portfolio: PortfolioProject[] = [
     name: "Lalo",
     category: "Marca Personal",
     imageSeed: "1552664730-d307ca884978",
+    url: "https://angelrico247.github.io/portafolio-lalo/",
     image: "/portfolio-lalo.jpeg",
     kind: "concepto",
   },
