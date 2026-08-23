@@ -131,7 +131,13 @@ export const portfolio: PortfolioProject[] = [
     image: "/portfolio-tertulia.png",
     kind: "concepto",
   },
-  { name: "Lalo", category: "Marca Personal", imageSeed: "1552664730-d307ca884978", kind: "concepto" },
+  {
+    name: "Lalo",
+    category: "Marca Personal",
+    imageSeed: "1552664730-d307ca884978",
+    image: "/portfolio-lalo.jpeg",
+    kind: "concepto",
+  },
   { name: "Sonrisa GDL", category: "Dental", imageSeed: "1497215728101-856f4ea42174", kind: "concepto" },
   {
     name: "MovIng",
