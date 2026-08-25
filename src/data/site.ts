@@ -139,7 +139,14 @@ export const portfolio: PortfolioProject[] = [
     image: "/portfolio-lalo.jpeg",
     kind: "concepto",
   },
-  { name: "Sonrisa GDL", category: "Dental", imageSeed: "1497215728101-856f4ea42174", kind: "concepto" },
+  {
+    name: "Sonrisa GDL",
+    category: "Dental",
+    imageSeed: "1497215728101-856f4ea42174",
+    url: "https://dentaldemo-steel.vercel.app",
+    image: "/portfolio-dental.png",
+    kind: "concepto",
+  },
   {
     name: "MovIng",
     category: "Mudanzas",
