@@ -163,6 +163,14 @@ export const portfolio: PortfolioProject[] = [
     image: "/portfolio-realstate.png",
     kind: "concepto",
   },
+  {
+    name: "VOLUME",
+    category: "Interiorismo",
+    imageSeed: "1618221195710-dd6b41faaea6",
+    url: "https://volume-interiores.vercel.app",
+    image: "/portfolio-volume.png",
+    kind: "concepto",
+  },
 ];
 
 export type Milestone = {
