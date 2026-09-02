@@ -4,17 +4,19 @@ import SectionHeading from "./SectionHeading";
 import FadeIn from "./FadeIn";
 
 /**
- * Patrón de grid tipo masonry (mismo espíritu que el grid del portafolio de Seppo).
- * El ciclo es de 6: cada bloque llena exactamente 4 filas de 4 columnas, así la
- * cuadrícula cierra sin huecos con el número de proyectos actual.
+ * Cuadrícula de 4 columnas × 2 filas, todas las celdas de la misma altura.
+ * Los dos proyectos anchos quedan en esquinas opuestas:
+ *
+ *   fila A:  [ 1 · 1 ][ 2 ][ 3 ]
+ *   fila B:  [ 4 ][ 5 ][ 6 · 6 ]
  */
 const SPAN_CLASSES = [
-  "sm:col-span-2 sm:row-span-2",
-  "sm:col-span-2 sm:row-span-1",
-  "sm:col-span-1 sm:row-span-1",
-  "sm:col-span-1 sm:row-span-1",
-  "sm:col-span-2 sm:row-span-2",
-  "sm:col-span-2 sm:row-span-2",
+  "sm:col-span-2",
+  "sm:col-span-1",
+  "sm:col-span-1",
+  "sm:col-span-1",
+  "sm:col-span-1",
+  "sm:col-span-2",
 ];
 
 export default function Portfolio() {
