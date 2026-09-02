@@ -7,11 +7,56 @@ export function imageUrl(photoId: string, width: number, height: number) {
 
 export const site = {
   name: "Two Worlds In Design",
+  shortName: "TWID",
   tagline: "Estudio de Soluciones Digitales",
   email: "twoworldsindesign@gmail.com",
   whatsappNumber: "5213312345678",
   location: "Guadalajara, Jalisco, México",
+
+  /** Dominio canónico: www redirige aquí. Se usa en metadata, sitemap y schema. */
+  url: "https://twoworldsindesign.com",
+
+  /** Descripción corta para <meta description>, Open Graph y datos estructurados. */
+  description:
+    "Estudio de diseño y desarrollo web en Guadalajara. Creamos sitios con funcionalidad real, gestión de redes sociales y publicidad digital para tu negocio.",
 };
+
+/**
+ * Datos de SEO local. Google los usa para relacionar el estudio con búsquedas
+ * de la zona ("estudio de diseño web en Guadalajara").
+ */
+export const localSeo = {
+  city: "Guadalajara",
+  region: "Jalisco",
+  country: "MX",
+  /** Centro de Guadalajara. Ajusta si el estudio tiene domicilio propio. */
+  geo: { lat: 20.6597, lng: -103.3496 },
+  areaServed: ["Guadalajara", "Zapopan", "San Pedro Tlaquepaque", "Tonalá", "Jalisco"],
+  /** Rango de precios en notación de Google ($ a $$$$). */
+  priceRange: "$$",
+  openingHours: {
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "18:00",
+  },
+
+  /**
+   * PENDIENTES: Google penaliza los datos de contacto inconsistentes, así que
+   * estos campos se omiten del schema mientras sigan vacíos. Llénalos con los
+   * datos reales — deben coincidir letra por letra con tu perfil de Google
+   * Business y con tus redes.
+   */
+  phone: "" as string,
+  socials: [] as string[],
+};
+
+/** Servicios que se publican en el catálogo de datos estructurados. */
+export const seoServices = [
+  "Diseño y desarrollo web",
+  "Gestión de redes sociales",
+  "Publicidad digital",
+  "Producción audiovisual",
+];
 
 export const navLinks = [
   { label: "Inicio", href: "#inicio" },

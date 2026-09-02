@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { heroSlides, imageUrl } from "@/data/site";
+import { heroSlides, imageUrl, site, localSeo } from "@/data/site";
 import FadeIn from "./FadeIn";
 
 const AUTOPLAY_MS = 6000;
@@ -62,6 +62,16 @@ export default function Hero() {
         />
 
         <div className="relative z-10 mx-auto w-full max-w-4xl px-6 text-center">
+          {/*
+            El título grande del hero cambia con cada slide, así que no sirve
+            como h1: Google necesita un encabezado estable que diga qué es el
+            negocio y dónde está. Este h1 es el real; el del slider pasó a <p>
+            sin cambiar un pixel de su aspecto.
+          */}
+          <h1 className="sr-only">
+            {site.name} — Estudio de diseño y desarrollo web en {localSeo.city}, {localSeo.region}
+          </h1>
+
           <FadeIn>
             <span className="inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
               <span className="h-px w-8 bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)]" />
@@ -71,7 +81,7 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={120}>
-            <h1 className="mt-6 font-impact uppercase leading-[0.95] tracking-wide text-foreground">
+            <p className="mt-6 font-impact uppercase leading-[0.95] tracking-wide text-foreground">
               <span className="block text-5xl font-impact  text-white sm:text-7xl lg:text-8xl">
                 {activeSlide.heading[0]}
               </span>
@@ -82,7 +92,7 @@ export default function Hero() {
               >
                 {activeSlide.heading[1]}
               </span>
-            </h1>
+            </p>
           </FadeIn>
 
           <FadeIn delay={240}>
