@@ -88,7 +88,7 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     id: "02",
-    kicker: "Estudio de Soluciones Digitales",
+    kicker: "Two Worlds In Design",
     heading: ["Experiencia", "Digital"],
     subtitle:
       "Desarrollo web con funcionalidad real, gestión de redes sociales y publicidad digital para hacer crecer tu negocio.",
@@ -96,7 +96,7 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     id: "03",
-    kicker: "Resultados Medibles",
+    kicker: "Two Worlds In Design",
     heading: ["Estrategia", "Que Convierte"],
     subtitle:
       "Campañas de publicidad digital y sitios web optimizados para generar leads reales, no solo visitas.",
