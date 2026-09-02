@@ -140,7 +140,7 @@ export const portfolio: PortfolioProject[] = [
     kind: "concepto",
   },
   {
-    name: "Sonrisa GDL",
+    name: "Dental Clinic",
     category: "Dental",
     imageSeed: "1497215728101-856f4ea42174",
     url: "https://dentaldemo-steel.vercel.app",
