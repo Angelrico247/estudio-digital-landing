@@ -216,6 +216,14 @@ export const portfolio: PortfolioProject[] = [
     image: "/portfolio-volume.png",
     kind: "concepto",
   },
+  {
+    name: "Rental Cars",
+    category: "Renta de Autos",
+    imageSeed: "1580273916550-e323be2ae537",
+    url: "https://angelrico247.github.io/Rental-Cars/",
+    image: "/portfolio-rentalcars.png",
+    kind: "concepto",
+  },
 ];
 
 export type Milestone = {
