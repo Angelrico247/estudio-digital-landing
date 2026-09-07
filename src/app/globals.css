@@ -104,6 +104,14 @@ body {
   opacity: 0.85;
 }
 
+/* Contorno más grueso para números grandes (90px+) — a esa escala el trazo
+   de .text-outline (pensado para las cards de servicios/precios) se pierde. */
+.text-outline-lg {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-text-primary);
+  opacity: 0.5;
+}
+
 @keyframes slide-progress {
   from {
     width: 0%;

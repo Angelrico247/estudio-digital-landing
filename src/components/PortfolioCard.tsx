@@ -1,33 +1,61 @@
 import Image from "next/image";
 import { imageUrl, type PortfolioProject } from "@/data/site";
 
-export default function PortfolioCard({ project }: { project: PortfolioProject }) {
+export default function PortfolioCard({
+  project,
+  index,
+}: {
+  project: PortfolioProject;
+  index: number;
+}) {
+  const reversed = index % 2 === 1;
   const Wrapper = project.url ? "a" : "div";
 
   return (
     <Wrapper
       {...(project.url ? { href: project.url, target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="group relative block aspect-[4/3] w-full overflow-hidden rounded-md sm:aspect-auto sm:h-full"
+      className="group grid grid-cols-1 overflow-hidden rounded-md bg-dark lg:grid-cols-2"
     >
-      <Image
-        src={project.image ?? imageUrl(project.imageSeed, 900, 675)}
-        alt={`${project.name} — ${project.category}`}
-        fill
-        className="object-cover transition-transform duration-[400ms] group-hover:scale-105"
-        sizes="(min-width: 1024px) 50vw, 100vw"
-      />
-      <div className="absolute inset-0 bg-black/40 transition-opacity duration-[400ms] group-hover:opacity-0" />
-      <div className="absolute inset-0 bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] opacity-0 transition-opacity duration-[400ms] group-hover:opacity-70" />
+      <div
+        className={`relative flex flex-col justify-between gap-10 p-8 sm:p-12 lg:p-14 ${
+          reversed ? "lg:order-2" : ""
+        }`}
+      >
+        <div>
+          <span className="tab-flag font-heading text-[11px] font-semibold uppercase tracking-[0.15em]">
+            {project.kind === "cliente" ? "Cliente" : "Concepto"}
+          </span>
+          <p className="mt-6 font-heading text-xs font-semibold uppercase tracking-[0.15em] text-primary">
+            {project.category}
+          </p>
+          <h3 className="mt-2 font-impact text-3xl uppercase leading-none text-foreground sm:text-4xl">
+            {project.name}
+          </h3>
+        </div>
 
-      <span className="tab-flag absolute left-0 top-0 font-heading text-[11px] font-semibold uppercase tracking-[0.15em]">
-        {project.kind === "cliente" ? "Cliente" : "Concepto"}
-      </span>
+        <div className="flex items-end justify-between">
+          <span className="text-outline-lg font-impact text-[90px] leading-[0.7] sm:text-[130px]">
+            {String(index + 1).padStart(2, "0")}
+          </span>
 
-      <div className="absolute bottom-0 left-0 p-8 transition-transform duration-[400ms] group-hover:-translate-y-2.5">
-        <p className="font-heading text-xs font-semibold uppercase tracking-[0.15em] text-primary transition-colors duration-[400ms] group-hover:text-foreground">
-          {project.category}
-        </p>
-        <h3 className="mt-2 font-impact text-3xl uppercase leading-none text-foreground">{project.name}</h3>
+          {project.url && (
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] transition-transform duration-300 group-hover:rotate-45">
+              <svg viewBox="0 0 24 24" className="h-5 w-5 text-white" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M7 17 17 7M8 7h9v9" />
+              </svg>
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className={`relative aspect-[16/10] lg:aspect-auto ${reversed ? "lg:order-1" : ""}`}>
+        <Image
+          src={project.image ?? imageUrl(project.imageSeed, 900, 675)}
+          alt={`${project.name} — ${project.category}`}
+          fill
+          className="object-cover transition-transform duration-[600ms] group-hover:scale-105"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+        />
       </div>
     </Wrapper>
   );
