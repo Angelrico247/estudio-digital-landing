@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { PricingAccordionCategory } from "@/data/site";
+import { useQuoteModal } from "./QuoteModalContext";
 
 function ChevronDownIcon({ className }: { className?: string }) {
   return (
@@ -13,6 +14,7 @@ function ChevronDownIcon({ className }: { className?: string }) {
 
 export default function PricingAccordion({ categories }: { categories: PricingAccordionCategory[] }) {
   const [openIndex, setOpenIndex] = useState(0);
+  const { open } = useQuoteModal();
 
   return (
     <div className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
@@ -64,9 +66,25 @@ export default function PricingAccordion({ categories }: { categories: PricingAc
                         <h4 className="font-heading text-[15px] font-bold uppercase tracking-[0.02em] text-foreground">
                           {item.name}
                         </h4>
-                        <strong className="mt-1 block bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] bg-clip-text font-heading text-sm font-semibold text-transparent">
-                          {item.price}
-                        </strong>
+                        {item.customQuote ? (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              open({
+                                type: category.title === "Gestión de Redes Sociales" ? "paquete" : "servicio",
+                                selection: item.name,
+                              })
+                            }
+                            className="mt-1 inline-flex items-center gap-1.5 bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] bg-clip-text font-heading text-sm font-semibold text-transparent transition-opacity hover:opacity-75"
+                          >
+                            Cotización personalizada
+                            <span aria-hidden className="text-primary">→</span>
+                          </button>
+                        ) : (
+                          <strong className="mt-1 block bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] bg-clip-text font-heading text-sm font-semibold text-transparent">
+                            {item.price}
+                          </strong>
+                        )}
                         <p className="mt-2 text-[13px] leading-[1.6] text-secondary">{item.description}</p>
                       </div>
                     ))}

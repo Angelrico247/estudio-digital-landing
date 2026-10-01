@@ -31,11 +31,10 @@ export default function PricingCard({ plan }: { plan: PricingPlan }) {
       <h3 className="mt-4 font-heading text-xl font-bold uppercase text-ink">{plan.name}</h3>
 
       <div className="mt-4 flex items-baseline gap-2">
-        <span className="font-heading text-4xl font-extrabold text-ink">
-          {plan.priceRange}
+        <span className="bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] bg-clip-text font-heading text-2xl font-extrabold text-transparent">
+          Cotización Personalizada
         </span>
       </div>
-      <span className="text-sm text-ink-secondary">MXN / mes</span>
 
       <div className="my-6 h-px w-full bg-hairline" />
 

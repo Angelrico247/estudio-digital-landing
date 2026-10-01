@@ -256,6 +256,7 @@ export const pricingPlans: PricingPlan[] = [
     features: [
       "2 redes sociales",
       "12 posts al mes",
+      "4 a 8 stories al mes",
       "Calendario de contenido",
       "Reporte mensual básico",
     ],
@@ -266,7 +267,8 @@ export const pricingPlans: PricingPlan[] = [
     priceRange: "$12,000 - $15,000",
     featured: true,
     features: [
-      "Todo lo del Básico",
+      "20 a 24 posts al mes",
+      "8 a 10 stories al mes",
       "Gestión de Meta Ads",
       "Gestión de Google Ads",
       "Segmentación y remarketing",
@@ -292,6 +294,10 @@ export type PricingAccordionItem = {
   name: string;
   price: string;
   description: string;
+  /** Cuando es true, la UI oculta `price` y muestra un CTA de cotización
+   * personalizada en su lugar (el campo se deja poblado por si se vuelve
+   * a necesitar como referencia interna). */
+  customQuote?: boolean;
 };
 
 export type PricingAccordionCategory = {
@@ -309,22 +315,26 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
         name: "Landing simple",
         price: "$8,000 – $12,000 MXN (pago único)",
         description: "1 página, diseño responsive, formulario de contacto, optimización SEO básica.",
+        customQuote: true,
       },
       {
         name: "Sitio corporativo",
         price: "$15,000 – $25,000 MXN (pago único)",
         description: "Múltiples secciones (Inicio, Nosotros, Servicios, Contacto), diseño responsive, SEO on-page.",
+        customQuote: true,
       },
       {
         name: "Catálogo funcional",
         price: "$22,000 – $28,000 MXN (pago único)",
         description: "Todo lo de sitio corporativo + sistema de catálogo/productos con filtros y buscador básico.",
+        customQuote: true,
       },
       {
         name: "Funcionalidad custom (agenda, CRM, buscador)",
         price: "$30,000 – $80,000+ MXN (pago único)",
         description:
           "Desarrollo a medida con base de datos, integración de agenda/CRM propio, funcionalidad avanzada según necesidad del cliente.",
+        customQuote: true,
       },
     ],
   },
@@ -334,19 +344,23 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
       {
         name: "Básico",
         price: "$6,000 – $8,000 MXN/mes",
-        description: "2 redes sociales, 12 publicaciones/mes, calendario de contenido, reporte básico mensual.",
+        description:
+          "2 redes sociales, 12 publicaciones/mes, 4 a 8 stories al mes, calendario de contenido, reporte básico mensual.",
+        customQuote: true,
       },
       {
         name: "Pro",
         price: "$12,000 – $15,000 MXN/mes",
         description:
-          "Todo lo de Básico + gestión de campañas en Meta/Google Ads (presupuesto de pauta corre por cuenta del cliente, aparte).",
+          "20 a 24 publicaciones/mes, 8 a 10 stories al mes, gestión de campañas en Meta/Google Ads, segmentación y remarketing, reporte con métricas reales (presupuesto de pauta corre por cuenta del cliente, aparte).",
+        customQuote: true,
       },
       {
         name: "Premium",
         price: "$20,000 – $28,000 MXN/mes",
         description:
           "Todo lo de Pro + sitio web con funcionalidad real (agenda, integración CRM) + mantenimiento web mensual + atención prioritaria.",
+        customQuote: true,
       },
     ],
   },
@@ -357,11 +371,13 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
         name: "Paquete contenido",
         price: "$3,500 – $5,500 MXN/mes",
         description: "12 diseños/mes para redes sociales (sin gestión de publicación, solo diseño).",
+        customQuote: true,
       },
       {
         name: "Paquete extendido",
         price: "$6,000 – $9,000 MXN/mes",
         description: "20-24 diseños/mes para redes sociales.",
+        customQuote: true,
       },
     ],
   },
@@ -372,6 +388,7 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
         name: "Fee de gestión",
         price: "$2,500 – $4,500 MXN/mes",
         description: "Configuración, optimización y reporte de campañas en Meta/Google Ads.",
+        customQuote: true,
       },
     ],
     note: "El presupuesto de los anuncios (pago directo a Meta/Google Ads) corre por cuenta del cliente. Este fee cubre solo la gestión y optimización de las campañas.",

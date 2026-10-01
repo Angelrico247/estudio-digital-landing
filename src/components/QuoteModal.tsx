@@ -121,7 +121,7 @@ export default function QuoteModal({
 
   const options =
     quoteType === "paquete"
-      ? pricingPlans.map((p) => ({ value: p.name, price: `${p.priceRange} MXN / mes` }))
+      ? pricingPlans.map((p) => ({ value: p.name, price: null as string | null }))
       : services.map((s) => ({ value: s.title, price: null as string | null }));
 
   return (
