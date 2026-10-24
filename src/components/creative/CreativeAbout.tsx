@@ -5,12 +5,12 @@ import Reveal from "./Reveal";
 
 const tiles = [
   {
-    src: "/men-editing-video-footage-on-computer-in-office-2026-04-13-02-50-09-utc.jpg",
-    alt: "Equipo del estudio editando video en la oficina",
+    src: "/studio-video-editing.jpg",
+    alt: "Persona editando video en una computadora",
   },
   {
-    src: "/home-office-desk-work-station-with-computers-keyb-2026-03-16-04-35-42-utc.jpg",
-    alt: "Escritorio de trabajo con computadoras en el estudio",
+    src: "/studio-workstation.jpg",
+    alt: "Escritorio de trabajo con computadoras y teclado",
   },
   {
     src: imageUrl(heroSlides[1].imageSeed, 740, 740),

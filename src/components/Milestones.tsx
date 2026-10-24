@@ -7,7 +7,7 @@ export default function Milestones() {
     <section
       className="relative py-24"
       style={{
-        backgroundImage: "url(/home-office-desk-work-station-with-computers-keyb-2026-03-16-04-35-42-utc.jpg)",
+        backgroundImage: "url(/studio-workstation.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",

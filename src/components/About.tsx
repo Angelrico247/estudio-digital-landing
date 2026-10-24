@@ -8,8 +8,8 @@ export default function About() {
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <FadeIn className="relative min-h-[420px] lg:min-h-[720px]">
           <Image
-            src="/men-editing-video-footage-on-computer-in-office-2026-04-13-02-50-09-utc.jpg"
-            alt="Equipo del estudio"
+            src="/studio-video-editing.jpg"
+            alt="Persona editando video en una computadora"
             fill
             className="object-cover"
             sizes="(min-width: 1024px) 50vw, 100vw"
@@ -62,8 +62,8 @@ export default function About() {
             </div>
             <div className="relative hidden overflow-hidden rounded-md sm:block">
               <Image
-                src="/home-office-desk-work-station-with-computers-keyb-2026-03-16-04-35-42-utc.jpg"
-                alt="Trabajo en el estudio"
+                src="/studio-workstation.jpg"
+                alt="Escritorio de trabajo con computadoras y teclado"
                 fill
                 className="object-cover"
                 sizes="200px"

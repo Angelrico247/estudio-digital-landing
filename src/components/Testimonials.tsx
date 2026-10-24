@@ -9,7 +9,7 @@ export default function Testimonials() {
       className="relative bg-dark py-20 lg:py-[120px]"
       style={{
         backgroundImage:
-          "url(/home-office-desk-work-station-with-computers-keyb-2026-03-16-04-35-42-utc.jpg)",
+          "url(/studio-workstation.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
