@@ -121,8 +121,8 @@ export default function QuoteModal({
 
   const options =
     quoteType === "paquete"
-      ? pricingPlans.map((p) => ({ value: p.name, price: null as string | null }))
-      : services.map((s) => ({ value: s.title, price: null as string | null }));
+      ? pricingPlans.map((p) => ({ value: p.name }))
+      : services.map((s) => ({ value: s.title }));
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
@@ -218,11 +218,6 @@ export default function QuoteModal({
                       >
                         {opt.value}
                       </span>
-                      {opt.price && (
-                        <span className={`mt-1 block text-xs font-semibold ${gradientText}`}>
-                          {opt.price}
-                        </span>
-                      )}
                     </button>
                   ))}
                 </div>

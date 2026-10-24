@@ -242,7 +242,6 @@ export const milestones: Milestone[] = [
 export type PricingPlan = {
   number: string;
   name: string;
-  priceRange: string;
   featured: boolean;
   features: string[];
 };
@@ -251,7 +250,6 @@ export const pricingPlans: PricingPlan[] = [
   {
     number: "1",
     name: "Básico",
-    priceRange: "$6,000 - $8,000",
     featured: false,
     features: [
       "2 redes sociales",
@@ -264,7 +262,6 @@ export const pricingPlans: PricingPlan[] = [
   {
     number: "2",
     name: "Pro",
-    priceRange: "$12,000 - $15,000",
     featured: true,
     features: [
       "20 a 24 posts al mes",
@@ -278,7 +275,6 @@ export const pricingPlans: PricingPlan[] = [
   {
     number: "3",
     name: "Premium",
-    priceRange: "$20,000 - $28,000",
     featured: false,
     features: [
       "Todo lo del Pro",
@@ -292,12 +288,7 @@ export const pricingPlans: PricingPlan[] = [
 
 export type PricingAccordionItem = {
   name: string;
-  price: string;
   description: string;
-  /** Cuando es true, la UI oculta `price` y muestra un CTA de cotización
-   * personalizada en su lugar (el campo se deja poblado por si se vuelve
-   * a necesitar como referencia interna). */
-  customQuote?: boolean;
 };
 
 export type PricingAccordionCategory = {
@@ -313,28 +304,20 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
     items: [
       {
         name: "Landing simple",
-        price: "$8,000 – $12,000 MXN (pago único)",
         description: "1 página, diseño responsive, formulario de contacto, optimización SEO básica.",
-        customQuote: true,
       },
       {
         name: "Sitio corporativo",
-        price: "$15,000 – $25,000 MXN (pago único)",
         description: "Múltiples secciones (Inicio, Nosotros, Servicios, Contacto), diseño responsive, SEO on-page.",
-        customQuote: true,
       },
       {
         name: "Catálogo funcional",
-        price: "$22,000 – $28,000 MXN (pago único)",
         description: "Todo lo de sitio corporativo + sistema de catálogo/productos con filtros y buscador básico.",
-        customQuote: true,
       },
       {
         name: "Funcionalidad custom (agenda, CRM, buscador)",
-        price: "$30,000 – $80,000+ MXN (pago único)",
         description:
           "Desarrollo a medida con base de datos, integración de agenda/CRM propio, funcionalidad avanzada según necesidad del cliente.",
-        customQuote: true,
       },
     ],
   },
@@ -343,24 +326,18 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
     items: [
       {
         name: "Básico",
-        price: "$6,000 – $8,000 MXN/mes",
         description:
           "2 redes sociales, 12 publicaciones/mes, 4 a 8 stories al mes, calendario de contenido, reporte básico mensual.",
-        customQuote: true,
       },
       {
         name: "Pro",
-        price: "$12,000 – $15,000 MXN/mes",
         description:
           "20 a 24 publicaciones/mes, 8 a 10 stories al mes, gestión de campañas en Meta/Google Ads, segmentación y remarketing, reporte con métricas reales (presupuesto de pauta corre por cuenta del cliente, aparte).",
-        customQuote: true,
       },
       {
         name: "Premium",
-        price: "$20,000 – $28,000 MXN/mes",
         description:
           "Todo lo de Pro + sitio web con funcionalidad real (agenda, integración CRM) + mantenimiento web mensual + atención prioritaria.",
-        customQuote: true,
       },
     ],
   },
@@ -369,15 +346,11 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
     items: [
       {
         name: "Paquete contenido",
-        price: "$3,500 – $5,500 MXN/mes",
         description: "12 diseños/mes para redes sociales (sin gestión de publicación, solo diseño).",
-        customQuote: true,
       },
       {
         name: "Paquete extendido",
-        price: "$6,000 – $9,000 MXN/mes",
         description: "20-24 diseños/mes para redes sociales.",
-        customQuote: true,
       },
     ],
   },
@@ -386,9 +359,7 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
     items: [
       {
         name: "Fee de gestión",
-        price: "$2,500 – $4,500 MXN/mes",
         description: "Configuración, optimización y reporte de campañas en Meta/Google Ads.",
-        customQuote: true,
       },
     ],
     note: "El presupuesto de los anuncios (pago directo a Meta/Google Ads) corre por cuenta del cliente. Este fee cubre solo la gestión y optimización de las campañas.",
@@ -398,19 +369,16 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
     items: [
       {
         name: "Cotizador IA",
-        price: "Setup $8,000 – $12,000 MXN + $800 – $1,500 MXN/mes",
         description:
           "Formulario en la web, IA redacta mensaje personalizado, link de WhatsApp prellenado, panel simple de leads capturados.",
       },
       {
         name: "Agenda Inteligente + Dashboard",
-        price: "Setup $18,000 – $28,000 MXN + $2,500 – $4,000 MXN/mes",
         description:
           "Todo lo del Cotizador + calendario real conectado, dashboard administrativo completo, recordatorios automáticos.",
       },
       {
         name: "Asistente WhatsApp 24/7",
-        price: "Setup $40,000 – $65,000 MXN + $5,000 – $9,000 MXN/mes",
         description:
           "API oficial de WhatsApp Business, bot conversacional que responde y agenda solo, sin intervención humana.",
       },
@@ -421,12 +389,10 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
     items: [
       {
         name: "Respondedor IA (DMs + Comentarios)",
-        price: "Setup $10,000 – $15,000 MXN + $1,500 – $2,500 MXN/mes",
         description: "Respuestas automáticas en DMs de Instagram/Facebook, trigger de comentario a DM automático.",
       },
       {
         name: "Agenda Light",
-        price: "Setup $15,000 – $22,000 MXN + $2,000 – $3,000 MXN/mes",
         description: "Agendado desde Instagram conectado a calendario, registro de leads, dashboard con métricas vía Looker Studio.",
       },
     ],
@@ -436,19 +402,16 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
     items: [
       {
         name: "Reporte automatizado (1 fuente)",
-        price: "$25,000 – $35,000 MXN + $3,000 – $5,000 MXN/mes",
         description:
           "Conexión a tu base de datos o sistema, con las reglas de negocio de tu operación. El reporte se genera y se envía solo, validado contra los números que ya manejas.",
       },
       {
         name: "Dashboard multi-fuente con roles",
-        price: "$40,000 – $70,000 MXN + $8,000 – $12,000 MXN/mes",
         description:
           "Varias fuentes de datos en un solo tablero, con permisos por área o por puesto. Actualización automática, sin concentrar información a mano.",
       },
       {
         name: "Alertas y resúmenes automáticos",
-        price: "Desde $20,000 MXN",
         description:
           "Avisos cuando un indicador se sale de rango y resúmenes periódicos enviados por correo o WhatsApp.",
       },

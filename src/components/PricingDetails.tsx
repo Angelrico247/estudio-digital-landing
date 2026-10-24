@@ -13,7 +13,7 @@ export default function PricingDetails() {
       />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <FadeIn>
-          <SectionHeading eyebrow="Desglose Completo" title="Servicios y Precios" />
+          <SectionHeading eyebrow="Desglose Completo" title="Catálogo de Servicios" />
         </FadeIn>
 
         <FadeIn delay={100} className="mt-16">

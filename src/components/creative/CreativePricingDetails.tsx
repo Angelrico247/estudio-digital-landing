@@ -29,7 +29,7 @@ export default function CreativePricingDetails() {
     <section id="desglose" className="scroll-mt-[76px] bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-[1200px] px-6">
         <Reveal>
-          <CreativeHeading eyebrow="Desglose completo" title="Servicios y precios" />
+          <CreativeHeading eyebrow="Desglose completo" title="Catálogo de servicios" />
         </Reveal>
 
         <Reveal className="mx-auto mt-16 max-w-3xl">
@@ -76,11 +76,6 @@ export default function CreativePricingDetails() {
                             <h4 className="font-cr-heading text-[15px] font-bold uppercase tracking-tight text-cr-ink">
                               {item.name}
                             </h4>
-                            {!item.customQuote && (
-                              <strong className="mt-1 block font-cr-heading text-sm font-semibold text-cr-accent-ink">
-                                {item.price}
-                              </strong>
-                            )}
                             <p className="mt-2 font-cr-body text-sm leading-[1.7] text-cr-muted">
                               {item.description}
                             </p>

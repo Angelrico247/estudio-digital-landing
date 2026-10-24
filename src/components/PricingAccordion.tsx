@@ -64,11 +64,6 @@ export default function PricingAccordion({ categories }: { categories: PricingAc
                         <h4 className="font-heading text-[15px] font-bold uppercase tracking-[0.02em] text-foreground">
                           {item.name}
                         </h4>
-                        {!item.customQuote && (
-                          <strong className="mt-1 block bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] bg-clip-text font-heading text-sm font-semibold text-transparent">
-                            {item.price}
-                          </strong>
-                        )}
                         <p className="mt-2 text-[13px] leading-[1.6] text-secondary">{item.description}</p>
                       </div>
                     ))}
