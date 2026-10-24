@@ -294,7 +294,6 @@ export type PricingAccordionCategory = {
   title: string;
   items?: PricingAccordionItem[];
   note?: string;
-  comingSoon?: boolean;
 };
 
 export const pricingAccordionCategories: PricingAccordionCategory[] = [
@@ -417,12 +416,27 @@ export const pricingAccordionCategories: PricingAccordionCategory[] = [
     ],
   },
   {
-    title: "Reels",
-    comingSoon: true,
+    title: "Reels y Video",
+    items: [
+      {
+        name: "Reels y videos cortos",
+        description:
+          "Reels, videos cortos y contenido audiovisual optimizado para engagement y conversión.",
+      },
+    ],
   },
   {
     title: "Branding",
-    comingSoon: true,
+    items: [
+      {
+        name: "Identidad de marca",
+        description: "Logotipo, paleta de color, tipografía, manual de marca y aplicaciones.",
+      },
+      {
+        name: "Etiquetas y mockups",
+        description: "Diseño de etiquetas y presentación de tu marca en mockups realistas.",
+      },
+    ],
   },
 ];
 

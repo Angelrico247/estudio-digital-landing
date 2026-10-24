@@ -36,11 +36,6 @@ export default function PricingAccordion({ categories }: { categories: PricingAc
                   {category.title}
                 </span>
                 <span className="flex shrink-0 items-center gap-3">
-                  {category.comingSoon && (
-                    <span className="rounded-full border border-primary/40 px-3 py-1 font-heading text-[11px] font-semibold uppercase tracking-[0.1em] text-primary">
-                      Próximamente
-                    </span>
-                  )}
                   <ChevronDownIcon
                     className={`h-5 w-5 text-secondary transition-transform duration-300 ${isOpen ? "rotate-180 text-primary" : ""}`}
                   />

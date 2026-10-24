@@ -52,11 +52,6 @@ export default function CreativePricingDetails() {
                     >
                       <span>{category.title}</span>
                       <span className="flex items-center gap-3">
-                        {category.comingSoon && (
-                          <span className="rounded-full border border-cr-line px-3 py-1 font-cr-body text-[11px] font-medium uppercase tracking-[0.1em] text-cr-muted">
-                            Próximamente
-                          </span>
-                        )}
                         <ChevronDown open={isOpen} />
                       </span>
                     </button>
