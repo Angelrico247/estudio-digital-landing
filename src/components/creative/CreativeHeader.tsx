@@ -35,7 +35,7 @@ export default function CreativeHeader() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 motion-reduce:transition-none ${
-        solid ? "border-b border-cr-line bg-white" : "border-b border-transparent bg-transparent"
+        solid ? "border-b border-cr-line bg-white" : "border-b border-white/25 bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-[76px] max-w-[1200px] items-center justify-between px-6">
