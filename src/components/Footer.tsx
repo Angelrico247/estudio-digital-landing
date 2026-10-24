@@ -28,6 +28,11 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link href="/creative" className="text-sm text-primary hover:text-foreground">
+                  TWID Creative →
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { navLinks, site } from "@/data/site";
 import { useScheduleCall } from "./ScheduleCallContext";
@@ -49,7 +50,7 @@ export default function Header() {
           />
         </a>
 
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-6 md:flex lg:gap-10">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -59,6 +60,12 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+          <Link
+            href="/creative"
+            className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary transition-colors duration-300 hover:text-foreground"
+          >
+            TWID Creative →
+          </Link>
         </nav>
 
         <button
@@ -103,6 +110,12 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
+            <Link
+              href="/creative"
+              className="font-heading text-lg font-medium uppercase tracking-[0.15em] text-primary hover:text-foreground"
+            >
+              TWID Creative →
+            </Link>
             <button
               type="button"
               onClick={() => {
