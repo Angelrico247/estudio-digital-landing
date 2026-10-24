@@ -364,3 +364,67 @@ body {
 .btn-dot:hover::after {
   opacity: 1;
 }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   TWID Creative (/creative) — tokens y utilidades propios, estilo claro y
+   minimalista inspirado en Kyata. Todo vive bajo el prefijo "cr" / la clase
+   .creative para no tocar nada de la landing oscura.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Acento decorativo (puntos, íconos, líneas). Un solo color, fácil de cambiar. */
+  --cr-accent: #e4572e;
+  /* Variante del acento para TEXTO y botones: llega a contraste AA (4.9:1) sobre blanco. */
+  --cr-accent-ink: #c8431b;
+  --cr-ink: #111111;
+  --cr-body: #4a4a4a;
+  --cr-muted: #6b6b6b;
+  --cr-line: #e2e2e2;
+  --cr-card: #f7f6f3;
+}
+
+@theme inline {
+  --color-cr-accent: var(--cr-accent);
+  --color-cr-accent-ink: var(--cr-accent-ink);
+  --color-cr-ink: var(--cr-ink);
+  --color-cr-body: var(--cr-body);
+  --color-cr-muted: var(--cr-muted);
+  --color-cr-line: var(--cr-line);
+  --color-cr-card: var(--cr-card);
+  --font-cr-heading: var(--font-poppins);
+  --font-cr-body: var(--font-roboto);
+}
+
+/* Divisor de los títulos de sección (línea corta con muesca), como en Kyata */
+.cr-divider {
+  position: relative;
+  display: block;
+  width: 34px;
+  height: 1px;
+  margin: 22px auto 0;
+  background: var(--cr-line);
+}
+
+.cr-divider::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  margin-left: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid var(--cr-line);
+}
+
+/* El cursor circular violeta es de la landing oscura; en /creative se usa el cursor normal. */
+body:has(.creative) .cursor-ring {
+  display: none;
+}
+
+body.custom-cursor-active:has(.creative),
+body.custom-cursor-active:has(.creative) * {
+  cursor: auto !important;
+}
+
+body.custom-cursor-active:has(.creative) :is(a, button, summary, label, [role="button"]) {
+  cursor: pointer !important;
+}
