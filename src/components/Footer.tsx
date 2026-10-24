@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { navLinks, services, site } from "@/data/site";
 
 export default function Footer() {
@@ -61,12 +62,12 @@ export default function Footer() {
         <div className="mt-8 flex flex-col items-center justify-between gap-4 text-sm text-secondary sm:flex-row">
           <p>© {new Date().getFullYear()} {site.name}. Todos los derechos reservados.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-primary">
+            <Link href="/aviso-de-privacidad" className="hover:text-primary">
               Aviso de Privacidad
-            </a>
-            <a href="#" className="hover:text-primary">
+            </Link>
+            <Link href="/terminos" className="hover:text-primary">
               Términos y Condiciones
-            </a>
+            </Link>
           </div>
         </div>
       </div>

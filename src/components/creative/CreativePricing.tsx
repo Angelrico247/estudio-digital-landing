@@ -1,5 +1,4 @@
 import { pricingPlans } from "@/data/site";
-import { whatsappLink } from "@/data/creative-config";
 import CreativeHeading from "./CreativeHeading";
 import Reveal from "./Reveal";
 
@@ -58,11 +57,8 @@ export default function CreativePricing() {
                   </ul>
 
                   <a
-                    href={whatsappLink(
-                      `Hola, buen día. Me interesa el paquete ${plan.name} de TWID Creative. ¿Me ayudan a cotizar?`
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#contacto"
+                    data-interest={`Paquete ${plan.name}`}
                     className={`mt-9 rounded-full px-8 py-3.5 text-center font-cr-heading text-[13px] font-semibold uppercase tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent-ink motion-reduce:transition-none ${
                       plan.featured
                         ? "bg-cr-ink text-white hover:bg-cr-accent-ink"

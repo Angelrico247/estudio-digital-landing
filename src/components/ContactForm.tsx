@@ -7,14 +7,33 @@ const inputClasses =
   "w-full rounded-md border border-hairline bg-paper-card px-5 py-4 text-[15px] text-ink outline-none transition-colors placeholder:text-ink-secondary focus:border-primary";
 
 export default function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
+    const data = new FormData(e.currentTarget);
+    setStatus("sending");
+
+    try {
+      const res = await fetch("/api/cotizar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "servicio",
+          selection: data.get("servicio"),
+          name: data.get("nombre"),
+          email: data.get("email"),
+          message: data.get("mensaje"),
+        }),
+      });
+      if (!res.ok) throw new Error("request failed");
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   }
 
-  if (sent) {
+  if (status === "sent") {
     return (
       <div
         className="border-gradient-brand rounded-md bg-primary/10 p-8 text-center"
@@ -48,11 +67,31 @@ export default function ContactForm() {
         className={`${inputClasses} resize-none`}
       />
 
+      <p className="text-xs leading-relaxed text-ink-secondary">
+        Al enviar aceptas el{" "}
+        <a
+          href="/aviso-de-privacidad"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary underline underline-offset-2"
+        >
+          Aviso de Privacidad
+        </a>
+        .
+      </p>
+
+      {status === "error" && (
+        <p role="alert" className="text-sm text-red-600">
+          No pudimos enviar tu mensaje. Intenta de nuevo en unos segundos.
+        </p>
+      )}
+
       <button
         type="submit"
-        className="btn-fill font-heading w-full rounded-md border py-4 text-sm font-semibold uppercase tracking-[0.1em] text-ink hover:text-white"
+        disabled={status === "sending"}
+        className="btn-fill font-heading w-full rounded-md border py-4 text-sm font-semibold uppercase tracking-[0.1em] text-ink hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
       >
-        <span className="btn-fill-content">Enviar Mensaje</span>
+        <span className="btn-fill-content">{status === "sending" ? "Enviando..." : "Enviar Mensaje"}</span>
       </button>
     </form>
   );

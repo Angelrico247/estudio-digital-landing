@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { creativeNav, whatsappLink } from "@/data/creative-config";
-
-const QUOTE_MESSAGE = "Hola, buen día. Me gustaría cotizar un proyecto con TWID Creative.";
+import { creativeNav } from "@/data/creative-config";
 
 /**
  * Header fijo. Sobre el hero (oscuro) va transparente con texto blanco; al hacer
@@ -73,9 +71,7 @@ export default function CreativeHeader() {
             </a>
           ))}
           <a
-            href={whatsappLink(QUOTE_MESSAGE)}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contacto"
             className="rounded-full bg-cr-accent-ink px-6 py-3 font-cr-heading text-[13px] font-semibold uppercase tracking-wide text-white transition-colors hover:bg-cr-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent-ink motion-reduce:transition-none"
           >
             Cotizar
@@ -119,9 +115,7 @@ export default function CreativeHeader() {
             </a>
           ))}
           <a
-            href={whatsappLink(QUOTE_MESSAGE)}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contacto"
             onClick={() => setMenuOpen(false)}
             className="mt-3 rounded-full bg-cr-accent-ink px-6 py-3.5 text-center font-cr-heading text-sm font-semibold uppercase tracking-wide text-white"
           >

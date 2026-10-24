@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { pricingPlans, services, niches, site } from "@/data/site";
+import { pricingPlans, services, niches } from "@/data/site";
 import type { QuotePreset } from "./QuoteModalContext";
 
 type QuoteType = "paquete" | "servicio";
@@ -13,26 +13,6 @@ const inputClasses =
 
 const gradientText =
   "bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] bg-clip-text text-transparent";
-
-function buildWhatsAppMessage(params: {
-  tipoLabel: string;
-  selection: string;
-  niche: string;
-  name: string;
-  email: string;
-  message: string;
-}) {
-  const { tipoLabel, selection, niche, name, email, message } = params;
-  const lines = [
-    `Hola, buen día. Estoy interesado en el ${tipoLabel.toLowerCase()} "${selection}" para mi marca de ${niche}.`,
-    "Te comparto mis datos para hacer una cotización:",
-    "",
-    `Nombre: ${name}`,
-    `Email: ${email}`,
-  ];
-  if (message.trim()) lines.push(`Mensaje: ${message.trim()}`);
-  return lines.join("\n");
-}
 
 export default function QuoteModal({
   isOpen,
@@ -96,7 +76,6 @@ export default function QuoteModal({
 
   async function handleSubmit() {
     setStatus("sending");
-    const tipoLabel = quoteType === "paquete" ? "Paquete" : "Servicio";
 
     try {
       const res = await fetch("/api/cotizar", {
@@ -105,9 +84,6 @@ export default function QuoteModal({
         body: JSON.stringify({ type: quoteType, selection, niche, name, email, message }),
       });
       if (!res.ok) throw new Error("request failed");
-
-      const waMessage = buildWhatsAppMessage({ tipoLabel, selection, niche, name, email, message });
-      window.open(`https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(waMessage)}`, "_blank");
 
       setStatus("sent");
     } catch {
@@ -145,8 +121,7 @@ export default function QuoteModal({
           <div className="py-8 text-center">
             <h3 className="font-heading text-2xl font-bold uppercase text-foreground">¡Listo!</h3>
             <p className="mt-3 text-secondary">
-              Recibimos tu solicitud y abrimos WhatsApp con tu mensaje ya armado — solo confirma el
-              envío. Te contactaremos muy pronto.
+              Recibimos tu solicitud. Te contactaremos por correo en menos de 24 horas.
             </p>
             <button
               type="button"
@@ -310,6 +285,19 @@ export default function QuoteModal({
                     className={`${inputClasses} resize-none`}
                   />
                 </div>
+
+                <p className="mt-4 text-xs leading-relaxed text-secondary">
+                  Al enviar aceptas el{" "}
+                  <a
+                    href="/aviso-de-privacidad"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline underline-offset-2"
+                  >
+                    Aviso de Privacidad
+                  </a>
+                  .
+                </p>
 
                 {status === "error" && (
                   <p className="mt-4 text-sm text-red-400">

@@ -1,4 +1,5 @@
-import { creativeConfig, whatsappLink } from "@/data/creative-config";
+import { creativeConfig } from "@/data/creative-config";
+import CreativeContactForm from "./CreativeContactForm";
 import CreativeHeading from "./CreativeHeading";
 import Reveal from "./Reveal";
 
@@ -10,30 +11,28 @@ export default function CreativeContact() {
           <CreativeHeading eyebrow="Contacto" title="¿Tienes una marca que contar?" />
         </Reveal>
 
-        <Reveal className="mx-auto mt-12 max-w-xl text-center">
-          <p className="font-cr-body text-base leading-[1.9] text-cr-body sm:text-lg">
-            Cuéntanos sobre tu proyecto y te contactamos en menos de 24 horas.
-          </p>
+        <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+          <Reveal>
+            <p className="max-w-md font-cr-body text-base leading-[1.9] text-cr-body sm:text-lg">
+              Cuéntanos sobre tu proyecto y te contactamos en menos de 24 horas.
+            </p>
+            <ul className="mt-8 space-y-3 font-cr-body text-[15px] text-cr-body">
+              <li>
+                <a
+                  href={`mailto:${creativeConfig.email}`}
+                  className="text-cr-ink underline underline-offset-4 hover:text-cr-accent-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent-ink"
+                >
+                  {creativeConfig.email}
+                </a>
+              </li>
+              <li className="text-cr-muted">{creativeConfig.location}</li>
+            </ul>
+          </Reveal>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={whatsappLink("Hola, buen día. Quiero platicar sobre un proyecto con TWID Creative.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-cr-ink px-9 py-4 font-cr-heading text-[13px] font-semibold uppercase tracking-wide text-white transition-colors hover:bg-cr-accent-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent-ink motion-reduce:transition-none"
-            >
-              Platiquemos por WhatsApp
-            </a>
-            <a
-              href={`mailto:${creativeConfig.email}`}
-              className="rounded-full border border-cr-ink px-9 py-4 font-cr-heading text-[13px] font-semibold tracking-wide text-cr-ink transition-colors hover:bg-cr-ink hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent-ink motion-reduce:transition-none"
-            >
-              {creativeConfig.email}
-            </a>
-          </div>
-
-          <p className="mt-8 font-cr-body text-sm text-cr-muted">{creativeConfig.location}</p>
-        </Reveal>
+          <Reveal delay={100}>
+            <CreativeContactForm />
+          </Reveal>
+        </div>
       </div>
     </section>
   );

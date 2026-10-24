@@ -1,6 +1,5 @@
 "use client";
 
-import { site } from "@/data/site";
 import { useQuoteModal } from "./QuoteModalContext";
 import { useScheduleCall } from "./ScheduleCallContext";
 import FadeIn from "./FadeIn";
@@ -44,14 +43,6 @@ export default function CTASection() {
           >
             <span className="btn-fill-content">Agenda una Llamada</span>
           </button>
-          <a
-            href={`https://wa.me/${site.whatsappNumber}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-fill font-heading rounded-md border px-9 py-4 text-sm font-semibold uppercase tracking-[0.1em] text-white"
-          >
-            <span className="btn-fill-content">WhatsApp Directo</span>
-          </a>
         </div>
       </FadeIn>
     </section>

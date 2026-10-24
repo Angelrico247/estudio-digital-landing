@@ -1,11 +1,7 @@
+import Link from "next/link";
 import { creativeConfig } from "@/data/creative-config";
 
 export default function CreativeFooter() {
-  const socials = [
-    { label: "Instagram", href: creativeConfig.instagramUrl },
-    { label: "LinkedIn", href: creativeConfig.linkedinUrl },
-  ].filter((social) => social.href);
-
   return (
     <footer className="bg-cr-ink text-white">
       <div className="mx-auto max-w-[1200px] px-6 py-20">
@@ -31,22 +27,21 @@ export default function CreativeFooter() {
         <div className="mt-16 flex flex-col gap-4 border-t border-white/15 pt-8 font-cr-body text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} TWID — Two Worlds In Design · Guadalajara</p>
 
-          {socials.length > 0 && (
-            <ul className="flex gap-6">
-              {socials.map((social) => (
-                <li key={social.label}>
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
-                  >
-                    {social.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
+          <ul className="flex gap-6">
+            {[
+              { label: "Aviso de Privacidad", href: creativeConfig.privacyUrl },
+              { label: "Términos y Condiciones", href: creativeConfig.termsUrl },
+            ].map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

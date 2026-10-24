@@ -10,7 +10,6 @@ export const site = {
   shortName: "TWID",
   tagline: "Estudio de Soluciones Digitales",
   email: "twoworldsindesign@gmail.com",
-  whatsappNumber: "5213312345678",
   location: "Guadalajara, Jalisco, México",
 
   /** Dominio canónico: www redirige aquí. Se usa en metadata, sitemap y schema. */

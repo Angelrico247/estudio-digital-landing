@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 type CotizarPayload = {
   type: "paquete" | "servicio";
   selection: string;
-  niche: string;
+  niche?: string;
   name: string;
   email: string;
   message: string;
@@ -16,8 +16,7 @@ function isValidPayload(data: unknown): data is CotizarPayload {
     (d.type === "paquete" || d.type === "servicio") &&
     typeof d.selection === "string" &&
     d.selection.trim().length > 0 &&
-    typeof d.niche === "string" &&
-    d.niche.trim().length > 0 &&
+    (d.niche === undefined || typeof d.niche === "string") &&
     typeof d.name === "string" &&
     d.name.trim().length > 0 &&
     typeof d.email === "string" &&
@@ -52,7 +51,7 @@ export async function POST(request: Request) {
       subject: `Nueva cotización — ${tipoLabel}: ${selection}`,
       text: [
         `${tipoLabel}: ${selection}`,
-        `Nicho: ${niche}`,
+        `Nicho: ${niche?.trim() || "No indicado"}`,
         `Nombre: ${name}`,
         `Email: ${email}`,
         `Mensaje: ${message || "(sin mensaje adicional)"}`,
