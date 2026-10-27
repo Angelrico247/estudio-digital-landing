@@ -78,11 +78,15 @@ export const devProjects: DevProject[] = [
   },
   {
     number: "3",
-    title: "Automatización por WhatsApp",
+    title: "Automatización en redes sociales",
     kind: "Automatización conversacional",
     description:
-      "Flujos de atención en WhatsApp que responden, capturan datos y dan seguimiento, conectados a los sistemas del negocio para no capturar dos veces.",
-    highlights: ["Respuestas y flujos guiados", "Captura de datos en el sistema", "Seguimiento automático"],
+      "Flujos que atienden tus redes por ti: respuestas automáticas a mensajes de Instagram, agendado de citas en calendario y seguimiento de cada contacto, conectados a tus sistemas para no capturar dos veces.",
+    highlights: [
+      "Respuestas y flujos guiados en mensajes de Instagram",
+      "Agendado de citas conectado a tu calendario",
+      "Seguimiento y captura de datos automáticos",
+    ],
   },
   {
     number: "4",
@@ -118,6 +122,6 @@ export const devServiceOptions = [
   "Sistema a la medida",
   "Reportes y dashboards",
   "Integración entre sistemas",
-  "Automatización por WhatsApp",
+  "Automatización en redes sociales",
   "Otro",
 ];

@@ -29,7 +29,7 @@ const anton = Anton({
 });
 
 const devDescription =
-  "Automatizaciones y sistemas a la medida en Guadalajara: punto de venta, reportes, integraciones y flujos de WhatsApp para que tu operación corra con menos trabajo manual.";
+  "Automatizaciones y sistemas a la medida en Guadalajara: punto de venta, reportes, integraciones y automatización de redes sociales para que tu operación corra con menos trabajo manual.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     `sistemas a la medida ${localSeo.city}`,
     `desarrollo de software ${localSeo.city}`,
     `sistema punto de venta ${localSeo.city}`,
-    `automatización WhatsApp ${localSeo.region}`,
+    `automatización de redes sociales ${localSeo.region}`,
     "reportes y dashboards",
     "integración de sistemas",
     site.shortName,
