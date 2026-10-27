@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { serviceOptions } from "@/data/site";
+import { devServiceOptions as serviceOptions } from "@/data/development";
 
 const inputClasses =
   "w-full rounded-md border border-hairline bg-paper-card px-5 py-4 text-[15px] text-ink outline-none transition-colors placeholder:text-ink-secondary focus:border-primary";
@@ -51,7 +51,7 @@ export default function ContactForm() {
       <input name="email" type="email" placeholder="Email" required className={inputClasses} />
       <select name="servicio" required defaultValue="" className={inputClasses}>
         <option value="" disabled>
-          Tipo de servicio
+          ¿Qué necesitas?
         </option>
         {serviceOptions.map((option) => (
           <option key={option} value={option}>

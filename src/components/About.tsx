@@ -4,7 +4,7 @@ import FadeIn from "./FadeIn";
 
 export default function About() {
   return (
-    <section className="relative overflow-hidden bg-paper">
+    <section id="nosotros" className="relative overflow-hidden bg-paper">
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <FadeIn className="relative min-h-[420px] lg:min-h-[720px]">
           <Image
@@ -23,16 +23,15 @@ export default function About() {
         <FadeIn delay={100} className="flex flex-col justify-center px-6 py-16 lg:px-16 lg:py-0">
           <SectionHeading
             eyebrow="Sobre Nosotros"
-            title="Mantenemos tu Marca Viva"
+            title="Tecnología que Trabaja por Ti"
             align="left"
             size="medium"
             tone="light"
           />
           <p className="mt-6 max-w-lg text-lg leading-[1.7] text-ink-secondary">
-            Two Worlds In Design (TWID) es un estudio chico que trabaja con marcas y negocios que
-            quieren mostrarse, conectar con su gente y mantenerse activos en sus canales digitales.
-            El estudio se encarga del recorrido completo: estrategia, diseño, desarrollo y el sitio
-            publicado y funcionando 24/7.
+            TWID Development es el lado técnico de Two Worlds In Design. Diseñamos y construimos
+            automatizaciones y sistemas a la medida para negocios que ya rebasaron las hojas de
+            cálculo: del análisis del proceso hasta el sistema publicado y funcionando.
           </p>
 
           <a
@@ -51,13 +50,13 @@ export default function About() {
             <div className="rounded-md border border-hairline bg-paper-card p-5">
               <p className="font-heading text-sm font-bold uppercase text-ink">A la medida</p>
               <p className="mt-2 text-sm leading-[1.5] text-ink-secondary">
-                Nada de templates. Código propio para cada marca.
+                Nada de plantillas. Cada sistema se construye para tu proceso.
               </p>
             </div>
             <div className="rounded-md bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] p-5">
               <p className="font-heading text-sm font-bold uppercase text-white">Sin adivinar</p>
               <p className="mt-2 text-sm leading-[1.5] text-white/85">
-                Se ajusta sobre métricas reales, no corazonadas.
+                Datos reales para decidir, no corazonadas.
               </p>
             </div>
             <div className="relative hidden overflow-hidden rounded-md sm:block">

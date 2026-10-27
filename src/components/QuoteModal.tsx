@@ -1,18 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { pricingPlans, services, niches } from "@/data/site";
+import { niches } from "@/data/site";
+import { devQuoteOptions } from "@/data/development";
 import type { QuotePreset } from "./QuoteModalContext";
 
-type QuoteType = "paquete" | "servicio";
 type Step = 0 | 1 | 2;
 type Status = "idle" | "sending" | "sent" | "error";
 
 const inputClasses =
   "w-full rounded-md border border-line bg-card px-5 py-4 text-[15px] text-foreground outline-none transition-colors placeholder:text-secondary focus:border-primary";
-
-const gradientText =
-  "bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] bg-clip-text text-transparent";
 
 export default function QuoteModal({
   isOpen,
@@ -24,7 +21,6 @@ export default function QuoteModal({
   onClose: () => void;
 }) {
   const [step, setStep] = useState<Step>(0);
-  const [quoteType, setQuoteType] = useState<QuoteType>("paquete");
   const [selection, setSelection] = useState("");
   const [niche, setNiche] = useState("");
   const [name, setName] = useState("");
@@ -34,7 +30,6 @@ export default function QuoteModal({
 
   useEffect(() => {
     if (!isOpen) return;
-    setQuoteType(preset?.type ?? "paquete");
     setSelection(preset?.selection ?? "");
     setNiche("");
     setName("");
@@ -81,7 +76,7 @@ export default function QuoteModal({
       const res = await fetch("/api/cotizar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: quoteType, selection, niche, name, email, message }),
+        body: JSON.stringify({ type: "servicio", selection, niche, name, email, message }),
       });
       if (!res.ok) throw new Error("request failed");
 
@@ -95,10 +90,7 @@ export default function QuoteModal({
   const canAdvanceStep1 = niche.trim().length > 0;
   const canSubmit = name.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const options =
-    quoteType === "paquete"
-      ? pricingPlans.map((p) => ({ value: p.name }))
-      : services.map((s) => ({ value: s.title }));
+  const options = devQuoteOptions.map((value) => ({ value }));
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
@@ -154,26 +146,6 @@ export default function QuoteModal({
                   ¿Qué te interesa cotizar?
                 </h3>
 
-                <div className="mx-auto mt-6 flex w-fit rounded-md border border-line p-1">
-                  {(["paquete", "servicio"] as const).map((t) => (
-                    <button
-                      key={t}
-                      type="button"
-                      onClick={() => {
-                        setQuoteType(t);
-                        setSelection("");
-                      }}
-                      className={`rounded-md px-6 py-2 font-heading text-sm font-semibold uppercase tracking-[0.05em] transition-colors ${
-                        quoteType === t
-                          ? `${gradientText}`
-                          : "text-secondary hover:text-foreground"
-                      }`}
-                    >
-                      {t === "paquete" ? "Paquetes" : "Servicios"}
-                    </button>
-                  ))}
-                </div>
-
                 <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {options.map((opt) => (
                     <button
@@ -211,7 +183,7 @@ export default function QuoteModal({
             {step === 1 && (
               <div>
                 <h3 className="text-center font-heading text-2xl font-bold uppercase text-foreground">
-                  ¿Cuál es el giro de tu marca?
+                  ¿Cuál es el giro de tu negocio?
                 </h3>
                 {selection && (
                   <p className="mt-2 text-center text-sm text-secondary">

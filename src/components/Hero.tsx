@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { heroSlides, imageUrl, site, localSeo } from "@/data/site";
+import { imageUrl, site } from "@/data/site";
+import { devHeroSlides as heroSlides } from "@/data/development";
 import FadeIn from "./FadeIn";
 
 const AUTOPLAY_MS = 6000;
@@ -69,7 +70,7 @@ export default function Hero() {
             sin cambiar un pixel de su aspecto.
           */}
           <h1 className="sr-only">
-            {site.name} — Estudio de diseño y desarrollo web en {localSeo.city}, {localSeo.region}
+            {site.name} — Automatización y sistemas a la medida desde Guadalajara, Jalisco
           </h1>
 
           <FadeIn>
@@ -102,16 +103,16 @@ export default function Hero() {
           <FadeIn delay={360}>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
               <a
-                href="#servicios"
+                href="#proyectos"
                 className="btn-fill font-impact  rounded-md border px-10 py-5 text-sm font-black uppercase text-foreground"
               >
                 <span className="btn-fill-content">Conoce Más</span>
               </a>
               <a
-                href="#portafolio"
+                href="#contacto"
                 className="btn-dot font-impact text-sm font-black uppercase tracking-wide text-foreground"
               >
-                <span>Ver Portafolio</span>
+                <span>Hablemos</span>
               </a>
             </div>
           </FadeIn>

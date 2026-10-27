@@ -1,9 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Portfolio from "@/components/Portfolio";
-import Pricing from "@/components/Pricing";
-import PricingDetails from "@/components/PricingDetails";
+import Projects from "@/components/Projects";
 import About from "@/components/About";
 import CTASection from "@/components/CTASection";
 import Contact from "@/components/Contact";
@@ -16,10 +13,7 @@ export default function Home() {
       <Header />
       <main className="flex-1 bg-dark">
         <Hero />
-        <Services />
-        <Portfolio />
-        <Pricing />
-        <PricingDetails />
+        <Projects />
         <About />
         <CTASection />
         <Contact />

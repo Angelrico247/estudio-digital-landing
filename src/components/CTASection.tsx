@@ -25,7 +25,7 @@ export default function CTASection() {
           Hablemos de tu Proyecto
         </h2>
         <p className="mt-4 text-lg text-white/70">
-          Agenda una llamada sin compromiso y platiquemos cómo hacer crecer tu negocio.
+          Agenda una llamada sin compromiso y platiquemos qué proceso de tu negocio podemos automatizar.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

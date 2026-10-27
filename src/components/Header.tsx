@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { navLinks, site } from "@/data/site";
+import { site } from "@/data/site";
+import { devNavLinks as navLinks } from "@/data/development";
 import { useScheduleCall } from "./ScheduleCallContext";
 
 export default function Header() {

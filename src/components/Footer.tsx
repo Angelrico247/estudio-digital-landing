@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { navLinks, services, site } from "@/data/site";
+import { site } from "@/data/site";
+import { devNavLinks as navLinks, devProjects } from "@/data/development";
 
 export default function Footer() {
   return (
@@ -11,8 +12,8 @@ export default function Footer() {
               {site.name}
             </span>
             <p className="mt-4 max-w-xs text-sm leading-[1.7] text-secondary">
-              Estudio de soluciones digitales: desarrollo web, gestión de redes sociales y
-              publicidad digital para hacer crecer tu negocio.
+              TWID Development: automatizaciones y sistemas a la medida para que tu operación corra
+              con menos trabajo manual.
             </p>
           </div>
 
@@ -38,13 +39,13 @@ export default function Footer() {
 
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.1em] text-foreground">
-              Servicios
+              Proyectos
             </h3>
             <ul className="mt-4 space-y-2">
-              {services.slice(0, 4).map((service) => (
-                <li key={service.number}>
-                  <a href="#servicios" className="text-sm text-secondary hover:text-primary">
-                    {service.title}
+              {devProjects.slice(0, 4).map((project) => (
+                <li key={project.number}>
+                  <a href="#proyectos" className="text-sm text-secondary hover:text-primary">
+                    {project.title}
                   </a>
                 </li>
               ))}

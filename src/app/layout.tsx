@@ -28,25 +28,28 @@ const anton = Anton({
   weight: ["400"],
 });
 
+const devDescription =
+  "Automatizaciones y sistemas a la medida en Guadalajara: punto de venta, reportes, integraciones y flujos de WhatsApp para que tu operación corra con menos trabajo manual.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Estudio de Diseño Web en ${localSeo.city}`,
+    default: `${site.name} | Automatización y Sistemas a la Medida en ${localSeo.city}`,
     template: `%s | ${site.name}`,
   },
-  description: site.description,
+  description: devDescription,
   applicationName: site.name,
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   publisher: site.name,
   keywords: [
-    `estudio de diseño ${localSeo.city}`,
-    `diseño web ${localSeo.city}`,
-    `desarrollo web ${localSeo.city}`,
-    `agencia digital ${localSeo.city}`,
-    `páginas web ${localSeo.region}`,
-    "gestión de redes sociales",
-    "publicidad digital",
+    `automatización de procesos ${localSeo.city}`,
+    `sistemas a la medida ${localSeo.city}`,
+    `desarrollo de software ${localSeo.city}`,
+    `sistema punto de venta ${localSeo.city}`,
+    `automatización WhatsApp ${localSeo.region}`,
+    "reportes y dashboards",
+    "integración de sistemas",
     site.shortName,
   ],
   // www redirige al apex, así que el canónico siempre apunta al apex.
@@ -56,8 +59,8 @@ export const metadata: Metadata = {
     locale: "es_MX",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} | Estudio de Diseño Web en ${localSeo.city}`,
-    description: site.description,
+    title: `${site.name} | Automatización y Sistemas a la Medida en ${localSeo.city}`,
+    description: devDescription,
     images: [
       {
         url: "/og-image.png",
@@ -69,8 +72,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} | Estudio de Diseño Web en ${localSeo.city}`,
-    description: site.description,
+    title: `${site.name} | Automatización y Sistemas a la Medida en ${localSeo.city}`,
+    description: devDescription,
     images: ["/og-image.png"],
   },
   robots: {
@@ -84,7 +87,7 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  category: "Diseño y desarrollo web",
+  category: "Desarrollo de software",
 };
 
 export default function RootLayout({
