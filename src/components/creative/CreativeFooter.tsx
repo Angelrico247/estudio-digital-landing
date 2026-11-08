@@ -27,10 +27,11 @@ export default function CreativeFooter() {
         <div className="mt-16 flex flex-col gap-4 border-t border-white/15 pt-8 font-cr-body text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} TWID — Two Worlds In Design · Guadalajara</p>
 
-          <ul className="flex gap-6">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {[
               { label: "Aviso de Privacidad", href: creativeConfig.privacyUrl },
               { label: "Términos y Condiciones", href: creativeConfig.termsUrl },
+              { label: "Accesibilidad", href: creativeConfig.accessibilityUrl },
             ].map((link) => (
               <li key={link.href}>
                 <Link

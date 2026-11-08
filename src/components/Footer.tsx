@@ -75,12 +75,15 @@ export default function Footer() {
 
         <div className="mt-8 flex flex-col items-center justify-between gap-4 text-sm text-secondary sm:flex-row">
           <p>© {new Date().getFullYear()} {site.name}. Todos los derechos reservados.</p>
-          <nav aria-label="Legal" className="flex gap-6">
+          <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             <Link href="/aviso-de-privacidad" className="hover:text-primary">
               Aviso de Privacidad
             </Link>
             <Link href="/terminos" className="hover:text-primary">
               Términos y Condiciones
+            </Link>
+            <Link href="/accesibilidad" className="hover:text-primary">
+              Accesibilidad
             </Link>
           </nav>
         </div>

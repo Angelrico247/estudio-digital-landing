@@ -13,6 +13,7 @@ export const creativeConfig = {
 
   privacyUrl: "/aviso-de-privacidad",
   termsUrl: "/terminos",
+  accessibilityUrl: "/accesibilidad",
 };
 
 export const creativeNav = [
