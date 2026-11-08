@@ -17,8 +17,8 @@ function Chevron({ direction }: { direction: "left" | "right" }) {
 }
 
 /**
- * Hero con las mismas diapositivas de la landing, en el estilo Kyata:
- * título centrado en Poppins extra-gruesa, mayúsculas, botones píldora.
+ * Hero con las mismas diapositivas de la landing, en el estilo Seppo:
+ * título grande alineado a la izquierda, botón píldora y botón "dot".
  * Las diapositivas van apiladas (sin saltos de altura) y todo el texto está en el HTML.
  */
 export default function CreativeHero() {
@@ -73,7 +73,7 @@ export default function CreativeHero() {
       }}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
-      className="relative h-[100svh] min-h-[620px] overflow-hidden bg-black"
+      className="relative h-[100svh] min-h-[640px] overflow-hidden bg-black"
     >
       {/* El título grande cambia con cada diapositiva; este h1 es el estable para SEO y lectores de pantalla. */}
       <h1 className="sr-only">TWID Creative — Branding, redes sociales y sitios web en Guadalajara</h1>
@@ -102,38 +102,38 @@ export default function CreativeHero() {
             />
             <div className="absolute inset-0 bg-black/60" />
 
-            <div className="relative z-10 flex h-full items-center justify-center px-6 pb-16 pt-[76px] text-center">
+            <div className="relative z-10 flex h-full items-center px-6 pb-20 pt-[77px]">
               <div
-                className={`mx-auto max-w-4xl transition-transform duration-1000 ease-out motion-reduce:transition-none ${
+                className={`mx-auto w-full max-w-[1200px] transition-transform duration-1000 ease-out motion-reduce:transition-none ${
                   active ? "translate-y-0" : "translate-y-3"
                 }`}
               >
-                <span className="inline-flex items-center gap-2 font-cr-body text-[13px] font-medium uppercase tracking-[0.2em] text-white/85">
-                  <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-cr-accent" />
+                <span className="inline-flex items-center gap-3 font-cr-body text-[13px] font-medium uppercase tracking-[0.2em] text-white/85">
+                  <span aria-hidden className="h-px w-8 bg-cr-accent" />
                   {slide.kicker}
                 </span>
 
-                <p className="mt-6 font-cr-heading text-[2.5rem] font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+                <p className="mt-6 max-w-3xl font-cr-heading text-[2.75rem] font-extrabold leading-[1.1] tracking-tight text-white sm:text-6xl lg:text-[80px]">
                   <span className="block">{slide.heading[0]}</span>
                   <span className="block">{slide.heading[1]}</span>
                 </p>
 
-                <p className="mx-auto mt-6 max-w-xl font-cr-body text-base leading-relaxed text-white/90 sm:text-lg">
+                <p className="mt-6 max-w-xl font-cr-body text-base leading-relaxed text-white/85 sm:text-lg">
                   {slide.subtitle}
                 </p>
 
-                <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+                <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
                   <a
-                    href="#nosotros"
-                    className="rounded-full bg-cr-accent-ink px-9 py-4 font-cr-heading text-[13px] font-semibold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-cr-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
+                    href="#servicios"
+                    className="rounded-full bg-cr-accent-ink px-9 py-4 font-cr-heading text-[13px] font-semibold uppercase tracking-[0.1em] text-white transition-colors hover:bg-white hover:text-cr-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
                   >
                     Conoce más
                   </a>
                   <a
                     href="#proyectos"
-                    className="rounded-full border border-white px-9 py-4 font-cr-heading text-[13px] font-semibold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-cr-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
+                    className="cr-dot font-cr-heading text-xs focus-visible:outline-none"
                   >
-                    Ver proyectos
+                    <span>Ver proyectos</span>
                   </a>
                 </div>
               </div>
@@ -159,7 +159,7 @@ export default function CreativeHero() {
         <Chevron direction="right" />
       </button>
 
-      <div className="absolute inset-x-0 bottom-8 z-20 flex items-center justify-center gap-2">
+      <div className="absolute inset-x-0 bottom-8 z-20 mx-auto flex max-w-[1200px] items-center gap-2 px-6">
         {heroSlides.map((slide, i) => (
           <button
             key={slide.id}

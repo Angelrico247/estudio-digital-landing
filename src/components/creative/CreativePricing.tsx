@@ -4,11 +4,10 @@ import Reveal from "./Reveal";
 
 export default function CreativePricing() {
   return (
-    <section id="paquetes" className="scroll-mt-[76px] bg-cr-card py-24 lg:py-32">
+    <section id="paquetes" className="scroll-mt-[77px] bg-white pb-24 pt-0 lg:pb-32">
+      <CreativeHeading eyebrow="Paquetes" title="Gestión de redes sociales" />
+
       <div className="mx-auto max-w-[1200px] px-6">
-        <Reveal>
-          <CreativeHeading eyebrow="Paquetes" title="Gestión de redes sociales" />
-        </Reveal>
 
         <ul className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {pricingPlans.map((plan, i) => (
@@ -16,7 +15,7 @@ export default function CreativePricing() {
               <Reveal delay={i * 100} className="h-full">
                 <div
                   className={`relative flex h-full flex-col bg-white p-9 lg:p-10 ${
-                    plan.featured ? "border border-cr-ink shadow-[0_0_0_1px_var(--cr-ink)]" : "border border-cr-line"
+                    plan.featured ? "border border-cr-ink shadow-[0_0_0_1px_var(--cr-ink)]" : "border border-cr-ink/70"
                   }`}
                 >
                   {plan.featured && (
@@ -27,12 +26,12 @@ export default function CreativePricing() {
 
                   <span
                     aria-hidden
-                    className="font-cr-heading text-6xl font-extrabold leading-[0.8] text-cr-line"
+                    className="cr-outline-dark pointer-events-none absolute right-6 top-6 font-cr-heading text-[96px] font-extrabold leading-[0.8]"
                   >
-                    {plan.number.padStart(2, "0")}
+                    {plan.number}
                   </span>
 
-                  <h3 className="mt-6 font-cr-heading text-4xl font-extrabold uppercase leading-tight tracking-tight text-cr-ink">
+                  <h3 className="font-cr-heading text-3xl font-extrabold leading-tight tracking-tight text-cr-ink">
                     {plan.name}
                   </h3>
 

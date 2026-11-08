@@ -1,22 +1,6 @@
 import Image from "next/image";
-import { heroSlides, imageUrl } from "@/data/site";
 import CreativeHeading from "./CreativeHeading";
 import Reveal from "./Reveal";
-
-const tiles = [
-  {
-    src: "/studio-video-editing.jpg",
-    alt: "Persona editando video en una computadora",
-  },
-  {
-    src: "/studio-workstation.jpg",
-    alt: "Escritorio de trabajo con computadoras y teclado",
-  },
-  {
-    src: imageUrl(heroSlides[1].imageSeed, 740, 740),
-    alt: "Personas colaborando en una sesión de trabajo",
-  },
-];
 
 // Las etapas salen del propio texto de "Sobre nosotros": el recorrido completo de una marca.
 const stages = [
@@ -28,47 +12,64 @@ const stages = [
 
 export default function CreativeAbout() {
   return (
-    <section id="nosotros" className="scroll-mt-[76px] bg-white py-24 lg:py-32">
-      <div className="mx-auto max-w-[1200px] px-6">
-        <Reveal>
-          <CreativeHeading eyebrow="Sobre nosotros" title="Mantenemos tu marca viva" />
-        </Reveal>
+    <section id="nosotros" className="scroll-mt-[77px] bg-white pb-24 lg:pb-32">
+      <CreativeHeading eyebrow="Nosotros" title="Mantenemos tu marca viva" />
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {tiles.map((tile, i) => (
-            <Reveal key={tile.src} delay={i * 100}>
-              <div className="relative aspect-[4/3] overflow-hidden bg-cr-card sm:aspect-square">
+      <div className="mx-auto max-w-[1200px] px-6">
+        <div className="mt-16 grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
+          <Reveal>
+            <p className="font-cr-body text-[13px] font-medium uppercase tracking-[0.2em] text-cr-muted">
+              Quiénes somos
+            </p>
+            <p className="mt-6 font-cr-body text-base leading-[1.9] text-cr-body sm:text-lg">
+              Two Worlds In Design (TWID) es un estudio chico que trabaja con marcas y negocios que
+              quieren mostrarse, conectar con su gente y mantenerse activos en sus canales digitales.
+              El estudio se encarga del recorrido completo de tu marca, y tú te enfocas en lo más
+              importante: tus clientes. Nosotros, en mantenerla viva.
+            </p>
+            <a
+              href="#proyectos"
+              className="mt-10 inline-block rounded-full bg-cr-accent-ink px-9 py-4 font-cr-heading text-[13px] font-semibold uppercase tracking-[0.1em] text-white transition-colors hover:bg-cr-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent-ink motion-reduce:transition-none"
+            >
+              Ver proyectos
+            </a>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div className="relative pb-16 pr-10 sm:pr-16">
+              <div className="relative aspect-[4/5] overflow-hidden bg-cr-card">
                 <Image
-                  src={tile.src}
-                  alt={tile.alt}
+                  src="/studio-video-editing.jpg"
+                  alt="Persona editando video en una computadora"
                   fill
-                  sizes="(min-width: 1200px) 384px, (min-width: 640px) 33vw, 100vw"
+                  sizes="(min-width: 1024px) 480px, 100vw"
                   className="object-cover"
                 />
               </div>
-            </Reveal>
-          ))}
+              <div className="absolute bottom-0 right-0 aspect-square w-1/2 overflow-hidden border-8 border-white bg-cr-card">
+                <Image
+                  src="/studio-workstation.jpg"
+                  alt="Escritorio de trabajo con computadoras y teclado"
+                  fill
+                  sizes="240px"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </Reveal>
         </div>
 
-        <Reveal className="mx-auto mt-14 max-w-3xl text-center">
-          <p className="font-cr-body text-base leading-[1.9] text-cr-body sm:text-lg">
-            Two Worlds In Design (TWID) es un estudio chico que trabaja con marcas y negocios que
-            quieren mostrarse, conectar con su gente y mantenerse activos en sus canales digitales.
-            El estudio se encarga del recorrido completo de tu marca, y tú te enfocas en lo más
-            importante: tus clientes. Nosotros, en mantenerla viva.
-          </p>
-        </Reveal>
-
-        <Reveal className="mt-14">
-          <ul className="grid grid-cols-2 bg-cr-card lg:grid-cols-4">
-            {stages.map((stage) => (
-              <li
-                key={stage.title}
-                className="border-cr-line px-4 py-9 text-center odd:border-r lg:border-r lg:last:border-r-0 [&:nth-child(-n+2)]:border-b lg:[&:nth-child(-n+2)]:border-b-0"
-              >
-                <strong className="block font-cr-heading text-xl font-bold text-cr-ink sm:text-2xl">
-                  {stage.title}
-                </strong>
+        <Reveal className="mt-20">
+          <ul className="grid grid-cols-2 gap-x-8 gap-y-14 border-t border-cr-line pt-14 lg:grid-cols-4">
+            {stages.map((stage, i) => (
+              <li key={stage.title}>
+                <span
+                  aria-hidden
+                  className="cr-outline-dark block h-[56px] overflow-hidden font-cr-heading text-[84px] font-extrabold leading-[0.9]"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <strong className="mt-5 block font-cr-heading text-xl font-bold text-cr-ink">{stage.title}</strong>
                 <span className="mt-1 block font-cr-body text-sm text-cr-muted">{stage.caption}</span>
               </li>
             ))}

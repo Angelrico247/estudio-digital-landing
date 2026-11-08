@@ -5,12 +5,10 @@ import Reveal from "./Reveal";
 
 export default function CreativeContact() {
   return (
-    <section id="contacto" className="scroll-mt-[76px] bg-cr-card py-24 lg:py-32">
-      <div className="mx-auto max-w-[1200px] px-6">
-        <Reveal>
-          <CreativeHeading eyebrow="Contacto" title="¿Tienes una marca que contar?" />
-        </Reveal>
+    <section id="contacto" className="scroll-mt-[77px] bg-white pb-24 lg:pb-32">
+      <CreativeHeading eyebrow="Contacto" title="¿Tienes una marca que contar?" />
 
+      <div className="mx-auto max-w-[1200px] px-6">
         <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <p className="max-w-md font-cr-body text-base leading-[1.9] text-cr-body sm:text-lg">

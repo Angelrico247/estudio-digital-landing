@@ -3,10 +3,7 @@
 import { useEffect, useState } from "react";
 import { creativeNav } from "@/data/creative-config";
 
-/**
- * Header fijo. Sobre el hero (oscuro) va transparente con texto blanco; al hacer
- * scroll, o al abrir el menú móvil, pasa a fondo blanco con texto oscuro.
- */
+/** Header fijo y negro, como el de Seppo: logo a la izquierda, menú a la derecha. */
 export default function CreativeHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,31 +25,25 @@ export default function CreativeHeader() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
-  const solid = scrolled || menuOpen;
-
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 motion-reduce:transition-none ${
-        solid ? "border-b border-cr-line bg-white" : "border-b border-white/25 bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 border-b border-white/15 bg-black transition-shadow duration-300 motion-reduce:transition-none ${
+        scrolled ? "shadow-[0_1px_0_rgba(255,255,255,0.08)]" : ""
       }`}
     >
-      <div className="mx-auto flex h-[76px] max-w-[1200px] items-center justify-between px-6">
+      <div className="mx-auto flex h-[77px] max-w-[1200px] items-center justify-between px-6">
         <a
           href="#inicio"
           aria-label="TWID Creative, ir al inicio"
           className="flex items-baseline gap-2 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent-ink"
         >
           <span
-            className={`font-cr-heading text-xl font-extrabold tracking-[0.12em] transition-colors motion-reduce:transition-none ${
-              solid ? "text-cr-ink" : "text-white"
-            }`}
+            className="font-cr-heading text-xl font-extrabold tracking-[0.12em] text-white"
           >
             TWID
           </span>
           <span
-            className={`font-cr-body text-xs font-medium transition-colors motion-reduce:transition-none ${
-              solid ? "text-cr-muted" : "text-white/80"
-            }`}
+            className="font-cr-body text-xs font-medium text-cr-accent"
           >
             Creative
           </span>
@@ -63,16 +54,14 @@ export default function CreativeHeader() {
             <a
               key={item.href}
               href={item.href}
-              className={`rounded-sm font-cr-heading text-[13px] font-semibold uppercase tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent-ink motion-reduce:transition-none ${
-                solid ? "text-cr-ink hover:text-cr-accent-ink" : "text-white hover:text-white/70"
-              }`}
+              className="rounded-sm font-cr-heading text-[13px] font-semibold tracking-wide text-white transition-colors hover:text-cr-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent motion-reduce:transition-none"
             >
               {item.label}
             </a>
           ))}
           <a
             href="#contacto"
-            className="rounded-full bg-cr-accent-ink px-6 py-3 font-cr-heading text-[13px] font-semibold uppercase tracking-wide text-white transition-colors hover:bg-cr-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent-ink motion-reduce:transition-none"
+            className="rounded-full bg-cr-accent-ink px-6 py-3 font-cr-heading text-[13px] font-semibold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-cr-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
           >
             Cotizar
           </a>
@@ -84,9 +73,7 @@ export default function CreativeHeader() {
           aria-expanded={menuOpen}
           aria-controls="creative-mobile-menu"
           onClick={() => setMenuOpen((open) => !open)}
-          className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cr-accent-ink motion-reduce:transition-none lg:hidden ${
-            solid ? "text-cr-ink" : "text-white"
-          }`}
+          className="flex h-11 w-11 items-center justify-center rounded-full text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cr-accent lg:hidden"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-6 w-6" aria-hidden>
             {menuOpen ? (
@@ -101,7 +88,7 @@ export default function CreativeHeader() {
       <div
         id="creative-mobile-menu"
         hidden={!menuOpen}
-        className="border-t border-cr-line bg-white lg:hidden"
+        className="border-t border-white/15 bg-black lg:hidden"
       >
         <nav aria-label="Principal (móvil)" className="mx-auto flex max-w-[1200px] flex-col px-6 py-4">
           {creativeNav.map((item) => (
@@ -109,7 +96,7 @@ export default function CreativeHeader() {
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className="border-b border-cr-line py-4 font-cr-heading text-sm font-semibold uppercase tracking-wide text-cr-ink last:border-b-0"
+              className="border-b border-white/15 py-4 font-cr-heading text-sm font-semibold tracking-wide text-white last:border-b-0"
             >
               {item.label}
             </a>

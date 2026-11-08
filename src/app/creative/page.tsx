@@ -14,8 +14,8 @@ export default function CreativePage() {
       <CreativeHeader />
       <main>
         <CreativeHero />
-        <CreativeAbout />
         <CreativeServices />
+        <CreativeAbout />
         <CreativeProjects />
         <CreativePricing />
         <CreativePricingDetails />

@@ -1,21 +1,36 @@
+import Reveal from "./Reveal";
+
 type CreativeHeadingProps = {
   eyebrow: string;
   title: string;
-  as?: "h2" | "h3";
+  /** "dark" = texto claro sobre fondo negro; "light" = texto oscuro sobre blanco. */
+  tone?: "dark" | "light";
 };
 
-/** Encabezado de sección estilo Kyata: eyebrow en acento, título en mayúsculas
- * extra-gruesas y un divisor corto con muesca. */
-export default function CreativeHeading({ eyebrow, title, as: Tag = "h2" }: CreativeHeadingProps) {
+/**
+ * Encabezado de sección estilo Seppo. Va como primer hijo de la <section>, fuera del
+ * contenedor: la bandera diagonal queda pegada al borde izquierdo de la pantalla y el
+ * título grande va debajo, alineado con el contenido.
+ */
+export default function CreativeHeading({ eyebrow, title, tone = "light" }: CreativeHeadingProps) {
   return (
-    <header className="text-center">
-      <span className="font-cr-body text-[13px] font-medium tracking-wide text-cr-accent-ink">
-        {eyebrow}
-      </span>
-      <Tag className="mt-3 font-cr-heading text-3xl font-extrabold uppercase leading-tight tracking-tight text-cr-ink sm:text-4xl">
-        {title}
-      </Tag>
-      <span aria-hidden className="cr-divider" />
+    <header>
+      <div>
+        <span className="cr-flag font-cr-heading text-[13px] font-semibold uppercase tracking-[0.2em]">
+          {eyebrow}
+        </span>
+      </div>
+      <div className="mx-auto max-w-[1200px] px-6">
+        <Reveal>
+          <h2
+            className={`mt-14 max-w-3xl font-cr-heading text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl ${
+              tone === "dark" ? "text-white" : "text-cr-ink"
+            }`}
+          >
+            {title}
+          </h2>
+        </Reveal>
+      </div>
     </header>
   );
 }

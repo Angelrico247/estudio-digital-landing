@@ -415,6 +415,95 @@ body {
   border-bottom: 5px solid var(--cr-line);
 }
 
+/* Bandera diagonal de sección, como el page-title-holder de Seppo. El texto va en blanco
+   sobre --cr-accent-ink (contraste AA). */
+.cr-flag {
+  display: inline-flex;
+  align-items: center;
+  height: 64px;
+  min-width: 172px;
+  padding: 0 52px 0 48px;
+  background: var(--cr-accent-ink);
+  color: #fff;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 28px) 100%, 0 100%);
+}
+
+/* Números grandes con solo contorno (servicios, paquetes, etapas). Dos versiones según el fondo. */
+.cr-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.55);
+}
+
+.cr-outline-dark {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(17, 17, 17, 0.45);
+}
+
+/* Botón "dot": círculo con contorno que se expande a píldora rellena al hover. Se usa sobre
+   fondo negro (tone por defecto) o sobre blanco con .cr-dot-light. */
+.cr-dot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 18px 14px 52px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cr-dot-light {
+  color: var(--cr-ink);
+}
+
+.cr-dot > span {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.cr-dot:hover > span,
+.cr-dot:focus-visible > span {
+  transform: translateX(-6px);
+}
+
+.cr-dot::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 34px;
+  width: 34px;
+  transform: translateY(-50%);
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  background: var(--cr-accent-ink);
+  background-clip: padding-box;
+  background-color: transparent;
+  transition: width 0.35s ease, height 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.cr-dot:hover::before,
+.cr-dot:focus-visible::before {
+  width: calc(100% + 12px);
+  height: 100%;
+  background-color: var(--cr-accent-ink);
+  border-color: var(--cr-accent-ink);
+}
+
+.cr-dot:hover,
+.cr-dot:focus-visible {
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cr-dot > span,
+  .cr-dot::before {
+    transition: none;
+  }
+}
+
 /* El cursor circular violeta es de la landing oscura; en /creative se usa el cursor normal. */
 body:has(.creative) .cursor-ring {
   display: none;

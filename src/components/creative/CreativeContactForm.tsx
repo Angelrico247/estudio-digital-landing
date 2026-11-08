@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { pricingPlans, serviceOptions } from "@/data/site";
+import { pricingPlans, services } from "@/data/site";
 import { creativeConfig } from "@/data/creative-config";
 
 const fieldClasses =
   "w-full border border-cr-line bg-white px-5 py-4 font-cr-body text-[15px] text-cr-ink outline-none transition-colors placeholder:text-cr-muted focus:border-cr-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cr-accent-ink";
 
 const packageOptions = pricingPlans.map((plan) => `Paquete ${plan.name}`);
+const serviceOptions = [...services.map((service) => service.title), "Branding", "Otro"];
 
 export default function CreativeContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");

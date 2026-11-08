@@ -17,8 +17,8 @@ export const creativeConfig = {
 
 export const creativeNav = [
   { label: "Inicio", href: "#inicio" },
-  { label: "Nosotros", href: "#nosotros" },
   { label: "Servicios", href: "#servicios" },
+  { label: "Nosotros", href: "#nosotros" },
   { label: "Proyectos", href: "#proyectos" },
   { label: "Paquetes", href: "#paquetes" },
   { label: "Contacto", href: "#contacto" },
