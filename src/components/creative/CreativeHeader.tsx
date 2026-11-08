@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { creativeNav } from "@/data/creative-config";
+import Link from "next/link";
+import { creativeConfig, creativeNav } from "@/data/creative-config";
 import { useQuoteModal } from "@/components/QuoteModalContext";
 
-/** Header fijo y negro, como el de Seppo: logo a la izquierda, menú a la derecha. */
+/**
+ * Header fijo, como el de Seppo: logo a la izquierda, menú a la derecha. Sobre el hero es
+ * transparente; al salir del hero (o al abrir el menú móvil) pasa a negro sólido.
+ */
 export default function CreativeHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,8 +16,11 @@ export default function CreativeHeader() {
 
   useEffect(() => {
     function onScroll() {
-      setScrolled(window.scrollY > 24);
+      const hero = document.getElementById("inicio");
+      const heroEnd = hero ? hero.offsetHeight - 77 : 24;
+      setScrolled(window.scrollY > heroEnd);
     }
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -29,8 +36,8 @@ export default function CreativeHeader() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b border-white/15 bg-black transition-shadow duration-300 motion-reduce:transition-none ${
-        scrolled ? "shadow-[0_1px_0_rgba(255,255,255,0.08)]" : ""
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 motion-reduce:transition-none ${
+        scrolled || menuOpen ? "border-white/15 bg-black" : "border-white/25 bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-[77px] max-w-[1200px] items-center justify-between px-6">
@@ -61,6 +68,12 @@ export default function CreativeHeader() {
               {item.label}
             </a>
           ))}
+          <Link
+            href={creativeConfig.developmentUrl}
+            className="rounded-sm font-cr-heading text-[13px] font-semibold tracking-wide text-cr-accent transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent motion-reduce:transition-none"
+          >
+            TWID Development →
+          </Link>
           <button
             type="button"
             onClick={() => openQuote({ brand: "creative" })}
@@ -104,6 +117,12 @@ export default function CreativeHeader() {
               {item.label}
             </a>
           ))}
+          <Link
+            href={creativeConfig.developmentUrl}
+            className="border-b border-white/15 py-4 font-cr-heading text-sm font-semibold tracking-wide text-cr-accent"
+          >
+            TWID Development →
+          </Link>
           <button
             type="button"
             onClick={() => {
