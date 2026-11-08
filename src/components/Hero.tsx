@@ -18,6 +18,13 @@ function ChevronIcon({ className }: { className?: string }) {
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
+  // Las fotos de los slides 2 y 3 se piden hasta que la página terminó de cargar, para que no compitan con el LCP.
+  const [preloadRest, setPreloadRest] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setPreloadRest(true), 2500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const goTo = useCallback((i: number) => {
     setIndex((i + heroSlides.length) % heroSlides.length);
@@ -46,15 +53,16 @@ export default function Hero() {
             i === index ? "opacity-100" : "opacity-0"
           }`}
         >
-          <Image
-            src={imageUrl(slide.imageSeed, 1920, 1080)}
-            alt=""
-            fill
-            priority={i === 0}
-            sizes="100vw"
-            quality={70}
-            className="object-cover"
-          />
+          {(i === 0 || preloadRest || i === index) && (
+            <Image
+              src={imageUrl(slide.imageSeed, 1920, 1080)}
+              alt=""
+              fill
+              priority={i === 0}
+              sizes="100vw"
+              className="object-cover"
+            />
+          )}
         </div>
       ))}
 

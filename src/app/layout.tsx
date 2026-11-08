@@ -18,7 +18,7 @@ const dmSans = DM_Sans({
 const barlowCondensed = Barlow_Condensed({
   variable: "--font-barlow-condensed",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["500", "600", "700", "800"],
 });
 
 // Anton: heading y botones del Hero — trazo condensado y ultra grueso, estilo Impact.
