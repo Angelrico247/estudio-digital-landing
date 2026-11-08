@@ -29,7 +29,7 @@ export default function Header() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-8">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-8">
         <a href="#inicio" aria-label={site.name} className="flex items-center">
           {/* Los aros van encima para que su trazo cruce por la mitad del guion morado */}
           <Image
@@ -51,25 +51,32 @@ export default function Header() {
           />
         </a>
 
-        <div className="hidden items-center gap-6 md:flex lg:gap-10">
-          <nav className="flex items-center gap-6 lg:gap-10">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-secondary transition-colors duration-300 hover:text-foreground"
-              >
-                {link.label}
-              </a>
-            ))}
-            <Link
-              href="/creative"
-              className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary transition-colors duration-300 hover:text-foreground"
+        <nav aria-label="Principal" className="hidden items-center gap-10 lg:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-secondary transition-colors duration-300 hover:text-foreground"
             >
-              TWID Creative →
-            </Link>
-          </nav>
+              {link.label}
+            </a>
+          ))}
+          {/* Hasta xl el link a Creative va con el menú; desde xl pasa a la derecha, junto al botón. */}
+          <Link
+            href="/creative"
+            className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary transition-colors duration-300 hover:text-foreground xl:hidden"
+          >
+            TWID Creative →
+          </Link>
+        </nav>
 
+        <div className="hidden items-center justify-end gap-8 lg:flex">
+          <Link
+            href="/creative"
+            className="hidden font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary transition-colors duration-300 hover:text-foreground xl:block"
+          >
+            TWID Creative →
+          </Link>
           <button
             type="button"
             onClick={openScheduleCall}
@@ -84,7 +91,7 @@ export default function Header() {
           aria-label="Abrir menú"
           aria-expanded={open}
           onClick={() => setOpen(true)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
         >
           <span className="h-px w-6 bg-foreground" />
           <span className="h-px w-6 bg-foreground" />
@@ -93,7 +100,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-dark md:hidden">
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-dark lg:hidden">
           <button
             type="button"
             aria-label="Cerrar menú"

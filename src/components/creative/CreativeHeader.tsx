@@ -40,7 +40,7 @@ export default function CreativeHeader() {
         scrolled || menuOpen ? "border-white/15 bg-black" : "border-white/25 bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-[77px] max-w-[1200px] items-center justify-between px-6">
+      <div className="mx-auto flex h-[77px] max-w-[1200px] items-center justify-between px-6 lg:grid lg:grid-cols-[1fr_auto_1fr]">
         <a
           href="#inicio"
           aria-label="TWID Creative, ir al inicio"
@@ -58,7 +58,7 @@ export default function CreativeHeader() {
           </span>
         </a>
 
-        <nav aria-label="Principal" className="hidden items-center gap-8 lg:flex">
+        <nav aria-label="Principal" className="hidden items-center gap-6 xl:gap-8 lg:flex">
           {creativeNav.map((item) => (
             <a
               key={item.href}
@@ -68,9 +68,19 @@ export default function CreativeHeader() {
               {item.label}
             </a>
           ))}
+          {/* Hasta xl el link a Development va con el menú; desde xl pasa a la derecha, junto a Cotizar. */}
           <Link
             href={creativeConfig.developmentUrl}
-            className="rounded-sm font-cr-heading text-[13px] font-semibold tracking-wide text-cr-accent transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent motion-reduce:transition-none"
+            className="rounded-sm font-cr-heading text-[13px] font-semibold tracking-wide text-cr-accent transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent motion-reduce:transition-none xl:hidden"
+          >
+            TWID Development →
+          </Link>
+        </nav>
+
+        <div className="hidden items-center justify-end gap-6 lg:flex">
+          <Link
+            href={creativeConfig.developmentUrl}
+            className="hidden rounded-sm font-cr-heading text-[13px] font-semibold tracking-wide text-cr-accent transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent motion-reduce:transition-none xl:block"
           >
             TWID Development →
           </Link>
@@ -81,7 +91,7 @@ export default function CreativeHeader() {
           >
             Cotizar
           </button>
-        </nav>
+        </div>
 
         <button
           type="button"
