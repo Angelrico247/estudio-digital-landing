@@ -22,6 +22,7 @@ export default function Header() {
   }, []);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 h-20 transition-colors duration-300 ${
         scrolled
@@ -92,46 +93,49 @@ export default function Header() {
         </button>
       </div>
 
-      {open && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-dark lg:hidden">
+    </header>
+
+    {open && (
+      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-dark lg:hidden">
+        <button
+          type="button"
+          aria-label="Cerrar menú"
+          onClick={() => setOpen(false)}
+          className="absolute right-6 top-8 text-3xl leading-none text-foreground"
+        >
+          ×
+        </button>
+        <nav className="flex flex-col items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="font-heading text-lg font-medium uppercase tracking-[0.15em] text-secondary hover:text-foreground"
+            >
+              {link.label}
+            </a>
+          ))}
+          <Link
+            href="/creative"
+            onClick={() => setOpen(false)}
+            className="font-heading text-lg font-medium uppercase tracking-[0.15em] text-primary hover:text-foreground"
+          >
+            TWID Creative →
+          </Link>
           <button
             type="button"
-            aria-label="Cerrar menú"
-            onClick={() => setOpen(false)}
-            className="absolute right-6 top-8 text-3xl leading-none text-foreground"
+            onClick={() => {
+              setOpen(false);
+              openScheduleCall();
+            }}
+            className="btn-fill font-heading mt-4 rounded-md border px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.1em] text-foreground"
           >
-            ×
+            <span className="btn-fill-content">Agenda una Llamada</span>
           </button>
-          <nav className="flex flex-col items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="font-heading text-lg font-medium uppercase tracking-[0.15em] text-secondary hover:text-foreground"
-              >
-                {link.label}
-              </a>
-            ))}
-            <Link
-              href="/creative"
-              className="font-heading text-lg font-medium uppercase tracking-[0.15em] text-primary hover:text-foreground"
-            >
-              TWID Creative →
-            </Link>
-            <button
-              type="button"
-              onClick={() => {
-                setOpen(false);
-                openScheduleCall();
-              }}
-              className="btn-fill font-heading mt-4 rounded-md border px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.1em] text-foreground"
-            >
-              <span className="btn-fill-content">Agenda una Llamada</span>
-            </button>
-          </nav>
-        </div>
-      )}
-    </header>
+        </nav>
+      </div>
+    )}
+    </>
   );
 }
