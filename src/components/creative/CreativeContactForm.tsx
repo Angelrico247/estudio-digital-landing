@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { pricingPlans, services } from "@/data/site";
 import { creativeConfig } from "@/data/creative-config";
 
@@ -13,17 +13,7 @@ const serviceOptions = [...services.map((service) => service.title), "Branding",
 
 export default function CreativeContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const interestRef = useRef<HTMLSelectElement>(null);
-
-  // Los botones "Cotizar paquete" apuntan a #contacto y traen el paquete en data-interest.
-  useEffect(() => {
-    function onClick(e: MouseEvent) {
-      const link = (e.target as Element).closest<HTMLAnchorElement>("a[data-interest]");
-      if (link && interestRef.current) interestRef.current.value = link.dataset.interest ?? "";
-    }
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
-  }, []);
+  
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -73,7 +63,7 @@ export default function CreativeContactForm() {
       </div>
       <div>
         <label htmlFor="cr-interes" className="sr-only">¿Qué te interesa?</label>
-        <select id="cr-interes" name="interes" ref={interestRef} required defaultValue="" className={fieldClasses}>
+        <select id="cr-interes" name="interes" required defaultValue="" className={fieldClasses}>
           <option value="" disabled>
             ¿Qué te interesa?
           </option>

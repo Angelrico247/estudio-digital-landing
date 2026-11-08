@@ -1,12 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { niches } from "@/data/site";
+import { useEffect, useState, type CSSProperties } from "react";
+import { niches, pricingPlans, services } from "@/data/site";
 import { devQuoteOptions } from "@/data/development";
 import type { QuotePreset } from "./QuoteModalContext";
 
 type Step = 0 | 1 | 2;
+type QuoteType = "paquete" | "servicio";
 type Status = "idle" | "sending" | "sent" | "error";
+
+// En /creative el cotizador usa el naranja de la marca: las clases text-primary, border-primary y
+// el borde de gradiente leen estas variables, así que basta con redefinirlas en la raíz del modal.
+const creativeTheme = {
+  "--color-primary": "#e4572e",
+  "--color-secondary-blue": "#e4572e",
+} as CSSProperties;
+
+const gradientText =
+  "bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] bg-clip-text text-transparent";
 
 const inputClasses =
   "w-full rounded-md border border-line bg-card px-5 py-4 text-[15px] text-foreground outline-none transition-colors placeholder:text-secondary focus:border-primary";
@@ -21,6 +32,7 @@ export default function QuoteModal({
   onClose: () => void;
 }) {
   const [step, setStep] = useState<Step>(0);
+  const [quoteType, setQuoteType] = useState<QuoteType>("servicio");
   const [selection, setSelection] = useState("");
   const [niche, setNiche] = useState("");
   const [name, setName] = useState("");
@@ -30,13 +42,14 @@ export default function QuoteModal({
 
   useEffect(() => {
     if (!isOpen) return;
+    setQuoteType(preset?.type ?? (preset?.brand === "creative" ? "paquete" : "servicio"));
     setSelection(preset?.selection ?? "");
     setNiche("");
     setName("");
     setEmail("");
     setMessage("");
     setStatus("idle");
-    setStep(preset ? 1 : 0);
+    setStep(preset?.selection ? 1 : 0);
   }, [isOpen, preset]);
 
   useEffect(() => {
@@ -76,7 +89,7 @@ export default function QuoteModal({
       const res = await fetch("/api/cotizar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "servicio", selection, niche, name, email, message }),
+        body: JSON.stringify({ type: quoteType, selection, niche, name, email, message }),
       });
       if (!res.ok) throw new Error("request failed");
 
@@ -90,10 +103,15 @@ export default function QuoteModal({
   const canAdvanceStep1 = niche.trim().length > 0;
   const canSubmit = name.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const options = devQuoteOptions.map((value) => ({ value }));
+  const isCreative = preset?.brand === "creative";
+  const options = !isCreative
+    ? devQuoteOptions.map((value) => ({ value }))
+    : quoteType === "paquete"
+      ? pricingPlans.map((p) => ({ value: p.name }))
+      : [...services.map((s) => s.title), "Branding", "Otro"].map((value) => ({ value }));
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+    <div style={isCreative ? creativeTheme : undefined} className="fixed inset-0 z-[60] flex items-center justify-center p-4">
       <div aria-hidden onClick={onClose} className="absolute inset-0 bg-dark/90 backdrop-blur-sm" />
 
       {/* El borde vive en el contenedor externo y el scroll en el interno: si van juntos,
@@ -145,6 +163,26 @@ export default function QuoteModal({
                 <h3 className="text-center font-heading text-2xl font-bold uppercase text-foreground">
                   ¿Qué te interesa cotizar?
                 </h3>
+
+                {isCreative && (
+                  <div className="mx-auto mt-6 flex w-fit rounded-md border border-line p-1">
+                    {(["paquete", "servicio"] as const).map((t) => (
+                      <button
+                        key={t}
+                        type="button"
+                        onClick={() => {
+                          setQuoteType(t);
+                          setSelection("");
+                        }}
+                        className={`rounded-md px-6 py-2 font-heading text-sm font-semibold uppercase tracking-[0.05em] transition-colors ${
+                          quoteType === t ? gradientText : "text-secondary hover:text-foreground"
+                        }`}
+                      >
+                        {t === "paquete" ? "Paquetes" : "Servicios"}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
                 <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {options.map((opt) => (

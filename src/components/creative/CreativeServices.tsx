@@ -1,5 +1,6 @@
 import { services } from "@/data/site";
 import CreativeHeading from "./CreativeHeading";
+import CreativeQuoteButton from "./CreativeQuoteButton";
 import Reveal from "./Reveal";
 
 export default function CreativeServices() {
@@ -24,13 +25,13 @@ export default function CreativeServices() {
                 <p className="mt-4 font-cr-body text-[15px] leading-[1.8] text-white/70">
                   {service.description}
                 </p>
-                <a
-                  href="#contacto"
-                  data-interest={service.title}
+                <CreativeQuoteButton
+                  type="servicio"
+                  selection={service.title}
                   className="cr-dot mt-8 font-cr-heading text-xs focus-visible:outline-none"
                 >
                   <span>Cotizar</span>
-                </a>
+                </CreativeQuoteButton>
               </Reveal>
             </li>
           ))}

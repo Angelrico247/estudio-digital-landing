@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { creativeNav } from "@/data/creative-config";
+import { useQuoteModal } from "@/components/QuoteModalContext";
 
 /** Header fijo y negro, como el de Seppo: logo a la izquierda, menú a la derecha. */
 export default function CreativeHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { open: openQuote } = useQuoteModal();
 
   useEffect(() => {
     function onScroll() {
@@ -59,12 +61,13 @@ export default function CreativeHeader() {
               {item.label}
             </a>
           ))}
-          <a
-            href="#contacto"
+          <button
+            type="button"
+            onClick={() => openQuote({ brand: "creative" })}
             className="rounded-full bg-cr-accent-ink px-6 py-3 font-cr-heading text-[13px] font-semibold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-cr-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
           >
             Cotizar
-          </a>
+          </button>
         </nav>
 
         <button
@@ -101,13 +104,16 @@ export default function CreativeHeader() {
               {item.label}
             </a>
           ))}
-          <a
-            href="#contacto"
-            onClick={() => setMenuOpen(false)}
+          <button
+            type="button"
+            onClick={() => {
+              setMenuOpen(false);
+              openQuote({ brand: "creative" });
+            }}
             className="mt-3 rounded-full bg-cr-accent-ink px-6 py-3.5 text-center font-cr-heading text-sm font-semibold uppercase tracking-wide text-white"
           >
             Cotizar
-          </a>
+          </button>
         </nav>
       </div>
     </header>

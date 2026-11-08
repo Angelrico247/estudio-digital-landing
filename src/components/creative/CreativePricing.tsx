@@ -1,5 +1,6 @@
 import { pricingPlans } from "@/data/site";
 import CreativeHeading from "./CreativeHeading";
+import CreativeQuoteButton from "./CreativeQuoteButton";
 import Reveal from "./Reveal";
 
 export default function CreativePricing() {
@@ -64,9 +65,9 @@ export default function CreativePricing() {
                     )}
                   </ul>
 
-                  <a
-                    href="#contacto"
-                    data-interest={`Paquete ${plan.name}`}
+                  <CreativeQuoteButton
+                    type="paquete"
+                    selection={plan.name}
                     className={`mt-9 rounded-full px-8 py-3.5 text-center font-cr-heading text-[13px] font-semibold uppercase tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent-ink motion-reduce:transition-none ${
                       plan.featured
                         ? "bg-cr-ink text-white hover:bg-cr-accent-ink"
@@ -74,7 +75,7 @@ export default function CreativePricing() {
                     }`}
                   >
                     Cotizar paquete
-                  </a>
+                  </CreativeQuoteButton>
                 </div>
               </Reveal>
             </li>

@@ -4,8 +4,11 @@ import { createContext, useContext, useState, type ReactNode } from "react";
 import QuoteModal from "./QuoteModal";
 
 export type QuotePreset = {
-  type: "paquete" | "servicio";
-  selection: string;
+  /** Qué marca abre el cotizador: define las opciones y los colores. Por defecto, Development. */
+  brand?: "development" | "creative";
+  type?: "paquete" | "servicio";
+  /** Si viene, el cotizador salta directo al paso del giro. */
+  selection?: string;
 };
 
 type QuoteModalContextValue = {
