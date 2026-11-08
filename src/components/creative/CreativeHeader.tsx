@@ -68,22 +68,15 @@ export default function CreativeHeader() {
               {item.label}
             </a>
           ))}
-          {/* Hasta xl el link a Development va con el menú; desde xl pasa a la derecha, junto a Cotizar. */}
           <Link
             href={creativeConfig.developmentUrl}
-            className="rounded-sm font-cr-heading text-[13px] font-semibold tracking-wide text-cr-accent transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent motion-reduce:transition-none xl:hidden"
+            className="rounded-sm font-cr-heading text-[13px] font-semibold tracking-wide text-cr-accent transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent motion-reduce:transition-none"
           >
             TWID Development →
           </Link>
         </nav>
 
         <div className="hidden items-center justify-end gap-6 lg:flex">
-          <Link
-            href={creativeConfig.developmentUrl}
-            className="hidden rounded-sm font-cr-heading text-[13px] font-semibold tracking-wide text-cr-accent transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent motion-reduce:transition-none xl:block"
-          >
-            TWID Development →
-          </Link>
           <button
             type="button"
             onClick={() => openQuote({ brand: "creative" })}

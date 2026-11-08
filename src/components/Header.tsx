@@ -61,22 +61,15 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          {/* Hasta xl el link a Creative va con el menú; desde xl pasa a la derecha, junto al botón. */}
           <Link
             href="/creative"
-            className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary transition-colors duration-300 hover:text-foreground xl:hidden"
+            className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary transition-colors duration-300 hover:text-foreground"
           >
             TWID Creative →
           </Link>
         </nav>
 
         <div className="hidden items-center justify-end gap-8 lg:flex">
-          <Link
-            href="/creative"
-            className="hidden font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary transition-colors duration-300 hover:text-foreground xl:block"
-          >
-            TWID Creative →
-          </Link>
           <button
             type="button"
             onClick={openScheduleCall}
