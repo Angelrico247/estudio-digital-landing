@@ -16,7 +16,7 @@ export const devNavLinks = [
 export const devHeroSlides: HeroSlide[] = [
   {
     id: "01",
-    kicker: "TWID Development",
+    kicker: "Two Worlds In Design",
     heading: ["Sistemas", "A la Medida"],
     subtitle:
       "Construimos las herramientas que tu operación necesita: punto de venta, paneles, reportes e integraciones hechas para tu forma de trabajar.",
@@ -25,7 +25,7 @@ export const devHeroSlides: HeroSlide[] = [
   },
   {
     id: "02",
-    kicker: "TWID Development",
+    kicker: "Two Worlds In Design",
     heading: ["Automatiza", "Tu Operación"],
     subtitle:
       "Menos captura manual y menos hojas de cálculo: flujos que corren solos y datos que llegan a donde deben.",
@@ -33,7 +33,7 @@ export const devHeroSlides: HeroSlide[] = [
   },
   {
     id: "03",
-    kicker: "TWID Development",
+    kicker: "Two Worlds In Design",
     heading: ["Datos", "Que Se Entienden"],
     subtitle:
       "Reportes, dashboards y conexiones entre sistemas para decidir con información al día, no con corazonadas.",

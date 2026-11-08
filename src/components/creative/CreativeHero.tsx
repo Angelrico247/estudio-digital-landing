@@ -78,6 +78,9 @@ export default function CreativeHero() {
       {/* El título grande cambia con cada diapositiva; este h1 es el estable para SEO y lectores de pantalla. */}
       <h1 className="sr-only">TWID Creative — Branding, redes sociales y sitios web en Guadalajara</h1>
 
+      {/* Placeholder mientras carga la foto: pulso tenue en lugar de un hueco negro. */}
+      <div aria-hidden className="absolute inset-0 animate-pulse bg-neutral-900" />
+
       {heroSlides.map((slide, i) => {
         const active = i === index;
         return (

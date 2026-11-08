@@ -33,6 +33,9 @@ export default function Hero() {
 
   return (
     <section id="inicio" className="relative h-screen overflow-hidden bg-dark">
+      {/* Placeholder mientras carga la foto del slide: un pulso tenue en lugar de un hueco negro. */}
+      <div aria-hidden className="absolute inset-0 animate-pulse bg-card" />
+
       {heroSlides.map((slide, i) => (
         <div
           key={slide.id}
@@ -73,16 +76,21 @@ export default function Hero() {
             {site.name} — Automatización y sistemas a la medida desde Guadalajara, Jalisco
           </h1>
 
-          <FadeIn>
-            <span className="inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-primary">
+          {/* La key reinicia la animación en cada diapositiva: primero título, luego subtítulo, luego botones. */}
+          <div key={activeSlide.id}>
+            <span
+              style={{ animationDelay: "0ms" }}
+              className="hero-rise inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-primary"
+            >
               <span className="h-px w-8 bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)]" />
               {activeSlide.kicker}
               <span className="h-px w-8 bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)]" />
             </span>
-          </FadeIn>
 
-          <FadeIn delay={120}>
-            <p className="mt-6 font-impact uppercase leading-[0.95] tracking-wide text-foreground">
+            <p
+              style={{ animationDelay: "200ms" }}
+              className="hero-rise mt-6 font-impact uppercase leading-[0.95] tracking-wide text-foreground"
+            >
               <span className="block text-5xl font-impact  text-white sm:text-7xl lg:text-8xl">
                 {activeSlide.heading[0]}
               </span>
@@ -94,14 +102,18 @@ export default function Hero() {
                 {activeSlide.heading[1]}
               </span>
             </p>
-          </FadeIn>
 
-          <FadeIn delay={240}>
-            <p className="mx-auto mt-6 max-w-[560px] text-lg text-secondary">{activeSlide.subtitle}</p>
-          </FadeIn>
+            <p
+              style={{ animationDelay: "800ms" }}
+              className="hero-rise mx-auto mt-6 max-w-[560px] text-lg text-secondary"
+            >
+              {activeSlide.subtitle}
+            </p>
 
-          <FadeIn delay={360}>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
+            <div
+              style={{ animationDelay: "1400ms" }}
+              className="hero-rise mt-8 flex flex-wrap items-center justify-center gap-8"
+            >
               <a
                 href="#proyectos"
                 className="btn-fill font-impact  rounded-md border px-10 py-5 text-sm font-black uppercase text-foreground"
@@ -115,7 +127,7 @@ export default function Hero() {
                 <span>Hablemos</span>
               </a>
             </div>
-          </FadeIn>
+          </div>
         </div>
 
         <FadeIn

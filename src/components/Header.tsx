@@ -51,31 +51,33 @@ export default function Header() {
           />
         </a>
 
-        <nav className="hidden items-center gap-6 md:flex lg:gap-10">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-secondary transition-colors duration-300 hover:text-foreground"
+        <div className="hidden items-center gap-6 md:flex lg:gap-10">
+          <nav className="flex items-center gap-6 lg:gap-10">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-secondary transition-colors duration-300 hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            ))}
+            <Link
+              href="/creative"
+              className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary transition-colors duration-300 hover:text-foreground"
             >
-              {link.label}
-            </a>
-          ))}
-          <Link
-            href="/creative"
-            className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary transition-colors duration-300 hover:text-foreground"
-          >
-            TWID Creative →
-          </Link>
-        </nav>
+              TWID Creative →
+            </Link>
+          </nav>
 
-        <button
-          type="button"
-          onClick={openScheduleCall}
-          className="btn-fill font-heading hidden rounded-md border px-7 py-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-foreground md:inline-block"
-        >
-          <span className="btn-fill-content">Agenda una Llamada</span>
-        </button>
+          <button
+            type="button"
+            onClick={openScheduleCall}
+            className="btn-fill font-heading rounded-md border px-7 py-3 text-[13px] font-semibold uppercase tracking-[0.1em] text-foreground"
+          >
+            <span className="btn-fill-content">Agenda una Llamada</span>
+          </button>
+        </div>
 
         <button
           type="button"
