@@ -34,7 +34,7 @@ export default function FadeIn({ children, className = "", delay = 0 }: FadeInPr
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-[600ms] ease-out ${
+      className={`transition-all duration-[600ms] ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
       } ${className}`}
     >

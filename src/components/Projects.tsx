@@ -30,7 +30,7 @@ function ProjectCard({ project }: { project: DevProject }) {
             {project.number.padStart(2, "0")}
           </span>
 
-          <p className="relative z-10 mt-6 font-mono text-xs uppercase tracking-[0.25em] text-primary">
+          <p className="relative z-10 mt-6 font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
             {project.kind}
           </p>
           <h3
@@ -73,6 +73,7 @@ function ProjectCard({ project }: { project: DevProject }) {
 
           <button
             type="button"
+            aria-label={`Quiero algo así: ${project.title}`}
             onClick={() => open({ type: "servicio", selection: project.title })}
             className="btn-dot relative z-10 mt-8 w-fit font-heading text-xs font-semibold uppercase tracking-[0.1em]"
           >

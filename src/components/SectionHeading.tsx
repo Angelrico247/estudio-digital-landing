@@ -29,7 +29,7 @@ export default function SectionHeading({
           {eyebrow}
         </span>
       ) : (
-        <span className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+        <span className={`font-heading text-sm font-semibold uppercase tracking-[0.2em] ${isLight ? "text-primary" : "text-primary-light"}`}>
           {eyebrow}
         </span>
       )}

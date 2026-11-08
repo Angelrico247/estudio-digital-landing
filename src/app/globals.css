@@ -67,6 +67,34 @@ body {
   overflow-x: hidden;
 }
 
+/* Accesibilidad (WCAG 2.4.7 / 2.4.11): anillo de foco siempre visible al navegar con teclado.
+   Va fuera de las capas de Tailwind a propósito: así gana sobre cualquier "outline-none". */
+:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 3px;
+}
+
+.creative :focus-visible {
+  outline-color: var(--cr-accent);
+}
+
+/* WCAG 2.3.3 / 2.2.2: quien pide menos movimiento no recibe scroll suave ni animaciones que se
+   repiten solas (pulso, orbes, barra de progreso, línea de scroll). Se listan una por una en lugar
+   de un selector universal con !important: ese bloque empeoraba el LCP medido por Lighthouse. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-pulse,
+  .animate-drift-orb-a,
+  .animate-drift-orb-b,
+  .animate-slide-progress,
+  .animate-scroll-line {
+    animation: none;
+  }
+}
+
 @keyframes scroll-line {
   0%,
   100% {

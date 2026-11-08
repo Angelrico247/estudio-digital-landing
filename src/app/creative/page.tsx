@@ -12,7 +12,7 @@ export default function CreativePage() {
   return (
     <>
       <CreativeHeader />
-      <main>
+      <main id="contenido" tabIndex={-1} className="outline-none">
         <CreativeHero />
         <CreativeServices />
         <CreativeAbout />

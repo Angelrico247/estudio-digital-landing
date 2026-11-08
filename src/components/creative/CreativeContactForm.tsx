@@ -88,6 +88,7 @@ export default function CreativeContactForm() {
         Al enviar aceptas el{" "}
         <Link href={creativeConfig.privacyUrl} target="_blank" className="text-cr-ink underline underline-offset-2">
           Aviso de Privacidad
+          <span className="sr-only"> (se abre en una pestaña nueva)</span>
         </Link>
         .
       </p>

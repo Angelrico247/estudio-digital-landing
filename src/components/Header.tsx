@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDialogFocus } from "./useDialogFocus";
 import { site } from "@/data/site";
 import { devNavLinks as navLinks } from "@/data/development";
 import { useScheduleCall } from "./ScheduleCallContext";
@@ -11,6 +12,17 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { open: openScheduleCall } = useScheduleCall();
+  const menuRef = useRef<HTMLDivElement>(null);
+  useDialogFocus(open, menuRef);
+
+  useEffect(() => {
+    if (!open) return;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   useEffect(() => {
     function onScroll() {
@@ -66,7 +78,7 @@ export default function Header() {
           ))}
           <Link
             href="/creative"
-            className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary-light transition-colors duration-300 hover:text-foreground"
+            className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-white underline decoration-primary-light decoration-2 underline-offset-8 transition-colors duration-300 hover:text-primary-light"
           >
             TWID Creative →
           </Link>
@@ -86,6 +98,8 @@ export default function Header() {
           type="button"
           aria-label="Abrir menú"
           aria-expanded={open}
+          aria-controls={open ? "menu-movil" : undefined}
+          aria-haspopup="dialog"
           onClick={() => setOpen(true)}
           className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
         >
@@ -98,7 +112,15 @@ export default function Header() {
     </header>
 
     {open && (
-      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-dark lg:hidden">
+      <div
+        id="menu-movil"
+        ref={menuRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menú principal"
+        tabIndex={-1}
+        className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-dark outline-none lg:hidden"
+      >
         <button
           type="button"
           aria-label="Cerrar menú"
@@ -107,7 +129,7 @@ export default function Header() {
         >
           ×
         </button>
-        <nav className="flex flex-col items-center gap-8">
+        <nav aria-label="Principal (móvil)" className="flex flex-col items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.href}

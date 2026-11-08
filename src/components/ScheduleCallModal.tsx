@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDialogFocus } from "./useDialogFocus";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -26,6 +27,8 @@ export default function ScheduleCallModal({
   const [hour, setHour] = useState("");
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useDialogFocus(isOpen, dialogRef);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -96,7 +99,14 @@ export default function ScheduleCallModal({
 
       {/* El borde vive en el contenedor externo y el scroll en el interno: si van juntos,
           el borde se queda arriba y el contenido se desborda por debajo en móvil. */}
-      <div className="border-gradient-brand relative flex max-h-[85dvh] w-full max-w-xl flex-col overflow-hidden rounded-md bg-card">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Agendar una llamada"
+        tabIndex={-1}
+        className="border-gradient-brand relative flex max-h-[85dvh] w-full max-w-xl flex-col overflow-hidden rounded-md bg-card outline-none"
+      >
         <button
           type="button"
           aria-label="Cerrar"
@@ -108,11 +118,11 @@ export default function ScheduleCallModal({
 
         <div className="overflow-y-auto p-8 sm:p-10">
           {status === "sent" ? (
-            <div className="py-8 text-center">
+            <div role="status" className="py-8 text-center">
               <h3 className="font-heading text-2xl font-bold uppercase text-foreground">¡Listo!</h3>
               <p className="mt-3 text-secondary">
-                Recibimos tu solicitud para el <span className="text-primary">{day}</span> a las{" "}
-                <span className="text-primary">{hour}</span>. Te confirmamos por correo, y
+                Recibimos tu solicitud para el <span className="text-primary-light">{day}</span> a las{" "}
+                <span className="text-primary-light">{hour}</span>. Te confirmamos por correo, y
                 haremos lo máximo posible por contactarte en ese horario.
               </p>
               <button
@@ -136,6 +146,8 @@ export default function ScheduleCallModal({
                 <input
                   type="text"
                   placeholder="Nombre"
+                  aria-label="Nombre"
+                  autoComplete="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className={inputClasses}
@@ -143,6 +155,8 @@ export default function ScheduleCallModal({
                 <input
                   type="email"
                   placeholder="Email"
+                  aria-label="Email"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={inputClasses}
@@ -150,6 +164,8 @@ export default function ScheduleCallModal({
                 <input
                   type="tel"
                   placeholder="Teléfono"
+                  aria-label="Teléfono"
+                  autoComplete="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className={inputClasses}
@@ -157,6 +173,7 @@ export default function ScheduleCallModal({
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <select
+                    aria-label="Día"
                     value={day}
                     onChange={(e) => setDay(e.target.value)}
                     className={`${inputClasses} ${day ? "text-foreground" : "text-secondary"}`}
@@ -172,6 +189,7 @@ export default function ScheduleCallModal({
                   </select>
 
                   <select
+                    aria-label="Hora"
                     value={hour}
                     onChange={(e) => setHour(e.target.value)}
                     className={`${inputClasses} ${hour ? "text-foreground" : "text-secondary"}`}
@@ -193,6 +211,7 @@ export default function ScheduleCallModal({
 
                 <textarea
                   placeholder="Comentario (opcional)"
+                  aria-label="Comentario (opcional)"
                   rows={3}
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
@@ -201,7 +220,7 @@ export default function ScheduleCallModal({
               </div>
 
               {status === "error" && (
-                <p className="mt-4 text-sm text-red-400">
+                <p role="alert" className="mt-4 text-sm text-red-400">
                   No pudimos enviar tu solicitud. Intenta de nuevo en unos segundos.
                 </p>
               )}

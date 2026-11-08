@@ -7,18 +7,26 @@ import { useQuoteModal } from "@/components/QuoteModalContext";
 export default function CreativeQuoteButton({
   type,
   selection,
+  label,
   className,
   children,
 }: {
   type: "paquete" | "servicio";
   selection: string;
+  /** Texto visible del botón: el nombre accesible lo repite junto al paquete o servicio. */
+  label: string;
   className: string;
   children: ReactNode;
 }) {
   const { open } = useQuoteModal();
 
   return (
-    <button type="button" onClick={() => open({ brand: "creative", type, selection })} className={className}>
+    <button
+      type="button"
+      aria-label={`${label} ${selection}`}
+      onClick={() => open({ brand: "creative", type, selection })}
+      className={className}
+    >
       {children}
     </button>
   );

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useDialogFocus } from "./useDialogFocus";
 import { niches, pricingPlans, services } from "@/data/site";
 import { devQuoteOptions } from "@/data/development";
 import type { QuotePreset } from "./QuoteModalContext";
@@ -14,6 +15,7 @@ type Status = "idle" | "sending" | "sent" | "error";
 const creativeTheme = {
   "--color-primary": "#e4572e",
   "--color-secondary-blue": "#e4572e",
+  "--color-primary-light": "#e4572e",
 } as CSSProperties;
 
 const gradientText =
@@ -39,6 +41,8 @@ export default function QuoteModal({
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useDialogFocus(isOpen, dialogRef);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -116,7 +120,14 @@ export default function QuoteModal({
 
       {/* El borde vive en el contenedor externo y el scroll en el interno: si van juntos,
           el borde se queda arriba y el contenido se desborda por debajo en móvil. */}
-      <div className="border-gradient-brand relative flex max-h-[85dvh] w-full max-w-xl flex-col overflow-hidden rounded-md bg-card">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={isCreative ? "Cotizar con TWID Creative" : "Cotizar con TWID Development"}
+        tabIndex={-1}
+        className="border-gradient-brand relative flex max-h-[85dvh] w-full max-w-xl flex-col overflow-hidden rounded-md bg-card outline-none"
+      >
         <button
           type="button"
           aria-label="Cerrar"
@@ -128,7 +139,7 @@ export default function QuoteModal({
 
         <div className="overflow-y-auto p-8 sm:p-10">
         {status === "sent" ? (
-          <div className="py-8 text-center">
+          <div role="status" className="py-8 text-center">
             <h3 className="font-heading text-2xl font-bold uppercase text-foreground">¡Listo!</h3>
             <p className="mt-3 text-secondary">
               Recibimos tu solicitud. Te contactaremos por correo en menos de 24 horas.
@@ -144,11 +155,12 @@ export default function QuoteModal({
         ) : (
           <>
             <div className="mb-8 flex items-center justify-center gap-3">
+              <span className="sr-only">Paso {step + 1} de 3</span>
               {[0, 1, 2].map((i) => (
                 <div key={i} className="flex items-center gap-3">
                   <span
                     className={`flex h-8 w-8 items-center justify-center rounded-full border font-heading text-sm font-semibold ${
-                      i <= step ? "border-primary text-primary" : "border-line text-secondary"
+                      i <= step ? "border-primary text-primary-light" : "border-line text-secondary"
                     }`}
                   >
                     {i + 1}
@@ -170,6 +182,7 @@ export default function QuoteModal({
                       <button
                         key={t}
                         type="button"
+                        aria-pressed={quoteType === t}
                         onClick={() => {
                           setQuoteType(t);
                           setSelection("");
@@ -190,6 +203,7 @@ export default function QuoteModal({
                       key={opt.value}
                       type="button"
                       onClick={() => setSelection(opt.value)}
+                      aria-pressed={selection === opt.value}
                       className={`rounded-md border p-4 text-left transition-colors ${
                         selection === opt.value
                           ? "border-primary bg-primary/10"
@@ -225,7 +239,7 @@ export default function QuoteModal({
                 </h3>
                 {selection && (
                   <p className="mt-2 text-center text-sm text-secondary">
-                    Cotizando: <span className="text-primary">{selection}</span>
+                    Cotizando: <span className="text-primary-light">{selection}</span>
                   </p>
                 )}
 
@@ -235,6 +249,7 @@ export default function QuoteModal({
                       key={n}
                       type="button"
                       onClick={() => setNiche(n)}
+                      aria-pressed={niche === n}
                       className={`rounded-md border p-4 text-left text-sm transition-colors ${
                         niche === n
                           ? "border-primary bg-primary/10 text-foreground"
@@ -276,6 +291,8 @@ export default function QuoteModal({
                   <input
                     type="text"
                     placeholder="Nombre"
+                    aria-label="Nombre"
+                    autoComplete="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className={inputClasses}
@@ -283,12 +300,15 @@ export default function QuoteModal({
                   <input
                     type="email"
                     placeholder="Email"
+                    aria-label="Email"
+                    autoComplete="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className={inputClasses}
                   />
                   <textarea
                     placeholder="Mensaje (opcional)"
+                    aria-label="Mensaje (opcional)"
                     rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -302,15 +322,16 @@ export default function QuoteModal({
                     href="/aviso-de-privacidad"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary underline underline-offset-2"
+                    className="text-primary-light underline underline-offset-2"
                   >
                     Aviso de Privacidad
+                    <span className="sr-only"> (se abre en una pestaña nueva)</span>
                   </a>
                   .
                 </p>
 
                 {status === "error" && (
-                  <p className="mt-4 text-sm text-red-400">
+                  <p role="alert" className="mt-4 text-sm text-red-400">
                     No pudimos enviar tu solicitud. Intenta de nuevo en unos segundos.
                   </p>
                 )}

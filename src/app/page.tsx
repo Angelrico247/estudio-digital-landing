@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1 bg-dark">
+      <main id="contenido" tabIndex={-1} className="flex-1 bg-dark outline-none">
         <Hero />
         <Projects />
         <About />

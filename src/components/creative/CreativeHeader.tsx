@@ -43,7 +43,6 @@ export default function CreativeHeader() {
       <div className="mx-auto flex h-[77px] max-w-[1200px] items-center justify-between px-6 lg:grid lg:grid-cols-[1fr_auto_1fr]">
         <a
           href="#inicio"
-          aria-label="TWID Creative, ir al inicio"
           className="flex items-baseline gap-2 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent-ink"
         >
           <span
@@ -70,7 +69,7 @@ export default function CreativeHeader() {
           ))}
           <Link
             href={creativeConfig.developmentUrl}
-            className="rounded-sm font-cr-heading text-[13px] font-semibold tracking-wide text-cr-accent transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent motion-reduce:transition-none"
+            className="rounded-sm font-cr-heading text-[13px] font-semibold tracking-wide text-white underline decoration-cr-accent decoration-2 underline-offset-8 transition-colors hover:text-cr-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cr-accent motion-reduce:transition-none"
           >
             TWID Development →
           </Link>

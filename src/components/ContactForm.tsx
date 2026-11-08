@@ -36,6 +36,7 @@ export default function ContactForm() {
   if (status === "sent") {
     return (
       <div
+        role="status"
         className="border-gradient-brand rounded-md bg-primary/10 p-8 text-center"
         style={{ ["--gb-width" as string]: "1px" }}
       >
@@ -77,6 +78,7 @@ export default function ContactForm() {
           className="text-primary underline underline-offset-2"
         >
           Aviso de Privacidad
+          <span className="sr-only"> (se abre en una pestaña nueva)</span>
         </a>
         .
       </p>

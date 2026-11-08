@@ -92,7 +92,7 @@ export default function Terminos() {
           body: (
             <p>
               El tratamiento de tus datos personales se rige por nuestro{" "}
-              <a href="/aviso-de-privacidad" className="text-primary underline underline-offset-2">
+              <a href="/aviso-de-privacidad" className="text-primary-light underline underline-offset-2">
                 Aviso de Privacidad
               </a>
               .
@@ -114,7 +114,7 @@ export default function Terminos() {
           body: (
             <p>
               Para cualquier duda escríbenos a{" "}
-              <a href={`mailto:${site.email}`} className="text-primary underline underline-offset-2">
+              <a href={`mailto:${site.email}`} className="text-primary-light underline underline-offset-2">
                 {site.email}
               </a>
               .

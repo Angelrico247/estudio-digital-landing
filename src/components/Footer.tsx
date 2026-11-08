@@ -21,6 +21,7 @@ export default function Footer() {
             <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.1em] text-foreground">
               Links Rápidos
             </h3>
+            <nav aria-label="Links rápidos">
             <ul className="mt-4 space-y-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -35,12 +36,14 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
+            </nav>
           </div>
 
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.1em] text-foreground">
               Proyectos
             </h3>
+            <nav aria-label="Proyectos">
             <ul className="mt-4 space-y-2">
               {devProjects.slice(0, 4).map((project) => (
                 <li key={project.number}>
@@ -50,6 +53,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            </nav>
           </div>
 
           <div>
@@ -57,7 +61,11 @@ export default function Footer() {
               Contacto
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-secondary">
-              <li>{site.email}</li>
+              <li>
+                <a href={`mailto:${site.email}`} className="hover:text-primary-light">
+                  {site.email}
+                </a>
+              </li>
               <li>{site.location}</li>
             </ul>
           </div>
@@ -67,14 +75,14 @@ export default function Footer() {
 
         <div className="mt-8 flex flex-col items-center justify-between gap-4 text-sm text-secondary sm:flex-row">
           <p>© {new Date().getFullYear()} {site.name}. Todos los derechos reservados.</p>
-          <div className="flex gap-6">
+          <nav aria-label="Legal" className="flex gap-6">
             <Link href="/aviso-de-privacidad" className="hover:text-primary">
               Aviso de Privacidad
             </Link>
             <Link href="/terminos" className="hover:text-primary">
               Términos y Condiciones
             </Link>
-          </div>
+          </nav>
         </div>
       </div>
     </footer>

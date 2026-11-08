@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
 import { imageUrl, site } from "@/data/site";
 import { devHeroSlides as heroSlides } from "@/data/development";
 import FadeIn from "./FadeIn";
+import { usePrefersReducedMotion } from "./creative/usePrefersReducedMotion";
 
 const AUTOPLAY_MS = 6000;
 
@@ -20,6 +21,11 @@ export default function Hero() {
   const [index, setIndex] = useState(0);
   // Las fotos de los slides 2 y 3 se piden hasta que la página terminó de cargar, para que no compitan con el LCP.
   const [preloadRest, setPreloadRest] = useState(false);
+  // WCAG 2.2.2: el contenido que se mueve solo por más de 5 s necesita un control para pausarlo.
+  const [userPaused, setUserPaused] = useState(false);
+  const [hoverOrFocus, setHoverOrFocus] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
+  const autoplayOn = !reducedMotion && !userPaused && !hoverOrFocus;
 
   useEffect(() => {
     const timer = setTimeout(() => setPreloadRest(true), 2500);
@@ -31,16 +37,34 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
+    if (!autoplayOn) return;
     const timer = setTimeout(() => {
       setIndex((i) => (i + 1) % heroSlides.length);
     }, AUTOPLAY_MS);
     return () => clearTimeout(timer);
-  }, [index]);
+  }, [index, autoplayOn]);
+
+  function onKeyDown(e: KeyboardEvent<HTMLElement>) {
+    if (e.key === "ArrowLeft") goTo(index - 1);
+    if (e.key === "ArrowRight") goTo(index + 1);
+  }
 
   const activeSlide = heroSlides[index];
 
   return (
-    <section id="inicio" className="relative h-screen overflow-hidden bg-dark">
+    <section
+      id="inicio"
+      aria-roledescription="carrusel"
+      aria-label="Presentación de TWID Development"
+      onKeyDown={onKeyDown}
+      onMouseEnter={() => setHoverOrFocus(true)}
+      onMouseLeave={() => setHoverOrFocus(false)}
+      onFocus={() => setHoverOrFocus(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) setHoverOrFocus(false);
+      }}
+      className="relative min-h-screen overflow-hidden bg-dark"
+    >
       {/* Placeholder mientras carga la foto del slide: un pulso tenue en lugar de un hueco negro. */}
       <div aria-hidden className="absolute inset-0 animate-pulse bg-card" />
 
@@ -68,7 +92,7 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-black/65" />
 
-      <div className="relative flex h-screen items-center">
+      <div className="relative flex min-h-screen items-center pb-32 pt-28">
         <div className="tech-grid pointer-events-none absolute inset-0 opacity-40" />
 
         <div
@@ -80,7 +104,7 @@ export default function Hero() {
           style={{ borderImage: "linear-gradient(82.3deg, var(--color-primary) 10.8%, var(--color-secondary-blue) 94.3%) 1" }}
         />
 
-        <div className="relative z-10 mx-auto w-full max-w-4xl px-6 text-center">
+        <div aria-live={autoplayOn ? "off" : "polite"} className="relative z-10 mx-auto w-full max-w-4xl px-6 text-center">
           {/*
             El título grande del hero cambia con cada slide, así que no sirve
             como h1: Google necesita un encabezado estable que diga qué es el
@@ -95,7 +119,7 @@ export default function Hero() {
           <div key={activeSlide.id}>
             <span
               style={{ animationDelay: "0ms" }}
-              className="hero-rise inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-primary"
+              className="hero-rise inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-white/90"
             >
               <span className="h-px w-8 bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)]" />
               {activeSlide.kicker}
@@ -120,7 +144,7 @@ export default function Hero() {
 
             <p
               style={{ animationDelay: "800ms" }}
-              className="hero-rise mx-auto mt-6 max-w-[560px] text-lg text-secondary"
+              className="hero-rise mx-auto mt-6 max-w-[560px] text-lg text-white/90"
             >
               {activeSlide.subtitle}
             </p>
@@ -164,18 +188,19 @@ export default function Hero() {
                 key={slide.id}
                 type="button"
                 aria-label={`Ir a la diapositiva ${slide.id}`}
+                aria-current={i === index ? "true" : undefined}
                 onClick={() => goTo(i)}
                 className="group flex flex-col items-center gap-2"
               >
                 <span
                   className={`font-mono text-xs tracking-[0.2em] transition-colors duration-300 ${
-                    i === index ? "text-primary" : "text-secondary group-hover:text-foreground"
+                    i === index ? "text-white" : "text-white/80 group-hover:text-white"
                   }`}
                 >
                   {slide.id}
                 </span>
                 <span className="h-px w-8 overflow-hidden bg-line">
-                  {i === index && (
+                  {i === index && autoplayOn && (
                     <span
                       key={index}
                       className="block h-full bg-[linear-gradient(82.3deg,var(--color-primary)_10.8%,var(--color-secondary-blue)_94.3%)] animate-slide-progress"
@@ -194,6 +219,19 @@ export default function Hero() {
           >
             <ChevronIcon className="h-4 w-4" />
           </button>
+
+          {!reducedMotion && (
+            <button
+              type="button"
+              aria-label={userPaused ? "Reanudar rotación automática" : "Pausar rotación automática"}
+              onClick={() => setUserPaused((paused) => !paused)}
+              className="flex h-10 w-10 items-center justify-center rounded-md border border-line text-foreground transition-colors duration-300 hover:border-primary hover:text-primary-light"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5" aria-hidden>
+                {userPaused ? <path d="M8 5v14l11-7z" /> : <path d="M7 5h4v14H7zM13 5h4v14h-4z" />}
+              </svg>
+            </button>
+          )}
         </FadeIn>
       </div>
     </section>

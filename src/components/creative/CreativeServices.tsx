@@ -28,6 +28,7 @@ export default function CreativeServices() {
                 <CreativeQuoteButton
                   type="servicio"
                   selection={service.title}
+                  label="Cotizar"
                   className="cr-dot mt-8 font-cr-heading text-xs focus-visible:outline-none"
                 >
                   <span>Cotizar</span>

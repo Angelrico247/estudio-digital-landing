@@ -28,7 +28,7 @@ export default function LegalPage({
         </div>
       </header>
 
-      <main className="mx-auto max-w-3xl px-6 py-16">
+      <main id="contenido" tabIndex={-1} className="mx-auto max-w-3xl px-6 py-16 outline-none">
         <h1 className="font-heading text-4xl font-bold uppercase leading-tight sm:text-5xl">{title}</h1>
         <p className="mt-3 text-sm text-secondary">Última actualización: {updated}</p>
         <div className="mt-8 space-y-4 leading-[1.8] text-secondary">{intro}</div>
