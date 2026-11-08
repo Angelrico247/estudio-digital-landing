@@ -30,7 +30,7 @@ export default function CreativePricingDetails() {
       <CreativeHeading eyebrow="Desglose completo" title="Catálogo de servicios" tone="dark" />
 
       <div className="mx-auto max-w-[1200px] px-6">
-        <Reveal className="mt-16 max-w-3xl">
+        <Reveal className="mx-auto mt-16 max-w-3xl">
           <div className="divide-y divide-white/15 border-y border-white/15">
             {pricingAccordionCategories.map((category, i) => {
               const isOpen = openIndex === i;
