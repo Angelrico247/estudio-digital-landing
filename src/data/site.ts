@@ -270,7 +270,7 @@ export const pricingPlans: PricingPlan[] = [
       "8 a 10 stories al mes",
       "Gestión de Meta Ads",
       "Gestión de Google Ads",
-      { note: "La inversión en pauta corre por cuenta del cliente." },
+      { note: "La inversión en pauta corre por cuenta del cliente" },
       "Segmentación y remarketing",
       "Reporte con métricas reales",
     ],

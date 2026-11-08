@@ -58,7 +58,7 @@ export default function CreativePricing() {
                           key={feature.note}
                           className="!-mt-1 pl-7 font-cr-body text-[13px] italic leading-snug text-cr-muted"
                         >
-                          “{feature.note}”
+                          ({feature.note})
                         </li>
                       )
                     )}
