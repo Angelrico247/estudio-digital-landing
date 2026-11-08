@@ -90,7 +90,7 @@ export default function Projects() {
       <div
         aria-hidden
         className="pointer-events-none absolute left-0 top-1/2 h-[1300px] w-[1300px] -translate-x-1/2 -translate-y-1/2 bg-cover bg-center opacity-70 mix-blend-screen"
-        style={{ backgroundImage: "url(/glow-purple.png)" }}
+        style={{ backgroundImage: "url(/glow-purple.webp)" }}
       />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <FadeIn>

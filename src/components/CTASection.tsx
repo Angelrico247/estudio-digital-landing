@@ -13,7 +13,7 @@ export default function CTASection() {
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-contain bg-center bg-no-repeat"
-        style={{ backgroundImage: "url(/cta-banner.png)" }}
+        style={{ backgroundImage: "url(/cta-banner.webp)" }}
       />
       {/* Misma capa que el hero, para que el texto no compita con el neón */}
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/65" />

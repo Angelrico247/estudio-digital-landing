@@ -39,6 +39,8 @@ export default function Header() {
             width={929}
             height={587}
             priority
+            fetchPriority="high"
+            sizes="58px"
             className="relative z-10 h-8 w-auto sm:h-9"
           />
           <Image
@@ -64,7 +66,7 @@ export default function Header() {
           ))}
           <Link
             href="/creative"
-            className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary transition-colors duration-300 hover:text-foreground"
+            className="font-heading text-sm font-medium uppercase tracking-[0.15em] text-primary-light transition-colors duration-300 hover:text-foreground"
           >
             TWID Creative →
           </Link>
@@ -119,7 +121,7 @@ export default function Header() {
           <Link
             href="/creative"
             onClick={() => setOpen(false)}
-            className="font-heading text-lg font-medium uppercase tracking-[0.15em] text-primary hover:text-foreground"
+            className="font-heading text-lg font-medium uppercase tracking-[0.15em] text-primary-light hover:text-foreground"
           >
             TWID Creative →
           </Link>

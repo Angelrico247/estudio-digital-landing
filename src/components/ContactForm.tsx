@@ -47,9 +47,9 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <input name="nombre" type="text" placeholder="Nombre" required className={inputClasses} />
-      <input name="email" type="email" placeholder="Email" required className={inputClasses} />
-      <select name="servicio" required defaultValue="" className={inputClasses}>
+      <input name="nombre" type="text" aria-label="Nombre" autoComplete="name" placeholder="Nombre" required className={inputClasses} />
+      <input name="email" type="email" aria-label="Email" autoComplete="email" placeholder="Email" required className={inputClasses} />
+      <select name="servicio" aria-label="¿Qué necesitas?" required defaultValue="" className={inputClasses}>
         <option value="" disabled>
           ¿Qué necesitas?
         </option>
@@ -61,6 +61,7 @@ export default function ContactForm() {
       </select>
       <textarea
         name="mensaje"
+        aria-label="Mensaje"
         placeholder="Mensaje"
         rows={5}
         required

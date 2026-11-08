@@ -1,7 +1,9 @@
 "use client";
 
 import { createContext, useContext, useState, type ReactNode } from "react";
-import ScheduleCallModal from "./ScheduleCallModal";
+import dynamic from "next/dynamic";
+
+const ScheduleCallModal = dynamic(() => import("./ScheduleCallModal"));
 
 type ScheduleCallContextValue = {
   open: () => void;
@@ -15,7 +17,7 @@ export function ScheduleCallProvider({ children }: { children: ReactNode }) {
   return (
     <ScheduleCallContext.Provider value={{ open: () => setIsOpen(true) }}>
       {children}
-      <ScheduleCallModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      {isOpen && <ScheduleCallModal isOpen={isOpen} onClose={() => setIsOpen(false)} />}
     </ScheduleCallContext.Provider>
   );
 }

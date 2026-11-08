@@ -1,7 +1,10 @@
 "use client";
 
 import { createContext, useContext, useState, type ReactNode } from "react";
-import QuoteModal from "./QuoteModal";
+import dynamic from "next/dynamic";
+
+// El cotizador solo se necesita al abrirlo: su código se descarga en el primer clic, no con la página.
+const QuoteModal = dynamic(() => import("./QuoteModal"));
 
 export type QuotePreset = {
   /** Qué marca abre el cotizador: define las opciones y los colores. Por defecto, Development. */
@@ -31,7 +34,7 @@ export function QuoteModalProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-      <QuoteModal isOpen={isOpen} preset={preset} onClose={() => setIsOpen(false)} />
+      {isOpen && <QuoteModal isOpen={isOpen} preset={preset} onClose={() => setIsOpen(false)} />}
     </QuoteModalContext.Provider>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
 import { imageUrl, site } from "@/data/site";
 import { devHeroSlides as heroSlides } from "@/data/development";
 import FadeIn from "./FadeIn";
@@ -36,6 +37,7 @@ export default function Hero() {
       {/* Placeholder mientras carga la foto del slide: un pulso tenue en lugar de un hueco negro. */}
       <div aria-hidden className="absolute inset-0 animate-pulse bg-card" />
 
+      {/* La primera foto es el LCP: va con prioridad. Las otras cargan en diferido y a tamaño de pantalla. */}
       {heroSlides.map((slide, i) => (
         <div
           key={slide.id}
@@ -43,12 +45,17 @@ export default function Hero() {
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
             i === index ? "opacity-100" : "opacity-0"
           }`}
-          style={{
-            backgroundImage: `url(${imageUrl(slide.imageSeed, 1920, 1080)})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
+        >
+          <Image
+            src={imageUrl(slide.imageSeed, 1920, 1080)}
+            alt=""
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            quality={70}
+            className="object-cover"
+          />
+        </div>
       ))}
 
       <div className="absolute inset-0 bg-black/65" />
