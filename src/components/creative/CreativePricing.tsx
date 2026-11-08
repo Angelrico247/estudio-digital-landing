@@ -38,21 +38,30 @@ export default function CreativePricing() {
                   <span aria-hidden className="my-6 block h-px w-full bg-cr-line" />
 
                   <ul className="flex-1 space-y-3">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3 font-cr-body text-[15px] leading-relaxed text-cr-body">
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth={2.5}
-                          className="mt-1 h-4 w-4 shrink-0 text-cr-accent-ink"
-                          aria-hidden
+                    {plan.features.map((feature) =>
+                      typeof feature === "string" ? (
+                        <li key={feature} className="flex items-start gap-3 font-cr-body text-[15px] leading-relaxed text-cr-body">
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={2.5}
+                            className="mt-1 h-4 w-4 shrink-0 text-cr-accent-ink"
+                            aria-hidden
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m5 12 5 5 9-10" />
+                          </svg>
+                          <span>{feature}</span>
+                        </li>
+                      ) : (
+                        <li
+                          key={feature.note}
+                          className="!-mt-1 pl-7 font-cr-body text-[13px] italic leading-snug text-cr-muted"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="m5 12 5 5 9-10" />
-                        </svg>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
+                          “{feature.note}”
+                        </li>
+                      )
+                    )}
                   </ul>
 
                   <a

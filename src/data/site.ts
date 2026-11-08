@@ -238,11 +238,14 @@ export const milestones: Milestone[] = [
   { value: 48, suffix: "", label: "Horas de Respuesta" },
 ];
 
+export type PricingFeature = string | { note: string };
+
 export type PricingPlan = {
   number: string;
   name: string;
   featured: boolean;
-  features: string[];
+  /** Un texto es un beneficio con palomita; { note } es una aclaración en gris, sin palomita. */
+  features: PricingFeature[];
 };
 
 export const pricingPlans: PricingPlan[] = [
@@ -267,7 +270,7 @@ export const pricingPlans: PricingPlan[] = [
       "8 a 10 stories al mes",
       "Gestión de Meta Ads",
       "Gestión de Google Ads",
-      "Inversión en pauta por cuenta del cliente",
+      { note: "La inversión en pauta corre por cuenta del cliente." },
       "Segmentación y remarketing",
       "Reporte con métricas reales",
     ],
