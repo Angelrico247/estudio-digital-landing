@@ -3,11 +3,10 @@
 import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import Image from "next/image";
 import type { PortfolioProject } from "@/data/site";
-import { projectShowcases, type ShowcaseImage } from "@/data/project-showcases";
+import { projectShowcases, type ShowcaseImage, type ShowcaseSection } from "@/data/project-showcases";
 import { useDialogFocus } from "@/components/useDialogFocus";
 
 type Viewer = { title: string; images: ShowcaseImage[]; index: number };
-type TabId = "posts" | "carousels" | "stories" | "mockups";
 
 function ArrowIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -23,6 +22,94 @@ function hostOf(url: string) {
   } catch {
     return url;
   }
+}
+
+const thumbClass =
+  "group relative block w-full overflow-hidden bg-neutral-900 focus-visible:outline-2 focus-visible:-outline-offset-4";
+
+function SectionPanel({
+  section,
+  titleId,
+  onOpen,
+}: {
+  section: ShowcaseSection;
+  titleId: string;
+  onOpen: (title: string, images: ShowcaseImage[], index: number) => void;
+}) {
+  if (section.kind === "carousels") {
+    return (
+      <div className="space-y-12">
+        {section.carousels.map((carousel) => (
+          <section key={carousel.title} aria-label={`Carrusel: ${carousel.title}`}>
+            <div className="flex items-baseline justify-between gap-4">
+              <h3 className="font-cr-heading text-xl font-extrabold tracking-tight sm:text-2xl">{carousel.title}</h3>
+              <span className="shrink-0 font-cr-body text-sm text-white/70">{carousel.slides.length} láminas</span>
+            </div>
+            <ul
+              style={{ "--n": carousel.slides.length } as CSSProperties}
+              className="-mx-6 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-3 sm:-mx-10 sm:px-10 lg:mx-0 lg:grid lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0 lg:[grid-template-columns:repeat(var(--n),minmax(0,1fr))]"
+            >
+              {carousel.slides.map((slide, i) => (
+                <li key={slide.src} className="w-[58%] shrink-0 snap-start sm:w-[220px] lg:w-auto">
+                  <button
+                    type="button"
+                    className={`${thumbClass} aspect-[4/5]`}
+                    aria-label={`Ampliar: ${slide.alt}`}
+                    onClick={() => onOpen(`Carrusel · ${carousel.title}`, carousel.slides, i)}
+                  >
+                    <Image
+                      src={slide.src}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 190px, (min-width: 640px) 220px, 58vw"
+                      className="object-cover"
+                    />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    );
+  }
+
+  const gridClass =
+    section.ratio === "post"
+      ? "grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4"
+      : section.ratio === "story"
+        ? "grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4"
+        : "grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4";
+  const sizes =
+    section.ratio === "post"
+      ? "(min-width: 1024px) 210px, (min-width: 640px) 30vw, 45vw"
+      : section.ratio === "story"
+        ? "(min-width: 640px) 210px, 45vw"
+        : "(min-width: 640px) 430px, 100vw";
+
+  return (
+    <ul className={gridClass} aria-labelledby={`${titleId}-tab-${section.id}`}>
+      {section.images.map((image, i) => (
+        <li key={image.src}>
+          <button
+            type="button"
+            className={`${thumbClass} ${section.ratio === "post" ? "aspect-[4/5]" : section.ratio === "story" ? "aspect-[9/16]" : ""}`}
+            style={section.ratio === "wide" ? { aspectRatio: `${image.width ?? 16} / ${image.height ?? 10}` } : undefined}
+            aria-label={`Ampliar: ${image.alt}`}
+            onClick={() => onOpen(section.label, section.images, i)}
+          >
+            <Image
+              src={image.src}
+              alt=""
+              fill
+              sizes={sizes}
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
+            />
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 /**
@@ -42,20 +129,27 @@ export default function CreativeProjectModal({
   const openerRef = useRef<HTMLElement | null>(null);
   const titleId = useId();
   const [viewer, setViewer] = useState<Viewer | null>(null);
-  const [tab, setTab] = useState<TabId>("posts");
+  const sections = showcase?.sections ?? [];
+  const [tab, setTab] = useState<string>(sections[0]?.id ?? "");
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
-  const tabs: { id: TabId; label: string; count: number }[] = showcase
-    ? [
-        { id: "posts" as const, label: "Publicaciones", count: showcase.posts.length },
-        { id: "carousels" as const, label: "Carruseles", count: showcase.carousels.length },
-        ...(showcase.stories ? [{ id: "stories" as const, label: "Stories", count: showcase.stories.length }] : []),
-        ...(showcase.mockups ? [{ id: "mockups" as const, label: "Mockups", count: showcase.mockups.length }] : []),
-      ]
-    : [];
+  const tabs = sections.map((section) => ({
+    id: section.id,
+    label: section.label,
+    count: section.kind === "grid" ? section.images.length : section.carousels.length,
+  }));
+  const activeSection = sections.find((section) => section.id === tab) ?? sections[0];
+  const totalPieces = sections.reduce(
+    (sum, section) =>
+      sum +
+      (section.kind === "grid"
+        ? section.images.length
+        : section.carousels.reduce((n, carousel) => n + carousel.slides.length, 0)),
+    0
+  );
 
   function onTabKeyDown(e: ReactKeyboardEvent<HTMLDivElement>) {
-    const i = tabs.findIndex((t) => t.id === tab);
+    const i = tabs.findIndex((t) => t.id === activeSection?.id);
     let next = -1;
     if (e.key === "ArrowRight") next = (i + 1) % tabs.length;
     if (e.key === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
@@ -121,9 +215,6 @@ export default function CreativeProjectModal({
     if (viewer) viewerCloseRef.current?.focus();
   }, [viewer === null]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const thumb =
-    "group relative block aspect-[4/5] w-full overflow-hidden bg-neutral-900 focus-visible:outline-2 focus-visible:-outline-offset-4";
-
   return (
     <div className="fixed inset-0 z-[60] flex items-stretch justify-center sm:items-center sm:p-6">
       <div aria-hidden onClick={onClose} className="absolute inset-0 bg-black/85" />
@@ -165,9 +256,7 @@ export default function CreativeProjectModal({
                   </h2>
                   {showcase && (
                     <p className="mt-4 font-cr-body text-[15px] leading-relaxed text-white/75">
-                      Proyecto concepto con su sitio web y material para redes:{" "}
-                      {showcase.posts.length} publicaciones, {showcase.carousels.length} carruseles
-                      {showcase.stories ? " y piezas para stories" : ""}.
+                      Proyecto concepto con su sitio web y {totalPieces} piezas de material para redes sociales.
                     </p>
                   )}
 
@@ -217,7 +306,7 @@ export default function CreativeProjectModal({
                     className="-mx-6 flex overflow-x-auto border-b border-white/15 px-6 sm:mx-0 sm:px-0"
                   >
                     {tabs.map((t) => {
-                      const selected = t.id === tab;
+                      const selected = t.id === activeSection?.id;
                       return (
                         <button
                           key={t.id}
@@ -246,120 +335,12 @@ export default function CreativeProjectModal({
 
                   <div
                     role="tabpanel"
-                    id={`${titleId}-panel-${tab}`}
-                    aria-labelledby={`${titleId}-tab-${tab}`}
+                    id={`${titleId}-panel-${activeSection?.id}`}
+                    aria-labelledby={`${titleId}-tab-${activeSection?.id}`}
                     tabIndex={0}
                     className="pt-8 outline-none focus-visible:outline-2 focus-visible:outline-offset-4"
                   >
-                    {tab === "posts" && (
-                      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
-                        {showcase.posts.map((post, i) => (
-                          <li key={post.src}>
-                            <button
-                              type="button"
-                              className={thumb}
-                              aria-label={`Ampliar: ${post.alt}`}
-                              onClick={() => openViewer("Publicaciones", showcase.posts, i)}
-                            >
-                              <Image
-                                src={post.src}
-                                alt=""
-                                fill
-                                sizes="(min-width: 1024px) 210px, (min-width: 640px) 30vw, 45vw"
-                                className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
-                              />
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-
-                    {tab === "carousels" && (
-                      <div className="space-y-12">
-                        {showcase.carousels.map((carousel) => (
-                          <section key={carousel.title} aria-label={`Carrusel: ${carousel.title}`}>
-                            <div className="flex items-baseline justify-between gap-4">
-                              <h3 className="font-cr-heading text-xl font-extrabold tracking-tight sm:text-2xl">
-                                {carousel.title}
-                              </h3>
-                              <span className="shrink-0 font-cr-body text-sm text-white/70">
-                                {carousel.slides.length} láminas
-                              </span>
-                            </div>
-                            <ul
-                              style={{ "--n": carousel.slides.length } as CSSProperties}
-                              className="-mx-6 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-3 sm:-mx-10 sm:px-10 lg:mx-0 lg:grid lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0 lg:[grid-template-columns:repeat(var(--n),minmax(0,1fr))]"
-                            >
-                              {carousel.slides.map((slide, i) => (
-                                <li key={slide.src} className="w-[58%] shrink-0 snap-start sm:w-[220px] lg:w-auto">
-                                  <button
-                                    type="button"
-                                    className={thumb}
-                                    aria-label={`Ampliar: ${slide.alt}`}
-                                    onClick={() => openViewer(`Carrusel · ${carousel.title}`, carousel.slides, i)}
-                                  >
-                                    <Image
-                                      src={slide.src}
-                                      alt=""
-                                      fill
-                                      sizes="(min-width: 1024px) 190px, (min-width: 640px) 220px, 58vw"
-                                      className="object-cover"
-                                    />
-                                  </button>
-                                </li>
-                              ))}
-                            </ul>
-                          </section>
-                        ))}
-                      </div>
-                    )}
-
-                    {tab === "stories" && showcase.stories && (
-                      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-                        {showcase.stories.map((story, i) => (
-                          <li key={story.src}>
-                            <button
-                              type="button"
-                              className="group relative block aspect-[9/16] w-full overflow-hidden bg-neutral-900 focus-visible:outline-2 focus-visible:-outline-offset-4"
-                              aria-label={`Ampliar: ${story.alt}`}
-                              onClick={() => openViewer("Stories", showcase.stories ?? [], i)}
-                            >
-                              <Image
-                                src={story.src}
-                                alt=""
-                                fill
-                                sizes="(min-width: 640px) 210px, 45vw"
-                                className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
-                              />
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-
-                    {tab === "mockups" && showcase.mockups && (
-                      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
-                        {showcase.mockups.map((mockup, i) => (
-                          <li key={mockup.src}>
-                            <button
-                              type="button"
-                              className="group relative block w-full overflow-hidden bg-neutral-900 focus-visible:outline-2 focus-visible:-outline-offset-4"
-                              style={{ aspectRatio: `${mockup.width} / ${mockup.height}` }}
-                              aria-label={`Ampliar: ${mockup.alt}`}
-                              onClick={() => openViewer("Mockups", showcase.mockups ?? [], i)}
-                            >
-                              <Image
-                                src={mockup.src}
-                                alt=""
-                                fill
-                                sizes="(min-width: 640px) 430px, 100vw"
-                                className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
-                              />
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    {activeSection && <SectionPanel section={activeSection} titleId={titleId} onOpen={openViewer} />}
                   </div>
                 </div>
               )}
