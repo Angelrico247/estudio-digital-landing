@@ -1,12 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import Image from "next/image";
 import type { PortfolioProject } from "@/data/site";
 import { projectShowcases, type ShowcaseImage } from "@/data/project-showcases";
 import { useDialogFocus } from "@/components/useDialogFocus";
 
 type Viewer = { title: string; images: ShowcaseImage[]; index: number };
+type TabId = "posts" | "carousels" | "stories" | "mockups";
 
 function ArrowIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -41,6 +42,30 @@ export default function CreativeProjectModal({
   const openerRef = useRef<HTMLElement | null>(null);
   const titleId = useId();
   const [viewer, setViewer] = useState<Viewer | null>(null);
+  const [tab, setTab] = useState<TabId>("posts");
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
+  const tabs: { id: TabId; label: string; count: number }[] = showcase
+    ? [
+        { id: "posts" as const, label: "Publicaciones", count: showcase.posts.length },
+        { id: "carousels" as const, label: "Carruseles", count: showcase.carousels.length },
+        ...(showcase.stories ? [{ id: "stories" as const, label: "Stories", count: showcase.stories.length }] : []),
+        ...(showcase.mockups ? [{ id: "mockups" as const, label: "Mockups", count: showcase.mockups.length }] : []),
+      ]
+    : [];
+
+  function onTabKeyDown(e: ReactKeyboardEvent<HTMLDivElement>) {
+    const i = tabs.findIndex((t) => t.id === tab);
+    let next = -1;
+    if (e.key === "ArrowRight") next = (i + 1) % tabs.length;
+    if (e.key === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
+    if (e.key === "Home") next = 0;
+    if (e.key === "End") next = tabs.length - 1;
+    if (next < 0) return;
+    e.preventDefault();
+    setTab(tabs[next].id);
+    tabRefs.current[tabs[next].id]?.focus();
+  }
 
   useDialogFocus(true, dialogRef);
 
@@ -129,118 +154,168 @@ export default function CreativeProjectModal({
           </div>
 
           <div className="min-h-0 flex-1 overflow-y-auto">
-            <div className="px-6 pb-14 pt-10 sm:px-10">
-              <p className="font-cr-body text-[13px] font-medium uppercase tracking-[0.2em] text-cr-accent">
-                {project.category}
-              </p>
-              <h2 id={titleId} className="mt-3 font-cr-heading text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
-                {project.name}
-              </h2>
+            <div className="px-6 pb-14 pt-8 sm:px-10 sm:pt-10">
+              <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-12">
+                <div>
+                  <p className="font-cr-body text-[13px] font-medium uppercase tracking-[0.2em] text-cr-accent">
+                    {project.category}
+                  </p>
+                  <h2 id={titleId} className="mt-3 font-cr-heading text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
+                    {project.name}
+                  </h2>
+                  {showcase && (
+                    <p className="mt-4 font-cr-body text-[15px] leading-relaxed text-white/75">
+                      Proyecto concepto con su sitio web y material para redes:{" "}
+                      {showcase.posts.length} publicaciones, {showcase.carousels.length} carruseles
+                      {showcase.stories ? " y piezas para stories" : ""}.
+                    </p>
+                  )}
 
-              <div className="relative mt-10 aspect-[3/2] w-full overflow-hidden bg-neutral-900">
-                <Image
-                  src={project.image ?? ""}
-                  alt={`Mockup del sitio de ${project.name}`}
-                  fill
-                  sizes="(min-width: 1024px) 900px, 100vw"
-                  className="object-cover object-top"
-                />
+                  {project.url && (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group mt-8 flex items-center justify-between gap-6 border border-white/20 px-6 py-5 transition-colors hover:border-cr-accent"
+                    >
+                      <span className="min-w-0">
+                        <span className="block font-cr-body text-[11px] font-medium uppercase tracking-[0.2em] text-white/70">
+                          Ver el sitio demo
+                        </span>
+                        <span className="mt-1 block truncate font-cr-heading text-lg font-bold underline decoration-cr-accent decoration-2 underline-offset-[6px] sm:text-xl">
+                          {hostOf(project.url)}
+                        </span>
+                      </span>
+                      <span
+                        aria-hidden
+                        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-cr-accent-ink text-white transition-transform duration-300 group-hover:rotate-45 motion-reduce:transition-none"
+                      >
+                        <ArrowIcon />
+                      </span>
+                      <span className="sr-only">(se abre en una pestaña nueva)</span>
+                    </a>
+                  )}
+                </div>
+
+                <div className="relative aspect-[3/2] w-full overflow-hidden bg-neutral-900">
+                  <Image
+                    src={project.image ?? ""}
+                    alt={`Mockup del sitio de ${project.name}`}
+                    fill
+                    sizes="(min-width: 1024px) 520px, 100vw"
+                    className="object-cover object-top"
+                  />
+                </div>
               </div>
 
-              {project.url && (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group mt-6 flex items-center justify-between gap-6 border border-white/20 px-6 py-5 transition-colors hover:border-cr-accent sm:px-8"
-                >
-                  <span className="min-w-0">
-                    <span className="block font-cr-body text-[11px] font-medium uppercase tracking-[0.2em] text-white/70">
-                      Ver el sitio demo
-                    </span>
-                    <span className="mt-1 block truncate font-cr-heading text-lg font-bold underline decoration-cr-accent decoration-2 underline-offset-[6px] sm:text-2xl">
-                      {hostOf(project.url)}
-                    </span>
-                  </span>
-                  <span
-                    aria-hidden
-                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-cr-accent-ink text-white transition-transform duration-300 group-hover:rotate-45 motion-reduce:transition-none"
-                  >
-                    <ArrowIcon />
-                  </span>
-                  <span className="sr-only">(se abre en una pestaña nueva)</span>
-                </a>
-              )}
-
               {showcase && (
-                <div className="mt-16 space-y-16">
-                  <section aria-labelledby={`${titleId}-posts`}>
-                    <h3 id={`${titleId}-posts`} className="font-cr-heading text-2xl font-extrabold tracking-tight sm:text-3xl">
-                      Publicaciones para redes
-                    </h3>
-                    <p className="mt-2 font-cr-body text-sm text-white/70">Instagram y Facebook · 4:5</p>
-                    <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
-                      {showcase.posts.map((post, i) => (
-                        <li key={post.src}>
-                          <button
-                            type="button"
-                            className={thumb}
-                            aria-label={`Ampliar: ${post.alt}`}
-                            onClick={() => openViewer("Publicaciones", showcase.posts, i)}
-                          >
-                            <Image
-                              src={post.src}
-                              alt=""
-                              fill
-                              sizes="(min-width: 1024px) 280px, 45vw"
-                              className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
-                            />
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
+                <div className="mt-14">
+                  <div
+                    role="tablist"
+                    aria-label="Material del proyecto"
+                    onKeyDown={onTabKeyDown}
+                    className="-mx-6 flex overflow-x-auto border-b border-white/15 px-6 sm:mx-0 sm:px-0"
+                  >
+                    {tabs.map((t) => {
+                      const selected = t.id === tab;
+                      return (
+                        <button
+                          key={t.id}
+                          ref={(el) => {
+                            tabRefs.current[t.id] = el;
+                          }}
+                          type="button"
+                          role="tab"
+                          id={`${titleId}-tab-${t.id}`}
+                          aria-selected={selected}
+                          aria-controls={`${titleId}-panel-${t.id}`}
+                          tabIndex={selected ? 0 : -1}
+                          onClick={() => setTab(t.id)}
+                          className={`-mb-px shrink-0 border-b-2 px-4 py-3 font-cr-heading text-[13px] font-semibold uppercase tracking-wide transition-colors motion-reduce:transition-none sm:px-6 ${
+                            selected
+                              ? "border-cr-accent text-white"
+                              : "border-transparent text-white/60 hover:text-white"
+                          }`}
+                        >
+                          {t.label}
+                          <span className="ml-2 text-cr-accent">{t.count}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
 
-                  {showcase.carousels.map((carousel) => (
-                    <section key={carousel.title} aria-label={`Carrusel: ${carousel.title}`}>
-                      <div className="flex items-baseline justify-between gap-4">
-                        <h3 className="font-cr-heading text-2xl font-extrabold tracking-tight sm:text-3xl">
-                          Carrusel · {carousel.title}
-                        </h3>
-                        <span className="shrink-0 font-cr-body text-sm text-white/70">
-                          {carousel.slides.length} láminas
-                        </span>
-                      </div>
-                      <ul className="-mx-6 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-3 sm:-mx-10 sm:gap-4 sm:px-10">
-                        {carousel.slides.map((slide, i) => (
-                          <li key={slide.src} className="w-[58%] shrink-0 snap-start sm:w-[220px]">
+                  <div
+                    role="tabpanel"
+                    id={`${titleId}-panel-${tab}`}
+                    aria-labelledby={`${titleId}-tab-${tab}`}
+                    tabIndex={0}
+                    className="pt-8 outline-none focus-visible:outline-2 focus-visible:outline-offset-4"
+                  >
+                    {tab === "posts" && (
+                      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+                        {showcase.posts.map((post, i) => (
+                          <li key={post.src}>
                             <button
                               type="button"
                               className={thumb}
-                              aria-label={`Ampliar: ${slide.alt}`}
-                              onClick={() => openViewer(`Carrusel · ${carousel.title}`, carousel.slides, i)}
+                              aria-label={`Ampliar: ${post.alt}`}
+                              onClick={() => openViewer("Publicaciones", showcase.posts, i)}
                             >
                               <Image
-                                src={slide.src}
+                                src={post.src}
                                 alt=""
                                 fill
-                                sizes="(min-width: 640px) 220px, 58vw"
-                                className="object-cover"
+                                sizes="(min-width: 1024px) 210px, (min-width: 640px) 30vw, 45vw"
+                                className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
                               />
                             </button>
                           </li>
                         ))}
                       </ul>
-                    </section>
-                  ))}
+                    )}
 
-                  {showcase.stories && (
-                    <section aria-labelledby={`${titleId}-stories`}>
-                      <h3 id={`${titleId}-stories`} className="font-cr-heading text-2xl font-extrabold tracking-tight sm:text-3xl">
-                        Stories, destacadas y reels
-                      </h3>
-                      <p className="mt-2 font-cr-body text-sm text-white/70">Formato vertical · 9:16</p>
-                      <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+                    {tab === "carousels" && (
+                      <div className="space-y-12">
+                        {showcase.carousels.map((carousel) => (
+                          <section key={carousel.title} aria-label={`Carrusel: ${carousel.title}`}>
+                            <div className="flex items-baseline justify-between gap-4">
+                              <h3 className="font-cr-heading text-xl font-extrabold tracking-tight sm:text-2xl">
+                                {carousel.title}
+                              </h3>
+                              <span className="shrink-0 font-cr-body text-sm text-white/70">
+                                {carousel.slides.length} láminas
+                              </span>
+                            </div>
+                            <ul
+                              style={{ "--n": carousel.slides.length } as CSSProperties}
+                              className="-mx-6 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-3 sm:-mx-10 sm:px-10 lg:mx-0 lg:grid lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0 lg:[grid-template-columns:repeat(var(--n),minmax(0,1fr))]"
+                            >
+                              {carousel.slides.map((slide, i) => (
+                                <li key={slide.src} className="w-[58%] shrink-0 snap-start sm:w-[220px] lg:w-auto">
+                                  <button
+                                    type="button"
+                                    className={thumb}
+                                    aria-label={`Ampliar: ${slide.alt}`}
+                                    onClick={() => openViewer(`Carrusel · ${carousel.title}`, carousel.slides, i)}
+                                  >
+                                    <Image
+                                      src={slide.src}
+                                      alt=""
+                                      fill
+                                      sizes="(min-width: 1024px) 190px, (min-width: 640px) 220px, 58vw"
+                                      className="object-cover"
+                                    />
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                          </section>
+                        ))}
+                      </div>
+                    )}
+
+                    {tab === "stories" && showcase.stories && (
+                      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
                         {showcase.stories.map((story, i) => (
                           <li key={story.src}>
                             <button
@@ -260,15 +335,10 @@ export default function CreativeProjectModal({
                           </li>
                         ))}
                       </ul>
-                    </section>
-                  )}
+                    )}
 
-                  {showcase.mockups && (
-                    <section aria-labelledby={`${titleId}-mockups`}>
-                      <h3 id={`${titleId}-mockups`} className="font-cr-heading text-2xl font-extrabold tracking-tight sm:text-3xl">
-                        Mockups
-                      </h3>
-                      <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+                    {tab === "mockups" && showcase.mockups && (
+                      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
                         {showcase.mockups.map((mockup, i) => (
                           <li key={mockup.src}>
                             <button
@@ -289,8 +359,8 @@ export default function CreativeProjectModal({
                           </li>
                         ))}
                       </ul>
-                    </section>
-                  )}
+                    )}
+                  </div>
                 </div>
               )}
             </div>
