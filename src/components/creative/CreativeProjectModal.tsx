@@ -234,6 +234,35 @@ export default function CreativeProjectModal({
                     </section>
                   ))}
 
+                  {showcase.stories && (
+                    <section aria-labelledby={`${titleId}-stories`}>
+                      <h3 id={`${titleId}-stories`} className="font-cr-heading text-2xl font-extrabold tracking-tight sm:text-3xl">
+                        Stories, destacadas y reels
+                      </h3>
+                      <p className="mt-2 font-cr-body text-sm text-white/70">Formato vertical · 9:16</p>
+                      <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+                        {showcase.stories.map((story, i) => (
+                          <li key={story.src}>
+                            <button
+                              type="button"
+                              className="group relative block aspect-[9/16] w-full overflow-hidden bg-neutral-900 focus-visible:outline-2 focus-visible:-outline-offset-4"
+                              aria-label={`Ampliar: ${story.alt}`}
+                              onClick={() => openViewer("Stories", showcase.stories ?? [], i)}
+                            >
+                              <Image
+                                src={story.src}
+                                alt=""
+                                fill
+                                sizes="(min-width: 640px) 210px, 45vw"
+                                className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
+                              />
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  )}
+
                   {showcase.mockups && (
                     <section aria-labelledby={`${titleId}-mockups`}>
                       <h3 id={`${titleId}-mockups`} className="font-cr-heading text-2xl font-extrabold tracking-tight sm:text-3xl">

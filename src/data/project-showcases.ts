@@ -15,27 +15,33 @@ export type ProjectShowcase = {
   carousels: ShowcaseCarousel[];
   /** Mockups horizontales (feed y dispositivos). */
   mockups?: ShowcaseWide[];
+  /** Piezas verticales 9:16: historias destacadas, portadas de reel y plantillas de story. */
+  stories?: ShowcaseWide[];
 };
 
 export const projectShowcases: Record<string, ProjectShowcase> = {
   "Dental Clinic": {
     posts: [
-      { src: "/portfolio/dental/post-01-sonrie-con-brillo.webp", alt: "Dental Clinic: publicación «Sonríe con brillo»" },
-      { src: "/portfolio/dental/post-02-primera-valoracion.webp", alt: "Dental Clinic: publicación «Primera valoración»" },
-      { src: "/portfolio/dental/post-03-aqui-nadie-te-apura.webp", alt: "Dental Clinic: publicación «Aquí nadie te apura»" },
-      { src: "/portfolio/dental/post-04-testimonio-ortodoncia.webp", alt: "Dental Clinic: publicación «Testimonio ortodoncia»" },
-      { src: "/portfolio/dental/post-05-blanqueamiento.webp", alt: "Dental Clinic: publicación «Blanqueamiento»" },
-      { src: "/portfolio/dental/post-06-presupuesto-cerrado.webp", alt: "Dental Clinic: publicación «Presupuesto cerrado»" },
-      { src: "/portfolio/dental/post-07-cifras.webp", alt: "Dental Clinic: publicación «Cifras»" },
-      { src: "/portfolio/dental/post-08-visita-infantil.webp", alt: "Dental Clinic: publicación «Visita infantil»" },
-      { src: "/portfolio/dental/post-09-ubicacion-y-horarios.webp", alt: "Dental Clinic: publicación «Ubicación y horarios»" },
+      { src: "/portfolio/dental/post-01-sonrie-con-brillo.webp", alt: "Dental Clinic: publicación «Sonríe con brillo»" },
+      { src: "/portfolio/dental/post-02-primera-valoracion-sin-costo.webp", alt: "Dental Clinic: publicación «Primera valoración sin costo»" },
+      { src: "/portfolio/dental/post-03-aqui-nadie-te-apura.webp", alt: "Dental Clinic: publicación «Aquí nadie te apura»" },
+      { src: "/portfolio/dental/post-04-testimonio.webp", alt: "Dental Clinic: publicación «Testimonio»" },
+      { src: "/portfolio/dental/post-05-blanqueamiento-desde-4-500.webp", alt: "Dental Clinic: publicación «Blanqueamiento desde $4,500»" },
+      { src: "/portfolio/dental/post-06-presupuesto-cerrado-por-escrito.webp", alt: "Dental Clinic: publicación «Presupuesto cerrado por escrito»" },
+      { src: "/portfolio/dental/post-07-cifras-y-resenas.webp", alt: "Dental Clinic: publicación «Cifras y reseñas»" },
+      { src: "/portfolio/dental/post-08-primera-visita-infantil-desde-450.webp", alt: "Dental Clinic: publicación «Primera visita infantil desde $450»" },
+      { src: "/portfolio/dental/post-09-ubicacion-y-horarios.webp", alt: "Dental Clinic: publicación «Ubicación y horarios»" },
+      { src: "/portfolio/dental/post-10-testimonio-tenia-miedo-al-dentista.webp", alt: "Dental Clinic: publicación «Testimonio tenía miedo al dentista»" },
+      { src: "/portfolio/dental/post-11-testimonio-primera-visita-de-su-hijo.webp", alt: "Dental Clinic: publicación «Testimonio primera visita de su hijo»" },
+      { src: "/portfolio/dental/post-12-fin-de-ano-agenda-para-enero.webp", alt: "Dental Clinic: publicación «Fin de año agenda para enero»" },
+      { src: "/portfolio/dental/post-13-aviso-de-cierre-por-vacaciones.webp", alt: "Dental Clinic: publicación «Aviso de cierre por vacaciones»" },
     ],
     carousels: [
       {
         title: "Cómo trabajamos",
         slides: [
           { src: "/portfolio/dental/c1-1-portada.webp", alt: "Dental Clinic: carrusel «Cómo trabajamos», lámina 1 (Portada)" },
-          { src: "/portfolio/dental/c1-2-valoracion.webp", alt: "Dental Clinic: carrusel «Cómo trabajamos», lámina 2 (Valoración)" },
+          { src: "/portfolio/dental/c1-2-valoracion.webp", alt: "Dental Clinic: carrusel «Cómo trabajamos», lámina 2 (Valoración)" },
           { src: "/portfolio/dental/c1-3-plan-de-tratamiento.webp", alt: "Dental Clinic: carrusel «Cómo trabajamos», lámina 3 (Plan de tratamiento)" },
           { src: "/portfolio/dental/c1-4-tratamiento.webp", alt: "Dental Clinic: carrusel «Cómo trabajamos», lámina 4 (Tratamiento)" },
           { src: "/portfolio/dental/c1-5-seguimiento.webp", alt: "Dental Clinic: carrusel «Cómo trabajamos», lámina 5 (Seguimiento)" },
@@ -45,9 +51,9 @@ export const projectShowcases: Record<string, ProjectShowcase> = {
         title: "Tecnología",
         slides: [
           { src: "/portfolio/dental/c2-1-portada.webp", alt: "Dental Clinic: carrusel «Tecnología», lámina 1 (Portada)" },
-          { src: "/portfolio/dental/c2-2-escaner-intraoral-3d.webp", alt: "Dental Clinic: carrusel «Tecnología», lámina 2 (Escáner intraoral 3D)" },
-          { src: "/portfolio/dental/c2-3-tomografia-de-haz-conico.webp", alt: "Dental Clinic: carrusel «Tecnología», lámina 3 (Tomografía de haz cónico)" },
-          { src: "/portfolio/dental/c2-4-diseno-digital-de-sonrisa.webp", alt: "Dental Clinic: carrusel «Tecnología», lámina 4 (Diseño digital de sonrisa)" },
+          { src: "/portfolio/dental/c2-2-escaner-intraoral-3d.webp", alt: "Dental Clinic: carrusel «Tecnología», lámina 2 (Escáner intraoral 3D)" },
+          { src: "/portfolio/dental/c2-3-tomografia-de-haz-conico.webp", alt: "Dental Clinic: carrusel «Tecnología», lámina 3 (Tomografía de haz cónico)" },
+          { src: "/portfolio/dental/c2-4-diseno-digital-de-sonrisa.webp", alt: "Dental Clinic: carrusel «Tecnología», lámina 4 (Diseño digital de sonrisa)" },
           { src: "/portfolio/dental/c2-5-cierre.webp", alt: "Dental Clinic: carrusel «Tecnología», lámina 5 (Cierre)" },
         ],
       },
@@ -61,6 +67,15 @@ export const projectShowcases: Record<string, ProjectShowcase> = {
           { src: "/portfolio/dental/c3-5-cierre.webp", alt: "Dental Clinic: carrusel «Planes», lámina 5 (Cierre)" },
         ],
       },
+    ],
+    stories: [
+      { src: "/portfolio/dental/destacada-precios.webp", alt: "Dental Clinic: Historia destacada: Precios", width: 1080, height: 1920 },
+      { src: "/portfolio/dental/destacada-primera-cita.webp", alt: "Dental Clinic: Historia destacada: Primera cita", width: 1080, height: 1920 },
+      { src: "/portfolio/dental/destacada-resenas.webp", alt: "Dental Clinic: Historia destacada: Reseñas", width: 1080, height: 1920 },
+      { src: "/portfolio/dental/destacada-ubicacion.webp", alt: "Dental Clinic: Historia destacada: Ubicación", width: 1080, height: 1920 },
+      { src: "/portfolio/dental/reel-cover-asi-es-el-escaner-3d.webp", alt: "Dental Clinic: Portada de reel: Así es el escáner 3D", width: 1080, height: 1920 },
+      { src: "/portfolio/dental/reel-cover-duele-le-preguntamos-al-doctor.webp", alt: "Dental Clinic: Portada de reel: ¿Duele Le preguntamos al doctor", width: 1080, height: 1920 },
+      { src: "/portfolio/dental/story-template-pregunta-con-sticker-de-respuestas.webp", alt: "Dental Clinic: Plantilla de story: Pregunta con sticker de respuestas", width: 1080, height: 1920 },
     ],
   },
   "VOLUME": {
