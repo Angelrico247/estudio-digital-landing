@@ -1,7 +1,14 @@
+"use client";
+
+import { useState } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import { imageUrl, portfolio } from "@/data/site";
+import { imageUrl, portfolio, type PortfolioProject } from "@/data/site";
 import CreativeHeading from "./CreativeHeading";
 import Reveal from "./Reveal";
+
+// La ficha del proyecto solo se necesita al abrirla: su código y sus imágenes se descargan en ese momento.
+const CreativeProjectModal = dynamic(() => import("./CreativeProjectModal"));
 
 // Mosaico tipo Seppo. En celular los proyectos van apilados, uno por fila y a todo el ancho;
 // en tablet, de dos en dos; desde lg es el mosaico de cuatro columnas con mosaicos de 1 y 2
@@ -17,6 +24,8 @@ const layout = [
 ];
 
 export default function CreativeProjects() {
+  const [active, setActive] = useState<PortfolioProject | null>(null);
+
   return (
     <section id="proyectos" className="scroll-mt-[77px] bg-white pb-0">
       <CreativeHeading eyebrow="Proyectos" title="Ideas que ya viven en pantalla" />
@@ -24,14 +33,15 @@ export default function CreativeProjects() {
       <Reveal>
         <ul className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {portfolio.map((project, i) => {
-            const Wrapper = project.url ? "a" : "div";
             const tile = layout[i] ?? { item: "", aspect: "sm:aspect-square lg:aspect-square" };
 
             return (
               <li key={project.name} className={tile.item}>
-                <Wrapper
-                  {...(project.url ? { href: project.url, target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className={`group relative block aspect-[4/3] w-full overflow-hidden bg-black focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-cr-accent ${tile.aspect}`}
+                <button
+                  type="button"
+                  onClick={() => setActive(project)}
+                  aria-haspopup="dialog"
+                  className={`group relative block aspect-[4/3] w-full overflow-hidden bg-black text-left focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-cr-accent ${tile.aspect}`}
                 >
                   <Image
                     src={project.image ?? imageUrl(project.imageSeed, 900, 675)}
@@ -51,13 +61,15 @@ export default function CreativeProjects() {
                       {project.name}
                     </span>
                   </span>
-                  {project.url && <span className="sr-only">Visitar el sitio (se abre en una pestaña nueva)</span>}
-                </Wrapper>
+                  <span className="sr-only">Ver el proyecto</span>
+                </button>
               </li>
             );
           })}
         </ul>
       </Reveal>
+
+      {active && <CreativeProjectModal project={active} onClose={() => setActive(null)} />}
     </section>
   );
 }
