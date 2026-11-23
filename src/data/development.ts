@@ -47,7 +47,6 @@ export type DevProject = {
   kind: string;
   description: string;
   highlights: string[];
-  stack?: string[];
   /** La primera tarjeta ocupa todo el ancho. */
   featured?: boolean;
 };
@@ -65,7 +64,6 @@ export const devProjects: DevProject[] = [
       "Dashboard con indicadores y reportes exportables a Excel",
       "Acceso con usuarios y sesión segura",
     ],
-    stack: ["FastAPI", "PostgreSQL", "React", "TypeScript"],
     featured: true,
   },
   {

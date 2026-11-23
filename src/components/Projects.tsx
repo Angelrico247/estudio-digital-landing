@@ -58,19 +58,6 @@ function ProjectCard({ project }: { project: DevProject }) {
             ))}
           </ul>
 
-          {project.stack && (
-            <ul className="mt-8 flex flex-wrap gap-2" aria-label="Tecnologías">
-              {project.stack.map((tech) => (
-                <li
-                  key={tech}
-                  className="rounded-full border border-line px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-secondary"
-                >
-                  {tech}
-                </li>
-              ))}
-            </ul>
-          )}
-
           <button
             type="button"
             aria-label={`Quiero algo así: ${project.title}`}
