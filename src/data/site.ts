@@ -223,6 +223,14 @@ export const portfolio: PortfolioProject[] = [
     image: "/portfolio-rentalcars.png",
     kind: "concepto",
   },
+  {
+    name: "TWID 3D",
+    category: "Experiencia 3D",
+    imageSeed: "1550745165-9bc0b252726f",
+    url: "https://angelrico247.github.io/twid-landing-3d/landing_3d.html",
+    image: "/portfolio-twid3d.png",
+    kind: "concepto",
+  },
 ];
 
 export type Milestone = {

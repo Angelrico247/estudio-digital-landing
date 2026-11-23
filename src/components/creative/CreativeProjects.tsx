@@ -12,7 +12,7 @@ const CreativeProjectModal = dynamic(() => import("./CreativeProjectModal"));
 
 // Mosaico tipo Seppo. En celular los proyectos van apilados, uno por fila y a todo el ancho;
 // en tablet, de dos en dos; desde lg es el mosaico de cuatro columnas con mosaicos de 1 y 2
-// columnas de ancho. El último ocupa toda la fila para que el mosaico cierre sin huecos.
+// columnas de ancho. Los dos últimos van a media fila cada uno para que el mosaico cierre sin huecos.
 const layout = [
   { item: "lg:col-span-2", aspect: "sm:aspect-square lg:aspect-[2/1]" },
   { item: "", aspect: "sm:aspect-square lg:aspect-square" },
@@ -20,7 +20,8 @@ const layout = [
   { item: "", aspect: "sm:aspect-square lg:aspect-square" },
   { item: "", aspect: "sm:aspect-square lg:aspect-square" },
   { item: "lg:col-span-2", aspect: "sm:aspect-square lg:aspect-[2/1]" },
-  { item: "sm:col-span-2 lg:col-span-4", aspect: "sm:aspect-[2/1] lg:aspect-[16/5]" },
+  { item: "lg:col-span-2", aspect: "sm:aspect-square lg:aspect-[2/1]" },
+  { item: "lg:col-span-2", aspect: "sm:aspect-square lg:aspect-[2/1]" },
 ];
 
 export default function CreativeProjects() {
