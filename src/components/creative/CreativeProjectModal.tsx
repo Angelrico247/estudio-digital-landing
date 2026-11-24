@@ -74,18 +74,25 @@ function SectionPanel({
     );
   }
 
+  // Mockups verticales (teléfono): tres por fila, para que no se estiren a casi 900 px de alto.
+  const portraitMockups =
+    section.ratio === "wide" && section.images.every((img) => (img.height ?? 0) > (img.width ?? 0));
   const gridClass =
     section.ratio === "post"
       ? "grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4"
       : section.ratio === "story"
         ? "grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4"
-        : "grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4";
+        : portraitMockups
+          ? "mx-auto grid max-w-sm grid-cols-1 gap-3 sm:max-w-none sm:grid-cols-3 sm:gap-4"
+          : "grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4";
   const sizes =
     section.ratio === "post"
       ? "(min-width: 1024px) 210px, (min-width: 640px) 30vw, 45vw"
       : section.ratio === "story"
         ? "(min-width: 640px) 210px, 45vw"
-        : "(min-width: 640px) 430px, 100vw";
+        : portraitMockups
+          ? "(min-width: 640px) 290px, 90vw"
+          : "(min-width: 640px) 430px, 100vw";
 
   return (
     <ul className={gridClass} aria-labelledby={`${titleId}-tab-${section.id}`}>

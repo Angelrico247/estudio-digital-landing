@@ -199,4 +199,57 @@ export const projectShowcases: Record<string, ProjectShowcase> = {
       ] },
     ],
   },
+  "Tertulia GDL": {
+    sections: [
+      { id: "posts", label: "Publicaciones", kind: "grid", ratio: "post", images: [
+        { src: "/portfolio/tertulia/post-01-hero.bb139c6d.webp", alt: "Tertulia GDL: publicación «Hero»" },
+        { src: "/portfolio/tertulia/post-02-fuego-y-brasa.288b3ffe.webp", alt: "Tertulia GDL: publicación «Fuego & Brasa»" },
+        { src: "/portfolio/tertulia/post-03-conversacion.31bc82cb.webp", alt: "Tertulia GDL: publicación «Conversación»" },
+        { src: "/portfolio/tertulia/post-04-desde-350.32032618.webp", alt: "Tertulia GDL: publicación «Desde $350»" },
+        { src: "/portfolio/tertulia/post-05-mixologia-de-autor.3e2b88d9.webp", alt: "Tertulia GDL: publicación «Mixología de Autor»" },
+      ] },
+      { id: "carousels", label: "Carruseles", kind: "carousels", carousels: [
+        { title: "Bodas & Banquetes", slides: [
+          { src: "/portfolio/tertulia/c1-1-bodas-y-banquetes.e27c41bc.webp", alt: "Tertulia GDL: carrusel «Bodas & Banquetes», lámina 1" },
+          { src: "/portfolio/tertulia/c1-2-bodas-y-banquetes.4095753c.webp", alt: "Tertulia GDL: carrusel «Bodas & Banquetes», lámina 2" },
+          { src: "/portfolio/tertulia/c1-3-bodas-y-banquetes.28542b4f.webp", alt: "Tertulia GDL: carrusel «Bodas & Banquetes», lámina 3" },
+        ] },
+        { title: "Eventos Empresariales", slides: [
+          { src: "/portfolio/tertulia/c2-1-eventos-empresariales.014614d5.webp", alt: "Tertulia GDL: carrusel «Eventos Empresariales», lámina 1" },
+          { src: "/portfolio/tertulia/c2-2-eventos-empresariales.68e9c20d.webp", alt: "Tertulia GDL: carrusel «Eventos Empresariales», lámina 2" },
+          { src: "/portfolio/tertulia/c2-3-eventos-empresariales.26e18542.webp", alt: "Tertulia GDL: carrusel «Eventos Empresariales», lámina 3" },
+        ] },
+        { title: "Celebraciones Pop-Up", slides: [
+          { src: "/portfolio/tertulia/c3-1-celebraciones-pop-up.b879c6a1.webp", alt: "Tertulia GDL: carrusel «Celebraciones Pop-Up», lámina 1" },
+          { src: "/portfolio/tertulia/c3-2-celebraciones-pop-up.5a448f38.webp", alt: "Tertulia GDL: carrusel «Celebraciones Pop-Up», lámina 2" },
+          { src: "/portfolio/tertulia/c3-3-celebraciones-pop-up.4014f037.webp", alt: "Tertulia GDL: carrusel «Celebraciones Pop-Up», lámina 3" },
+        ] },
+        { title: "Fuego & Brasa · platillos", slides: [
+          { src: "/portfolio/tertulia/c4-1-fuego-y-brasa-platillos.0c03d136.webp", alt: "Tertulia GDL: carrusel «Fuego & Brasa · platillos», lámina 1" },
+          { src: "/portfolio/tertulia/c4-2-fuego-y-brasa-platillos.61208042.webp", alt: "Tertulia GDL: carrusel «Fuego & Brasa · platillos», lámina 2" },
+          { src: "/portfolio/tertulia/c4-3-fuego-y-brasa-platillos.50cb2cf0.webp", alt: "Tertulia GDL: carrusel «Fuego & Brasa · platillos», lámina 3" },
+        ] },
+        { title: "Alta Cocina · platillos", slides: [
+          { src: "/portfolio/tertulia/c5-1-alta-cocina-platillos.5af9dbff.webp", alt: "Tertulia GDL: carrusel «Alta Cocina · platillos», lámina 1" },
+          { src: "/portfolio/tertulia/c5-2-alta-cocina-platillos.ded1cdd8.webp", alt: "Tertulia GDL: carrusel «Alta Cocina · platillos», lámina 2" },
+          { src: "/portfolio/tertulia/c5-3-alta-cocina-platillos.1b46bee5.webp", alt: "Tertulia GDL: carrusel «Alta Cocina · platillos», lámina 3" },
+        ] },
+        { title: "Mixología · bebidas", slides: [
+          { src: "/portfolio/tertulia/c6-1-mixologia-bebidas.795aec98.webp", alt: "Tertulia GDL: carrusel «Mixología · bebidas», lámina 1" },
+          { src: "/portfolio/tertulia/c6-2-mixologia-bebidas.8413e857.webp", alt: "Tertulia GDL: carrusel «Mixología · bebidas», lámina 2" },
+          { src: "/portfolio/tertulia/c6-3-mixologia-bebidas.086f11cd.webp", alt: "Tertulia GDL: carrusel «Mixología · bebidas», lámina 3" },
+        ] },
+        { title: "Experiencias", slides: [
+          { src: "/portfolio/tertulia/c7-1-experiencias.b6b378a0.webp", alt: "Tertulia GDL: carrusel «Experiencias», lámina 1" },
+          { src: "/portfolio/tertulia/c7-2-experiencias.b1e52b00.webp", alt: "Tertulia GDL: carrusel «Experiencias», lámina 2" },
+          { src: "/portfolio/tertulia/c7-3-experiencias.ac04b009.webp", alt: "Tertulia GDL: carrusel «Experiencias», lámina 3" },
+        ] },
+      ] },
+      { id: "mockups", label: "Mockups", kind: "grid", ratio: "wide", images: [
+        { src: "/portfolio/tertulia/mockup-perfil-cuadricula.3f35f7c9.webp", alt: "Tertulia GDL: mockup «Perfil cuadrícula»", width: 1000, height: 2000 },
+        { src: "/portfolio/tertulia/mockup-feed.14caeb61.webp", alt: "Tertulia GDL: mockup «Feed»", width: 1000, height: 2000 },
+        { src: "/portfolio/tertulia/mockup-carrusel-deslizando.5529c72b.webp", alt: "Tertulia GDL: mockup «Carrusel (deslizando)»", width: 1000, height: 2000 },
+      ] },
+    ],
+  },
 };
